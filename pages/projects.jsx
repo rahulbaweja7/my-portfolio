@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import ProjectItem from "@/components/ProjectItem";
-import quizmodoroImg from "../public/assets/projects/QuizModoro.png";
+import quizmodoroImg from "../public/assets/projects/Quizmodoro.png";
 import portfolioImg from "../public/assets/projects/Portfolio.png";
-import unlimitedwordleImg from "../public/assets/projects/unlimitedwordle.png";
+import unlimitedwordleImg from "../public/assets/projects/UnlimitedWordle.png";
 import comingSoonImg from "../public/assets/projects/comingSoonNew.png";
 
 const Projects = () => {
