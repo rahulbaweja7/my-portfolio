@@ -48,7 +48,7 @@ const About = () => {
             <div className="space-y-4">
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-amethyst text-center md:text-left text-[#5651e5]">Who am I?</h1>
               <p className="text-gray-600 text-base md:text-lg lg:text-xl text-justify">
-                Hi, I'm Rahul Baweja, a Junior at Arizona State University pursuing Computer Science.
+                Hi, I&apos;m Rahul Baweja, a Junior at Arizona State University pursuing Computer Science.
                 I have currently maintained a perfect GPA. My experience extends from UnderGraduate Teaching
                 Assistant to interning as a Front-End Developer at eazy2biz.
                 My projects primarily focus on AI-integrated web applications, reflecting my passion for
@@ -58,7 +58,7 @@ const About = () => {
               </p>
             </div>
             <div className="mt-8 space-y-4">
-              <h2 className="text-2xl md:text-3xl font-bold text-amethyst text-center md:text-left text-[#5651e5]">Let's Connect</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-amethyst text-center md:text-left text-[#5651e5]">Let&apos;s Connect</h2>
               <div className='flex items-center justify-between max-w-[330px] m-auto py-4'>
                 <div 
                   className='rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-105 ease-in duration-300'
