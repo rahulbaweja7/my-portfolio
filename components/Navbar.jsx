@@ -1,74 +1,121 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+
+const navLinks = [
+  { href: '/',         label: 'Home' },
+  { href: '/about',    label: 'About' },
+  { href: '/skills',   label: 'Skills' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact',  label: 'Contact' },
+];
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [shadow, setShadow] = useState(false);
-
-  const handleNav = () => {
-    setNav(!nav);
-  };
+  const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const handleShadow = () => {
-      if (window.scrollY >= 90) {
-        setShadow(true);
-      } else {
-        setShadow(false);
-      }
-    };
-    window.addEventListener('scroll', handleShadow);
-    return () => window.removeEventListener('scroll', handleShadow);
+    const handleScroll = () => setScrolled(window.scrollY >= 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (nav) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
+  }, [nav]);
+
   return (
-    <div className={shadow ? 'fixed w-full h-20 shadow-lg bg-gray-800 z-[100] transition-shadow duration-300' : 'fixed w-full h-20 bg-gray-800 z-[100] transition-shadow duration-300'}>
-      <div className='flex justify-between items-center w-full h-full px-4 md:px-8 lg:px-16'>
-        <div className='flex items-center'>
-          <div className='relative w-12 h-12 overflow-hidden rounded-full'>
-            <Image
-              src='/assets/RahulAnimated.png'
-              alt='Logo'
-              layout='fill'
-              objectFit='cover'
-            />
+    <header
+      className={`fixed w-full z-[100] transition-all duration-300 ${
+        scrolled ? 'bg-dark/95 backdrop-blur-sm border-b border-dark-border' : 'bg-transparent'
+      }`}
+    >
+      <nav className="max-w-5xl mx-auto flex items-center justify-between h-16 px-6 md:px-8">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="relative w-7 h-7 overflow-hidden rounded-full border border-dark-border group-hover:border-accent transition-colors duration-200">
+            <Image src="/assets/RahulAnimated.png" alt="Rahul" fill style={{ objectFit: 'cover' }} />
           </div>
-          <span className='ml-4 text-white text-3xl font-semibold'>Rahul Baweja</span>
-        </div>
-        <div className='hidden md:flex space-x-6'>
-          <Link href='/' className='text-white text-base uppercase hover:text-gray-400'>Home</Link>
-          <Link href='/about' className='text-white text-base uppercase hover:text-gray-400'>About</Link>
-          <Link href='/skills' className='text-white text-base uppercase hover:text-gray-400'>Skills</Link>
-          <Link href='/projects' className='text-white text-base uppercase hover:text-gray-400'>Projects</Link>
-          <Link href='/contact' className='text-white text-base uppercase hover:text-gray-400'>Contact</Link>
-        </div>
-        <div onClick={handleNav} className='md:hidden'>
-          {nav ? (
-            <AiOutlineClose size={25} className='text-white cursor-pointer' />
-          ) : (
-            <AiOutlineMenu size={25} className='text-white cursor-pointer' />
-          )}
-        </div>
-      </div>
+          <span className="text-[#efefef] text-sm font-medium hidden sm:block">
+            rahul<span className="text-accent">.</span>dev
+          </span>
+        </Link>
+
+        {/* Desktop Links */}
+        <ul className="hidden md:flex items-center gap-1">
+          {navLinks.map(({ href, label }) => {
+            const isActive = router.pathname === href;
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className={`px-3.5 py-2 text-sm rounded transition-colors duration-200 ${
+                    isActive
+                      ? 'text-[#efefef]'
+                      : 'text-text-muted hover:text-[#efefef]'
+                  }`}
+                >
+                  {label}
+                  {isActive && (
+                    <span className="block h-px w-full bg-accent mt-px rounded-full" />
+                  )}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setNav(!nav)}
+          className="md:hidden p-2 text-text-muted hover:text-[#efefef] transition-colors duration-200"
+          aria-label="Toggle menu"
+        >
+          <AiOutlineMenu size={19} />
+        </button>
+      </nav>
+
+      {/* Mobile overlay */}
       {nav && (
-        <div className='fixed top-0 left-0 w-full h-screen bg-black/90 flex flex-col items-center justify-center'>
-          <AiOutlineClose
-            size={30}
-            className='text-white cursor-pointer absolute top-4 right-4'
-            onClick={() => setNav(!nav)}
-          />
-          <ul className='flex flex-col space-y-6'>
-            <Link href='/' className='text-white text-lg uppercase'>Home</Link>
-            <Link href='/about' className='text-white text-lg uppercase'>About</Link>
-            <Link href='/skills' className='text-white text-lg uppercase'>Skills</Link>
-            <Link href='/projects' className='text-white text-lg uppercase'>Projects</Link>
-            <Link href='/contact' className='text-white text-lg uppercase'>Contact</Link>
+        <div className="fixed inset-0 z-[200] bg-dark flex flex-col">
+          <div className="flex items-center justify-between h-16 px-6 border-b border-dark-border">
+            <span className="text-[#efefef] text-sm font-medium">
+              rahul<span className="text-accent">.</span>dev
+            </span>
+            <button
+              onClick={() => setNav(false)}
+              className="p-2 text-text-muted hover:text-[#efefef]"
+            >
+              <AiOutlineClose size={20} />
+            </button>
+          </div>
+          <ul className="flex flex-col items-center justify-center flex-1 gap-8">
+            {navLinks.map(({ href, label }, i) => (
+              <li
+                key={href}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${i * 0.06}s`, opacity: 0, animationFillMode: 'forwards' }}
+              >
+                <Link
+                  href={href}
+                  onClick={() => setNav(false)}
+                  className={`text-3xl font-light transition-colors duration-200 ${
+                    router.pathname === href ? 'text-accent' : 'text-text-muted hover:text-[#efefef]'
+                  }`}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}
-    </div>
+    </header>
   );
 };
 

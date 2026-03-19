@@ -1,57 +1,88 @@
-// pages/contact.js
-
+import Head from 'next/head';
 import Navbar from '@/components/Navbar';
-import React from 'react';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { AiOutlineMail } from 'react-icons/ai';
+
+const contactLinks = [
+  {
+    icon: <AiOutlineMail size={18} />,
+    label: 'Email',
+    value: 'rbaweja1@asu.edu',
+    href: 'mailto:rbaweja1@asu.edu',
+  },
+  {
+    icon: <FaLinkedinIn size={16} />,
+    label: 'LinkedIn',
+    value: '/in/rahulbaweja-/',
+    href: 'https://www.linkedin.com/in/rahulbaweja-/',
+  },
+  {
+    icon: <FaGithub size={16} />,
+    label: 'GitHub',
+    value: 'rahulbaweja7',
+    href: 'https://github.com/rahulbaweja7',
+  },
+];
 
 const Contact = () => {
   return (
-    <div id="contact" className="flex flex-col min-h-screen">
+    <div className="min-h-screen bg-dark">
+      <Head>
+        <title>Contact | Rahul Baweja</title>
+      </Head>
       <Navbar />
-      <main className="flex-grow bg-linen mt-20">
-        <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h1 className="mb-4 text-6xl text-[#5651e5] tracking-tight font-extrabold text-center text-amethyst">Contact Me</h1>
-          <p className="mb-8 lg:mb-16 font-light text-center text-black sm:text-xl">
-            Got a project idea or just want to connect? Feel free to reach out! If you have any opportunities you’d like to explore, I’d be excited to chat!
+
+      <main className="max-w-2xl mx-auto px-6 pt-28 pb-20">
+        {/* Header */}
+        <div
+          className="mb-14 animate-fade-in-up"
+          style={{ opacity: 0, animationFillMode: 'forwards' }}
+        >
+          <h1 className="text-4xl sm:text-5xl font-light text-[#efefef] mb-4">
+            Let&apos;s talk<span className="text-accent">.</span>
+          </h1>
+          <p className="text-text-muted text-base leading-relaxed max-w-sm">
+            Opportunity, project idea, or just want to say hi — I&apos;m always down for a good conversation.
           </p>
-          <form action="#" className="space-y-8">
-            <div>
-              <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name</label>
-              <input
-                type="text"
-                id="name"
-                className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                placeholder="John Doe"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-              <input
-                type="email"
-                id="email"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                placeholder="name@email.com"
-                required
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900">Your message</label>
-              <textarea
-                id="message"
-                rows={6}
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-                placeholder="Leave a comment..."
-              ></textarea>
-            </div>
-            <div className="flex justify-center w-full">
-              <button
-                type="submit"
-                className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-black w-full p-4 mt-4 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-primary-300"
-              >
-                Send message
-              </button>
-            </div>
-          </form>
+        </div>
+
+        {/* Links */}
+        <div
+          className="space-y-3 mb-12 animate-fade-in-up delay-100"
+          style={{ opacity: 0, animationFillMode: 'forwards' }}
+        >
+          {contactLinks.map((link, i) => (
+            <a
+              key={i}
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="flex items-center justify-between p-4 card-interactive rounded-lg group border border-dark-border"
+            >
+              <div className="flex items-center gap-4">
+                <span className="text-text-subtle group-hover:text-accent transition-colors duration-200">
+                  {link.icon}
+                </span>
+                <div>
+                  <p className="text-xs font-mono text-text-subtle mb-0.5">{link.label}</p>
+                  <p className="text-sm text-[#efefef]">{link.value}</p>
+                </div>
+              </div>
+              <span className="text-text-subtle text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                ↗
+              </span>
+            </a>
+          ))}
+        </div>
+
+        {/* Note */}
+        <div
+          className="animate-fade-in-up delay-300"
+          style={{ opacity: 0, animationFillMode: 'forwards' }}
+        >
+          <p className="text-text-subtle text-xs font-mono">
+            I&apos;m fastest between 10pm–2am. Occupational hazard.
+          </p>
         </div>
       </main>
     </div>
