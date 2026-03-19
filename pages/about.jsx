@@ -4,44 +4,6 @@ import Image from 'next/image';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
 
-const timeline = [
-  {
-    period: 'May 2025 – Present',
-    role: 'Software Engineer Intern',
-    company: 'SuperWorld',
-    location: 'Los Angeles, CA',
-    tag: 'Current',
-    metrics: ['TypeScript + React', 'Reusable component library', 'REST API integrations'],
-    desc: 'Building scalable frontend features with TypeScript and React.',
-  },
-  {
-    period: 'May 2025 – Aug 2025',
-    role: 'Software Engineer Intern',
-    company: 'IDX Exchange',
-    location: 'Boise, ID',
-    tag: null,
-    metrics: ['Led team of 4', '40% latency ↓', '1,000+ users'],
-    desc: 'Led a team to build a real estate search platform. Integrated CoreLogic API, built auth at scale.',
-  },
-  {
-    period: 'Aug 2023 – May 2024',
-    role: 'Teaching Assistant',
-    company: 'Arizona State University',
-    location: 'Tempe, AZ',
-    tag: null,
-    metrics: ['100+ students', '30+ sessions', 'Java · DSA'],
-    desc: 'TA for Intro to Java. Ran discussion sessions on algorithms, data structures, and debugging.',
-  },
-  {
-    period: 'May 2023 – Aug 2023',
-    role: 'Software Engineer Intern',
-    company: 'Eazy2Biz',
-    location: 'Remote',
-    tag: null,
-    metrics: ['25% fewer bugs', '60% faster onboarding', 'WhatsApp API'],
-    desc: 'Reduced frontend bugs with reusable TypeScript/React components. Built PDF-sharing via WhatsApp API.',
-  },
-];
 
 const outside = [
   { emoji: '🏈', label: 'Football',   sub: 'NFL all day' },
@@ -82,7 +44,7 @@ export default function About() {
               alt="Rahul Baweja"
               fill
               priority
-              style={{ objectFit: 'cover', objectPosition: 'top center' }}
+              style={{ objectFit: 'cover', objectPosition: '50% 18%' }}
             />
             <div
               className="absolute bottom-0 left-0 right-0 px-4 py-3"
@@ -138,10 +100,10 @@ export default function About() {
             <div>
               <p className="text-[10px] font-mono text-accent uppercase tracking-widest mb-3">Next role</p>
               <p
-                className="font-black uppercase text-[#efefef] leading-none"
-                style={{ fontSize: 'clamp(14px, 1.4vw, 20px)' }}
+                className="font-black uppercase text-[#efefef] leading-none tracking-tight"
+                style={{ fontSize: 'clamp(11px, 1.05vw, 15px)' }}
               >
-                Micro<br />soft
+                Microsoft
               </p>
             </div>
             <div>
@@ -186,7 +148,7 @@ export default function About() {
         <div className="md:hidden space-y-3 mb-6">
           <div className="rounded-xl overflow-hidden" style={{ border: '1.5px dashed rgba(249,115,22,0.35)' }}>
             <div className="relative h-48">
-              <Image src="/assets/RahulLA.png" alt="Rahul" fill priority style={{ objectFit: 'cover', objectPosition: 'top' }} />
+              <Image src="/assets/RahulLA.png" alt="Rahul" fill priority style={{ objectFit: 'cover', objectPosition: '50% 18%' }} />
             </div>
             <div className="p-4">
               <p className="text-[#efefef] font-semibold text-sm">Rahul Baweja</p>
@@ -212,81 +174,6 @@ export default function About() {
             ))}
           </div>
         </div>
-
-        {/* ══ EXPERIENCE — git log style ══ */}
-        <section
-          className="mb-10 animate-fade-in-up delay-300"
-          style={{ opacity: 0, animationFillMode: 'forwards' }}
-        >
-          <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-5">
-            // git log --author=rahulbaweja7
-          </p>
-
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-[5px] top-3 bottom-3 w-px bg-dark-border" />
-
-            <div className="space-y-4">
-              {/* Upcoming Microsoft */}
-              <div className="relative pl-8">
-                <div
-                  className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-accent animate-pulse"
-                  style={{ background: 'rgba(249,115,22,0.2)' }}
-                />
-                <div
-                  className="rounded-xl p-4"
-                  style={{ border: '1px solid rgba(249,115,22,0.25)', background: 'rgba(249,115,22,0.03)' }}
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                    <div>
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <p className="text-[#efefef] font-semibold text-sm">SWE Intern</p>
-                        <span className="text-[9px] font-mono text-accent border border-accent/30 rounded px-1.5 py-0.5">upcoming</span>
-                      </div>
-                      <p className="text-accent font-medium text-sm">Microsoft</p>
-                    </div>
-                    <span className="text-[11px] font-mono text-text-subtle">Summer 2026</span>
-                  </div>
-                  <p className="text-text-muted text-xs">Redmond, WA</p>
-                </div>
-              </div>
-
-              {timeline.map((job, i) => (
-                <div key={i} className="relative pl-8">
-                  <div
-                    className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border border-dark-border bg-[#0f0f0f]"
-                    style={{ background: '#1a1a1a' }}
-                  />
-                  <div className="card-interactive rounded-xl border border-dark-border p-4">
-                    <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
-                      <div>
-                        <p className="text-[#efefef] font-semibold text-sm">{job.role}</p>
-                        <p className="text-text-muted text-sm">{job.company}
-                          <span className="text-text-subtle text-xs ml-2 font-mono">{job.location}</span>
-                        </p>
-                      </div>
-                      <span className="text-[11px] font-mono text-text-subtle">{job.period}</span>
-                    </div>
-
-                    {/* Impact metrics */}
-                    <div className="flex flex-wrap gap-1.5 mb-2">
-                      {job.metrics.map((m, mi) => (
-                        <span
-                          key={mi}
-                          className="text-[11px] font-mono text-accent border border-accent/20 bg-accent/5 px-2 py-0.5 rounded"
-                        >
-                          {m}
-                        </span>
-                      ))}
-                    </div>
-
-                    <p className="text-text-muted text-xs leading-relaxed">{job.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ══ OUTSIDE THE CODE ══ */}
         <section
