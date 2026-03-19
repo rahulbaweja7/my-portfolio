@@ -1,153 +1,250 @@
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-/* ── Data ───────────────────────────────────────────────────────── */
-const stats = [
-  {
-    id: '01',
-    label: 'Frontend',
-    xp: 4800,
-    level: 88,
-    items: ['React', 'Next.js', 'Tailwind CSS', 'Angular', 'HTML', 'CSS', 'Material-UI'],
-  },
-  {
-    id: '02',
-    label: 'Backend',
-    xp: 4100,
-    level: 76,
-    items: ['Node.js', 'Express.js', 'Spring Boot', 'Flask', 'REST APIs', 'GraphQL'],
-  },
-  {
-    id: '03',
-    label: 'Languages',
-    xp: 3700,
-    level: 70,
-    items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C', 'C++'],
-  },
-  {
-    id: '04',
-    label: 'Databases',
-    xp: 3200,
-    level: 62,
-    items: ['MongoDB', 'PostgreSQL', 'MySQL', 'DynamoDB'],
-  },
-  {
-    id: '05',
-    label: 'Cloud & Infra',
-    xp: 2600,
-    level: 52,
-    items: ['AWS', 'Azure', 'Docker', 'Git'],
-  },
-  {
-    id: '06',
-    label: 'Skill Tree: Unlocking',
-    xp: 800,
-    level: 18,
-    items: ['Rust', 'Go', 'System Design', 'Deep Learning'],
-    learning: true,
-  },
+/* ── Skill data ─────────────────────────────────────────────────── */
+const SKILLS = {
+  frontend:  [['React', 95], ['Next.js', 85], ['Tailwind CSS', 82], ['HTML · CSS', 90], ['Angular', 65], ['Material-UI', 68]],
+  backend:   [['Node.js', 82], ['Express.js', 80], ['Spring Boot', 68], ['Flask', 65], ['REST APIs', 85], ['GraphQL', 60]],
+  languages: [['JavaScript', 90], ['TypeScript', 78], ['Python', 75], ['Java', 70], ['C · C++', 55]],
+  databases: [['MongoDB', 80], ['PostgreSQL', 70], ['MySQL', 68], ['DynamoDB', 55]],
+  cloud:     [['AWS', 62], ['Azure', 58], ['Docker', 65], ['Git', 90]],
+  learning:  [['Rust', 20], ['Go', 15], ['System Design', 35], ['Deep Learning', 25]],
+};
+
+const INTRO_CMDS = [
+  { cmd: 'whoami',                   pre: 500  },
+  { cmd: 'ls skills/',               pre: 350  },
+  { cmd: 'cat skills/frontend.json', pre: 350  },
 ];
 
-const achievements = [
-  { icon: '🏆', label: 'WiCS 2025 Winner',      sub: '1st place hackathon' },
-  { icon: '💼', label: 'Microsoft SWE Intern',   sub: 'Summer 2025' },
-  { icon: '🎓', label: 'Arizona State Univ.',    sub: 'CS · GPA 3.72' },
-  { icon: '⚽', label: 'Football Fanatic',        sub: 'Watching > sleeping' },
-  { icon: '🎮', label: 'Gamer',                  sub: 'When not coding' },
-  { icon: '🌙', label: '2AM Debugger',           sub: 'Consistently' },
-];
+/* ── Command executor ───────────────────────────────────────────── */
+function execute(raw) {
+  const cmd = raw.trim();
+  const lower = cmd.toLowerCase();
 
-/* ── Animated XP bar ────────────────────────────────────────────── */
-function XpBar({ level, learning, delay = 0 }) {
-  const barRef = useRef(null);
-  useEffect(() => {
-    const el = barRef.current;
-    if (!el) return;
-    const timer = setTimeout(() => {
-      el.style.width = level + '%';
-    }, delay);
-    return () => clearTimeout(timer);
-  }, [level, delay]);
+  if (lower === 'whoami') return [
+    { k: 'out', text: 'rahulbaweja7  —  Full-Stack Engineer', color: '#efefef' },
+    { k: 'out', text: 'CS @ Arizona State University  ·  Incoming SWE Intern @ Microsoft', color: '#808080' },
+    { k: 'out', text: 'WiCS 2025 Hackathon Winner  ·  GPA 3.72  ·  3 Internships', color: '#484848' },
+  ];
 
+  if (lower === 'ls' || lower === 'ls skills/' || lower === 'ls skills') return [
+    { k: 'ls', items: ['frontend/', 'backend/', 'languages/', 'databases/', 'cloud/', 'learning/'] },
+  ];
+
+  const catMatch = lower.match(/^cat skills\/(\w+)\.json$/);
+  if (catMatch) {
+    const cat = catMatch[1];
+    if (!SKILLS[cat]) return [{ k: 'err', text: `cat: skills/${cat}.json: No such file or directory` }];
+    return [{ k: 'skills', cat }];
+  }
+
+  if (lower === 'achievements' || lower === './achievements') return [
+    { k: 'out', text: '[✓]  WiCS 2025 Hackathon — 1st Place', color: '#f97316' },
+    { k: 'out', text: '[✓]  Microsoft SWE Intern  (Summer 2025)', color: '#efefef' },
+    { k: 'out', text: '[✓]  GPA 3.72 · Arizona State University', color: '#efefef' },
+    { k: 'out', text: '[✓]  3 Internships · 4+ Projects shipped', color: '#efefef' },
+    { k: 'out', text: '[~]  Football · Cricket · Gaming', color: '#484848' },
+    { k: 'out', text: '[~]  Debugging at 2AM (consistently)', color: '#484848' },
+  ];
+
+  if (lower === 'help') return [
+    { k: 'out', text: 'AVAILABLE COMMANDS', color: '#efefef' },
+    { k: 'out', text: '  whoami                       identity & status', color: '#484848' },
+    { k: 'out', text: '  ls skills/                   list categories', color: '#484848' },
+    { k: 'out', text: '  cat skills/<name>.json       view proficiency', color: '#484848' },
+    { k: 'out', text: '    → frontend  backend  languages  databases  cloud  learning', color: '#2a2a2a' },
+    { k: 'out', text: '  achievements                 unlocked achievements', color: '#484848' },
+    { k: 'out', text: '  clear                        clear terminal', color: '#484848' },
+  ];
+
+  if (lower === 'clear') return [{ k: 'clear' }];
+  if (!cmd) return [];
+
+  return [{ k: 'err', text: `zsh: command not found: ${cmd}` }];
+}
+
+/* ── Skill bar component ────────────────────────────────────────── */
+function SkillBar({ pct, muted }) {
+  const filled = Math.round(pct / 5);
+  const empty  = 20 - filled;
   return (
-    <div className="h-1 rounded-full overflow-hidden" style={{ background: '#1a1a1a' }}>
-      <div
-        ref={barRef}
-        className="h-full rounded-full"
-        style={{
-          width: 0,
-          transition: 'width 1.1s cubic-bezier(0.25, 1, 0.5, 1)',
-          background: learning
-            ? 'linear-gradient(90deg, #2a2a2a 0%, #484848 100%)'
-            : `linear-gradient(90deg, #f97316 0%, #fb923c ${level}%)`,
-        }}
-      />
+    <span>
+      <span style={{ color: muted ? '#2a2a2a' : '#f97316' }}>{'█'.repeat(filled)}</span>
+      <span style={{ color: '#1e1e1e' }}>{'░'.repeat(empty)}</span>
+      <span style={{ color: muted ? '#2a2a2a' : '#484848' }}> {pct}%</span>
+    </span>
+  );
+}
+
+/* ── Line renderer ──────────────────────────────────────────────── */
+const HOST = 'rahul@portfolio';
+const DIR  = '~';
+
+function Prompt({ text }) {
+  return (
+    <div className="flex flex-wrap font-mono text-sm leading-7">
+      <span style={{ color: '#22c55e' }}>{HOST}</span>
+      <span style={{ color: '#484848' }}>:</span>
+      <span style={{ color: '#7aa2c8' }}>{DIR}</span>
+      <span style={{ color: '#808080' }}>&nbsp;%&nbsp;</span>
+      <span style={{ color: '#efefef' }}>{text}</span>
     </div>
   );
 }
 
-/* ── Stat card ──────────────────────────────────────────────────── */
-function StatCard({ stat, delay }) {
-  return (
-    <div
-      className="card-interactive rounded-xl p-5 border border-dark-border flex flex-col gap-4 animate-fade-in-up"
-      style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: `${delay}s` }}
-    >
-      {/* Header row */}
-      <div className="flex items-start justify-between gap-2">
-        <div>
-          <span className="text-[10px] font-mono text-text-subtle block mb-1">
-            [{stat.id}] // {stat.label.toUpperCase()}
-          </span>
-          <div className="flex items-baseline gap-2">
-            <span
-              className="text-2xl font-black"
-              style={{ color: stat.learning ? '#484848' : '#efefef' }}
-            >
-              {stat.level}
-            </span>
-            <span className="text-[10px] font-mono text-text-subtle">LVL</span>
-          </div>
-        </div>
-        <span
-          className="text-[10px] font-mono px-2 py-1 rounded border mt-1"
-          style={{
-            color: stat.learning ? '#484848' : '#f97316',
-            borderColor: stat.learning ? '#2a2a2a' : 'rgba(249,115,22,0.2)',
-            background: stat.learning ? 'transparent' : 'rgba(249,115,22,0.04)',
-          }}
-        >
-          {stat.xp.toLocaleString()} XP
-        </span>
-      </div>
+function Line({ line }) {
+  if (line.k === 'blank') return <div className="h-2" />;
 
-      {/* XP bar */}
-      <XpBar level={stat.level} learning={stat.learning} delay={delay * 1000 + 300} />
+  if (line.k === 'cmd') return <Prompt text={line.text} />;
 
-      {/* Skill pills */}
-      <div className="flex flex-wrap gap-1.5">
-        {stat.items.map((item, i) => (
-          <span
-            key={i}
-            className="text-[11px] px-2.5 py-1 rounded font-mono border transition-colors duration-200"
-            style={{
-              color: stat.learning ? '#484848' : '#808080',
-              borderColor: stat.learning ? '#1f1f1f' : '#2a2a2a',
-              background: '#111',
-            }}
-          >
-            {stat.learning && <span className="mr-1 opacity-40">~</span>}
-            {item}
-          </span>
-        ))}
-      </div>
+  if (line.k === 'out') return (
+    <div className="font-mono text-sm leading-6 pl-0" style={{ color: line.color || '#808080' }}>
+      {line.text}
     </div>
   );
+
+  if (line.k === 'err') return (
+    <div className="font-mono text-sm leading-6 text-red-400">{line.text}</div>
+  );
+
+  if (line.k === 'ls') return (
+    <div className="font-mono text-sm leading-7 flex flex-wrap gap-x-6">
+      {line.items.map((item, i) => (
+        <span key={i} style={{ color: '#7aa2c8' }}>{item}</span>
+      ))}
+    </div>
+  );
+
+  if (line.k === 'skills') {
+    const items  = SKILLS[line.cat];
+    const muted  = line.cat === 'learning';
+    const maxLen = Math.max(...items.map(([n]) => n.length));
+    return (
+      <div className="font-mono text-sm leading-7">
+        <div style={{ color: '#484848' }}>{'{'}</div>
+        {items.map(([name, pct], i) => (
+          <div key={i} className="pl-4 flex items-baseline">
+            <span
+              style={{
+                color: '#22c55e',
+                display: 'inline-block',
+                width: `${maxLen + 2}ch`,
+                flexShrink: 0,
+              }}
+            >
+              &quot;{name}&quot;
+            </span>
+            <span style={{ color: '#484848' }}>:&nbsp;&quot;</span>
+            <SkillBar pct={pct} muted={muted} />
+            <span style={{ color: '#484848' }}>&quot;{i < items.length - 1 ? ',' : ''}</span>
+          </div>
+        ))}
+        <div style={{ color: '#484848' }}>{'}'}</div>
+      </div>
+    );
+  }
+
+  return null;
 }
 
 /* ── Page ───────────────────────────────────────────────────────── */
 export default function Skills() {
+  const [lines,          setLines]          = useState([]);
+  const [typingText,     setTypingText]     = useState('');
+  const [introComplete,  setIntroComplete]  = useState(false);
+  const [userInput,      setUserInput]      = useState('');
+  const [cmdHistory,     setCmdHistory]     = useState([]);
+  const [histIdx,        setHistIdx]        = useState(-1);
+
+  const termRef  = useRef(null);
+  const inputRef = useRef(null);
+
+  /* auto-scroll */
+  useEffect(() => {
+    if (termRef.current) termRef.current.scrollTop = termRef.current.scrollHeight;
+  }, [lines, typingText, userInput]);
+
+  /* intro sequence */
+  useEffect(() => {
+    let dead = false;
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+    async function typeCmd(text) {
+      for (let i = 1; i <= text.length; i++) {
+        if (dead) return;
+        setTypingText(text.slice(0, i));
+        await sleep(46 + Math.random() * 28);
+      }
+    }
+
+    (async () => {
+      await sleep(600);
+      for (const { cmd, pre } of INTRO_CMDS) {
+        if (dead) return;
+        await sleep(pre);
+        await typeCmd(cmd);
+        if (dead) return;
+        await sleep(140);
+        setTypingText('');
+        const out = execute(cmd);
+        setLines(prev => [...prev, { k: 'cmd', text: cmd }, ...out, { k: 'blank' }]);
+        await sleep(180);
+      }
+      if (!dead) setIntroComplete(true);
+    })();
+
+    return () => { dead = true; };
+  }, []);
+
+  /* submit */
+  const submit = () => {
+    const cmd = userInput;
+    const out = execute(cmd);
+    if (out.length === 1 && out[0].k === 'clear') {
+      setLines([]);
+    } else {
+      setLines(prev => [...prev, { k: 'cmd', text: cmd }, ...out, { k: 'blank' }]);
+    }
+    if (cmd.trim()) setCmdHistory(prev => [cmd, ...prev.slice(0, 49)]);
+    setUserInput('');
+    setHistIdx(-1);
+  };
+
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') { submit(); return; }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const next = Math.min(histIdx + 1, cmdHistory.length - 1);
+      setHistIdx(next);
+      setUserInput(cmdHistory[next] ?? '');
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const next = Math.max(histIdx - 1, -1);
+      setHistIdx(next);
+      setUserInput(next < 0 ? '' : cmdHistory[next]);
+    }
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const completions = ['cat skills/frontend.json', 'cat skills/backend.json', 'cat skills/languages.json', 'cat skills/databases.json', 'cat skills/cloud.json', 'cat skills/learning.json'];
+      const match = completions.find(c => c.startsWith(userInput) && c !== userInput);
+      if (match) setUserInput(match);
+    }
+  };
+
+  const quickRun = cmd => {
+    setUserInput(cmd);
+    setTimeout(() => {
+      const out = execute(cmd);
+      setLines(prev => [...prev, { k: 'cmd', text: cmd }, ...out, { k: 'blank' }]);
+      if (cmd.trim()) setCmdHistory(prev => [cmd, ...prev.slice(0, 49)]);
+      setUserInput('');
+    }, 0);
+    inputRef.current?.focus();
+  };
+
   return (
     <div className="min-h-screen bg-dark">
       <Head>
@@ -156,89 +253,111 @@ export default function Skills() {
       </Head>
       <Navbar />
 
-      <main className="max-w-5xl mx-auto px-6 pt-28 pb-20">
-
-        {/* ── Player card ──────────────────────────────────────── */}
+      <main className="max-w-5xl mx-auto px-6 pt-28 pb-10">
+        {/* Header */}
         <div
-          className="mb-8 rounded-2xl p-6 animate-fade-in-up"
-          style={{
-            opacity: 0,
-            animationFillMode: 'forwards',
-            border: '1.5px dashed rgba(249,115,22,0.35)',
-          }}
-        >
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-            <div>
-              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-1">player_id</p>
-              <p className="text-[#efefef] font-mono text-sm">rahulbaweja7</p>
-            </div>
-            <div>
-              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-1">class</p>
-              <p className="text-[#efefef] font-mono text-sm">Full-Stack Engineer</p>
-            </div>
-            <div>
-              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-1">faction</p>
-              <p className="text-[#efefef] font-mono text-sm">ASU → Microsoft</p>
-            </div>
-            <div>
-              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-1">status</p>
-              <p className="flex items-center gap-1.5 font-mono text-sm text-green-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                open_to_work
-              </p>
-            </div>
-            <div className="ml-auto text-right hidden sm:block">
-              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-1">total XP</p>
-              <p className="text-accent font-mono text-sm font-bold">
-                {stats.reduce((sum, s) => sum + s.xp, 0).toLocaleString()} XP
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Page title ───────────────────────────────────────── */}
-        <div
-          className="mb-8 animate-fade-in-up delay-100"
+          className="mb-6 animate-fade-in-up"
           style={{ opacity: 0, animationFillMode: 'forwards' }}
         >
-          <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-2">Character stats</p>
+          <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-2">
+            Interactive terminal
+          </p>
           <h1 className="text-4xl sm:text-5xl font-black uppercase text-[#efefef] leading-none">
-            Skill<br />
-            <span style={{ color: '#2c2c2c' }}>Sheet.</span>
+            Skill<span style={{ color: '#2c2c2c' }}>s.</span>
           </h1>
         </div>
 
-        {/* ── Stats grid ───────────────────────────────────────── */}
-        <div className="grid md:grid-cols-2 gap-4 mb-8">
-          {stats.map((stat, i) => (
-            <StatCard key={stat.id} stat={stat} delay={0.15 + i * 0.07} />
-          ))}
-        </div>
-
-        {/* ── Achievements ─────────────────────────────────────── */}
+        {/* Terminal window */}
         <div
-          className="animate-fade-in-up"
-          style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: '0.65s' }}
+          className="rounded-xl overflow-hidden border border-dark-border animate-fade-in-up delay-100 cursor-text"
+          style={{ opacity: 0, animationFillMode: 'forwards' }}
+          onClick={() => introComplete && inputRef.current?.focus()}
         >
-          <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-4">
-            // ACHIEVEMENTS_UNLOCKED
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {achievements.map((a, i) => (
-              <div
-                key={i}
-                className="card-interactive rounded-xl border border-dark-border px-4 py-3 flex items-center gap-3"
-              >
-                <span className="text-xl shrink-0">{a.icon}</span>
-                <div className="min-w-0">
-                  <p className="text-[#efefef] text-[12px] font-medium truncate">{a.label}</p>
-                  <p className="text-text-subtle text-[10px] font-mono truncate">{a.sub}</p>
-                </div>
+          {/* Chrome bar */}
+          <div className="flex items-center gap-2 px-4 py-3 bg-[#141414] border-b border-dark-border select-none">
+            <span className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
+            <span className="w-3 h-3 rounded-full" style={{ background: '#ffbd2e' }} />
+            <span className="w-3 h-3 rounded-full" style={{ background: '#28c840' }} />
+            <span className="ml-3 text-[11px] font-mono text-text-subtle">
+              skills.zsh — {HOST}
+            </span>
+            <span className="ml-auto text-[10px] font-mono text-text-subtle opacity-40">80×24</span>
+          </div>
+
+          {/* Body */}
+          <div
+            ref={termRef}
+            className="bg-[#0d0d0d] px-5 py-4 overflow-y-auto"
+            style={{ height: 'min(calc(100vh - 280px), 520px)', minHeight: 380 }}
+          >
+            {/* Welcome */}
+            <div className="font-mono text-[11px] text-text-subtle mb-4 leading-5 select-none">
+              Last login: {new Date().toDateString()} on ttys001
+              <br />
+              Type <span className="text-accent">help</span> to see all commands.
+              &nbsp;<span className="opacity-40">Tab to autocomplete.</span>
+            </div>
+
+            {/* History */}
+            {lines.map((line, i) => <Line key={i} line={line} />)}
+
+            {/* Typing indicator (intro) */}
+            {!introComplete && (
+              <div className="flex items-center font-mono text-sm leading-7">
+                <span style={{ color: '#22c55e' }}>{HOST}</span>
+                <span style={{ color: '#484848' }}>:</span>
+                <span style={{ color: '#7aa2c8' }}>{DIR}</span>
+                <span style={{ color: '#808080' }}>&nbsp;%&nbsp;</span>
+                <span style={{ color: '#efefef' }}>{typingText}</span>
+                <span className="animate-blink" style={{ color: '#f97316' }}>▋</span>
               </div>
-            ))}
+            )}
+
+            {/* Interactive prompt */}
+            {introComplete && (
+              <div className="flex items-center font-mono text-sm leading-7">
+                <span style={{ color: '#22c55e' }}>{HOST}</span>
+                <span style={{ color: '#484848' }}>:</span>
+                <span style={{ color: '#7aa2c8' }}>{DIR}</span>
+                <span style={{ color: '#808080' }}>&nbsp;%&nbsp;</span>
+                <span style={{ color: '#efefef' }}>{userInput}</span>
+                <span className="animate-blink" style={{ color: '#f97316' }}>▋</span>
+                <input
+                  ref={inputRef}
+                  value={userInput}
+                  onChange={e => { setUserInput(e.target.value); setHistIdx(-1); }}
+                  onKeyDown={handleKeyDown}
+                  autoFocus
+                  spellCheck={false}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  style={{ position: 'fixed', top: -200, left: -200, opacity: 0, width: 1, height: 1 }}
+                />
+              </div>
+            )}
           </div>
         </div>
 
+        {/* Quick-run hints */}
+        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+          <span className="text-text-subtle text-[11px] font-mono">try →</span>
+          {[
+            'cat skills/backend.json',
+            'cat skills/languages.json',
+            'achievements',
+            'help',
+            'clear',
+          ].map(cmd => (
+            <button
+              key={cmd}
+              onClick={() => quickRun(cmd)}
+              className="text-[11px] font-mono text-accent hover:text-orange-400 transition-colors duration-150"
+            >
+              {cmd}
+            </button>
+          ))}
+        </div>
       </main>
     </div>
   );
