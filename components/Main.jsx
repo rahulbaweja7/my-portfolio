@@ -1,225 +1,281 @@
 import Navbar from '@/components/Navbar';
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaTrophy } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
 import Link from 'next/link';
 
+/* ─── Scramble on hover ─────────────────────────────────── */
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$!&*%?';
 
-function ScrambleText({ text, className }) {
+function ScrambleText({ text, className, as: Tag = 'span' }) {
   const [display, setDisplay] = useState(text);
-  const intervalRef = useRef(null);
+  const iv = useRef(null);
 
   const scramble = () => {
-    let iteration = 0;
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
+    let i = 0;
+    clearInterval(iv.current);
+    iv.current = setInterval(() => {
       setDisplay(
-        text.split('').map((char, i) => {
-          if (i < Math.floor(iteration)) return char;
-          return CHARS[Math.floor(Math.random() * CHARS.length)];
-        }).join('')
+        text.split('').map((ch, idx) =>
+          idx < Math.floor(i) ? ch : CHARS[Math.floor(Math.random() * CHARS.length)]
+        ).join('')
       );
-      iteration += 0.4;
-      if (Math.floor(iteration) >= text.length) {
-        clearInterval(intervalRef.current);
+      i += 0.45;
+      if (Math.floor(i) >= text.length) {
+        clearInterval(iv.current);
         setDisplay(text);
       }
-    }, 25);
+    }, 22);
   };
 
-  useEffect(() => () => clearInterval(intervalRef.current), []);
+  useEffect(() => () => clearInterval(iv.current), []);
 
   return (
-    <span className={className} onMouseEnter={scramble} data-hover>
+    <Tag className={className} onMouseEnter={scramble} data-hover>
       {display}
-    </span>
+    </Tag>
   );
 }
 
-function MagneticWrap({ children }) {
-  const ref = useRef(null);
-
-  const onMove = (e) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const x = e.clientX - (rect.left + rect.width  / 2);
-    const y = e.clientY - (rect.top  + rect.height / 2);
-    ref.current.style.transition = 'transform 0.1s ease-out';
-    ref.current.style.transform  = `translate(${x * 0.28}px, ${y * 0.28}px)`;
-  };
-
-  const onLeave = () => {
-    if (!ref.current) return;
-    ref.current.style.transition = 'transform 0.5s ease';
-    ref.current.style.transform  = 'translate(0px, 0px)';
-  };
-
-  return (
-    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave} style={{ display: 'inline-block' }}>
-      {children}
-    </div>
-  );
-}
-
+/* ─── Cycling roles ─────────────────────────────────────── */
 const roles = [
-  "I build cool web apps.",
-  "I'm a football fanatic.",
-  "I debug at 2am (happily).",
-  "I chase cricket scores.",
-  "I game when I'm not coding.",
-  "I build things people actually use.",
+  'building cool web apps',
+  'a football fanatic',
+  'debugging at 2am (happily)',
+  'chasing cricket scores',
+  'gaming when not coding',
+  'building things people actually use',
 ];
 
-const stats = [
-  { key: 'next role',  value: 'Microsoft', accent: true  },
-  { key: 'gpa',        value: '3.72',       accent: false },
-  { key: 'hackathon',  value: '1st place',  accent: false },
-  { key: 'degree',     value: 'CS @ ASU',   accent: false },
-];
+/* ─── Tile base ─────────────────────────────────────────── */
+const T = 'rounded-2xl border border-dark-border bg-dark-card overflow-hidden';
 
-const Main = () => {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [visible,   setVisible]   = useState(true);
+export default function Main() {
+  const [ri, setRi] = useState(0);
+  const [vis, setVis] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setRoleIndex((prev) => (prev + 1) % roles.length);
-        setVisible(true);
-      }, 350);
+    const id = setInterval(() => {
+      setVis(false);
+      setTimeout(() => { setRi(p => (p + 1) % roles.length); setVis(true); }, 380);
     }, 2800);
-    return () => clearInterval(interval);
+    return () => clearInterval(id);
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen bg-dark">
+    <div className="min-h-screen bg-dark flex flex-col">
       <Navbar />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 min-h-screen flex items-center">
-        <div className="w-full grid lg:grid-cols-[1fr_280px] gap-14 xl:gap-20 items-center py-24">
-
-          {/* ── Left ── */}
-          <div>
-            <div
-              className="inline-flex items-center gap-2 mb-10 animate-fade-in-up"
-              style={{ opacity: 0, animationFillMode: 'forwards' }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              <span className="text-xs font-mono text-text-muted tracking-widest uppercase">
-                Incoming SWE Intern @ Microsoft
+      {/* ══════════ DESKTOP BENTO ══════════ */}
+      <div className="hidden md:flex flex-col flex-1 w-full max-w-[1400px] mx-auto px-4 pt-[72px] pb-4">
+        <div
+          className="grid gap-3 flex-1"
+          style={{
+            gridTemplateColumns: '2.2fr 1fr 1fr 1fr',
+            gridTemplateRows:    '1.8fr 1fr 1fr',
+          }}
+        >
+          {/* ① NAME — col 1, row 1–2 */}
+          <div
+            className={`${T} p-7 flex flex-col justify-between select-none group`}
+            style={{ gridColumn: '1', gridRow: '1 / 3' }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono text-text-subtle uppercase tracking-[0.15em]">
+                CS Student · Arizona State
               </span>
+              <span className="text-xs font-mono text-text-subtle">2025</span>
             </div>
 
-            {/* Scramble name — hover to trigger */}
-            <h1
-              className="text-[64px] sm:text-7xl md:text-[80px] font-light text-[#efefef] tracking-tight leading-[1.04] mb-7 animate-fade-in-up delay-100 select-none"
-              style={{ opacity: 0, animationFillMode: 'forwards' }}
-            >
-              <ScrambleText text="Rahul" /><br />
-              <ScrambleText text="Baweja" />
-              <span className="text-accent">.</span>
-            </h1>
-
-            <p
-              className="text-text-muted text-base sm:text-lg max-w-md leading-relaxed mb-3 animate-fade-in-up delay-200"
-              style={{ opacity: 0, animationFillMode: 'forwards' }}
-            >
-              CS student at Arizona State. Building full-stack apps, shipping real code, winning hackathons.
-            </p>
-
-            <div
-              className="h-6 mb-10 animate-fade-in-up delay-300"
-              style={{ opacity: 0, animationFillMode: 'forwards' }}
-            >
-              <p
-                className="text-sm font-mono text-text-subtle transition-all duration-300"
-                style={{
-                  opacity:   visible ? 1 : 0,
-                  transform: visible ? 'translateY(0)' : 'translateY(-5px)',
-                }}
+            <div>
+              <div
+                className="font-light leading-[0.92] tracking-tight select-none mb-5"
+                style={{ fontSize: 'clamp(56px, 5.8vw, 96px)' }}
               >
-                &gt; {roles[roleIndex]}<span className="animate-blink ml-0.5">_</span>
+                <ScrambleText text="Rahul"  className="block text-[#efefef]" />
+                <ScrambleText text="Baweja" className="block text-[#efefef]" />
+                <span className="text-accent">.</span>
+              </div>
+              <p className="text-sm text-text-muted max-w-xs leading-relaxed">
+                Building full-stack apps. Shipping real code.<br />Winning hackathons.
               </p>
             </div>
 
-            <div
-              className="flex flex-wrap gap-3 mb-10 animate-fade-in-up delay-500"
-              style={{ opacity: 0, animationFillMode: 'forwards' }}
-            >
-              <MagneticWrap>
-                <Link
-                  href="/projects"
-                  className="block px-5 py-2.5 text-sm font-medium text-dark bg-accent hover:bg-orange-400 transition-colors duration-200 rounded"
-                >
-                  View Work
-                </Link>
-              </MagneticWrap>
-              <MagneticWrap>
-                <Link
-                  href="/contact"
-                  className="block px-5 py-2.5 text-sm font-medium text-text-muted border border-dark-border hover:border-[#3a3a3a] hover:text-[#efefef] transition-all duration-200 rounded"
-                >
-                  Get In Touch
-                </Link>
-              </MagneticWrap>
-            </div>
-
-            <div
-              className="flex items-center gap-5 animate-fade-in-up delay-700"
-              style={{ opacity: 0, animationFillMode: 'forwards' }}
-            >
+            <div className="flex items-center gap-5">
+              <a href="https://github.com/rahulbaweja7" target="_blank" rel="noopener noreferrer"
+                className="text-text-subtle hover:text-[#efefef] transition-colors" aria-label="GitHub">
+                <FaGithub size={18} />
+              </a>
               <a href="https://www.linkedin.com/in/rahulbaweja-/" target="_blank" rel="noopener noreferrer"
-                className="text-text-subtle hover:text-[#efefef] transition-colors duration-200" aria-label="LinkedIn">
+                className="text-text-subtle hover:text-[#efefef] transition-colors" aria-label="LinkedIn">
                 <FaLinkedinIn size={17} />
               </a>
-              <a href="https://github.com/rahulbaweja7" target="_blank" rel="noopener noreferrer"
-                className="text-text-subtle hover:text-[#efefef] transition-colors duration-200" aria-label="GitHub">
-                <FaGithub size={17} />
-              </a>
               <a href="mailto:rbaweja1@asu.edu"
-                className="text-text-subtle hover:text-[#efefef] transition-colors duration-200" aria-label="Email">
+                className="text-text-subtle hover:text-[#efefef] transition-colors" aria-label="Email">
                 <AiOutlineMail size={18} />
               </a>
             </div>
           </div>
 
-          {/* ── Right: photo + stats ── */}
+          {/* ② PHOTO — col 2, row 1–3 */}
           <div
-            className="hidden lg:flex flex-col gap-3 animate-fade-in-up delay-200"
-            style={{ opacity: 0, animationFillMode: 'forwards' }}
+            className="rounded-2xl overflow-hidden border border-dark-border relative"
+            style={{ gridColumn: '2', gridRow: '1 / 4' }}
           >
-            <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden border border-dark-border">
-              <Image
-                src="/assets/RahulLA.png"
-                alt="Rahul Baweja"
-                fill
-                style={{ objectFit: 'cover', objectPosition: 'top' }}
-                priority
-              />
-            </div>
+            <Image
+              src="/assets/RahulLA.png"
+              alt="Rahul Baweja"
+              fill
+              priority
+              style={{ objectFit: 'cover', objectPosition: 'top center' }}
+            />
+            <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-dark/80 to-transparent" />
+            <span className="absolute bottom-3 left-4 text-[10px] font-mono text-text-subtle uppercase tracking-widest">
+              Tempe, AZ
+            </span>
+          </div>
 
-            <div className="font-mono text-xs border border-dark-border rounded-lg overflow-hidden">
-              {stats.map((s, i) => (
-                <div
-                  key={i}
-                  className={`flex justify-between px-3 py-2 bg-dark-card ${
-                    i < stats.length - 1 ? 'border-b border-dark-border' : ''
-                  }`}
-                >
-                  <span className="text-text-subtle">{s.key}</span>
-                  <span className={s.accent ? 'text-accent' : 'text-[#efefef]'}>{s.value}</span>
-                </div>
-              ))}
+          {/* ③ MICROSOFT STATUS — col 3, row 1 */}
+          <div className={`${T} p-5 flex flex-col justify-between`}
+            style={{ gridColumn: '3', gridRow: '1' }}>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Active</span>
+            </div>
+            <div>
+              <p className="text-[10px] font-mono text-text-subtle mb-1 uppercase tracking-wider">Incoming Intern</p>
+              <p className="text-[#efefef] text-lg font-medium leading-tight">Microsoft</p>
+              <p className="text-xs font-mono text-text-subtle mt-1">Summer 2025</p>
             </div>
           </div>
 
+          {/* ④ CTA — col 4, row 1 */}
+          <Link
+            href="/projects"
+            className="rounded-2xl bg-accent hover:bg-orange-400 transition-colors duration-200 p-6 flex flex-col justify-between group"
+            style={{ gridColumn: '4', gridRow: '1' }}
+          >
+            <span className="text-[10px] font-mono text-dark/60 uppercase tracking-widest">Portfolio</span>
+            <div>
+              <p className="text-dark font-medium text-xl leading-snug">
+                View my<br />projects<span className="inline-block ml-1 group-hover:translate-x-1 transition-transform">→</span>
+              </p>
+            </div>
+          </Link>
+
+          {/* ⑤ CYCLING TEXT — col 1, row 3 */}
+          <div className={`${T} p-5 flex flex-col justify-center`}
+            style={{ gridColumn: '1', gridRow: '3' }}>
+            <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-2">Currently</p>
+            <p
+              className="text-sm font-mono text-text-muted transition-all duration-300"
+              style={{ opacity: vis ? 1 : 0, transform: vis ? 'translateY(0)' : 'translateY(-4px)' }}
+            >
+              &gt; I&apos;m {roles[ri]}
+              <span className="animate-blink ml-0.5 text-accent">_</span>
+            </p>
+          </div>
+
+          {/* ⑥ HACKATHON — col 3, row 2 */}
+          <div className={`${T} p-5 flex flex-col justify-between hover:border-yellow-500/40 transition-colors`}
+            style={{ gridColumn: '3', gridRow: '2' }}>
+            <FaTrophy className="text-yellow-400" size={18} />
+            <div>
+              <p className="text-[#efefef] font-medium text-sm">1st Place</p>
+              <p className="text-[10px] font-mono text-text-subtle mt-0.5 uppercase tracking-wide">WiCS Hackathon 2025</p>
+            </div>
+          </div>
+
+          {/* ⑦ GPA — col 4, row 2 */}
+          <div className={`${T} p-5 flex flex-col justify-between`}
+            style={{ gridColumn: '4', gridRow: '2' }}>
+            <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Academic</p>
+            <div>
+              <p className="text-[#efefef] text-3xl font-light">3.72</p>
+              <p className="text-[10px] font-mono text-text-subtle mt-1 uppercase tracking-wide">Dean&apos;s List · GPA</p>
+            </div>
+          </div>
+
+          {/* ⑧ INTERESTS — col 3–4, row 3 */}
+          <div className={`${T} p-5 flex flex-col justify-between`}
+            style={{ gridColumn: '3 / 5', gridRow: '3' }}>
+            <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Off the clock</p>
+            <div className="flex items-center gap-6">
+              <span className="text-2xl" title="NFL Football">🏈</span>
+              <span className="text-2xl" title="Cricket">🏏</span>
+              <span className="text-2xl" title="Gaming">🎮</span>
+              <span className="text-2xl" title="Music">🎵</span>
+              <span className="text-xs font-mono text-text-subtle ml-2 hidden xl:block">
+                NFL · Cricket · Gaming · Music
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ══════════ MOBILE STACK ══════════ */}
+      <div className="md:hidden px-5 pt-24 pb-12 space-y-4">
+        {/* Name */}
+        <div className={`${T} p-6`}>
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">CS · Arizona State</span>
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+          </div>
+          <div className="font-light leading-[0.92] tracking-tight select-none mb-5"
+            style={{ fontSize: 'clamp(52px, 14vw, 72px)' }}>
+            <ScrambleText text="Rahul"  className="block text-[#efefef]" />
+            <ScrambleText text="Baweja" className="block text-[#efefef]" />
+            <span className="text-accent">.</span>
+          </div>
+          <p className="text-sm text-text-muted leading-relaxed">
+            Building full-stack apps. Shipping real code. Winning hackathons.
+          </p>
+        </div>
+
+        {/* 2-col row */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className={`${T} p-4 flex flex-col justify-between`}>
+            <span className="text-[10px] font-mono text-text-subtle uppercase tracking-wider">Incoming</span>
+            <p className="text-[#efefef] font-medium">Microsoft</p>
+          </div>
+          <Link href="/projects" className="rounded-2xl bg-accent p-4 flex flex-col justify-between">
+            <span className="text-[10px] font-mono text-dark/60 uppercase tracking-wider">Work</span>
+            <p className="text-dark font-medium">View projects →</p>
+          </Link>
+        </div>
+
+        {/* Cycling */}
+        <div className={`${T} p-4`}>
+          <p className="text-sm font-mono text-text-muted"
+            style={{ opacity: vis ? 1 : 0, transition: 'opacity 0.3s' }}>
+            &gt; I&apos;m {roles[ri]}<span className="animate-blink ml-0.5 text-accent">_</span>
+          </p>
+        </div>
+
+        {/* Trophy + GPA */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className={`${T} p-4`}>
+            <FaTrophy className="text-yellow-400 mb-3" size={16} />
+            <p className="text-[#efefef] text-sm font-medium">1st Place</p>
+            <p className="text-[10px] font-mono text-text-subtle mt-0.5">WiCS 2025</p>
+          </div>
+          <div className={`${T} p-4`}>
+            <p className="text-[10px] font-mono text-text-subtle mb-3 uppercase">GPA</p>
+            <p className="text-[#efefef] text-3xl font-light">3.72</p>
+          </div>
+        </div>
+
+        {/* Socials */}
+        <div className={`${T} p-4 flex items-center gap-6`}>
+          <a href="https://github.com/rahulbaweja7" target="_blank" rel="noopener noreferrer"
+            className="text-text-subtle hover:text-[#efefef] transition-colors"><FaGithub size={18} /></a>
+          <a href="https://www.linkedin.com/in/rahulbaweja-/" target="_blank" rel="noopener noreferrer"
+            className="text-text-subtle hover:text-[#efefef] transition-colors"><FaLinkedinIn size={17} /></a>
+          <a href="mailto:rbaweja1@asu.edu"
+            className="text-text-subtle hover:text-[#efefef] transition-colors"><AiOutlineMail size={18} /></a>
         </div>
       </div>
     </div>
   );
-};
-
-export default Main;
+}
