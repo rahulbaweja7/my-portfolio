@@ -128,16 +128,16 @@ export default function Main() {
         </div>
 
         {/* ── RIGHT: Content ─────────────────── */}
-        <div className="flex-1 flex flex-col justify-between min-w-0 py-1">
+        <div className="flex-1 flex flex-col min-w-0 py-2 gap-5">
 
           {/* Big two-tone title */}
           <div>
             <div
-              className="font-black uppercase leading-[0.87] tracking-tight select-none mb-7"
-              style={{ fontSize: 'clamp(64px, 8.8vw, 144px)' }}
+              className="font-black uppercase leading-[0.87] tracking-tight select-none mb-5"
+              style={{ fontSize: 'clamp(52px, 7.2vw, 120px)' }}
             >
               <ScrambleText text="FULL-STACK" as="div" className="text-[#efefef]" />
-              <div style={{ color: '#1d1d1d' }}>ENGINEER.</div>
+              <div style={{ color: '#242424' }}>ENGINEER.</div>
             </div>
 
             <p className="text-text-muted text-base leading-relaxed max-w-xl">
@@ -148,52 +148,48 @@ export default function Main() {
           </div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-4 gap-4 py-7 border-y border-dark-border">
+          <div className="grid grid-cols-4 gap-4 py-5 border-y border-dark-border">
             {stats.map((s, i) => (
               <div key={i}>
                 <p
-                  className="font-bold text-[#efefef] mb-1"
-                  style={{ fontSize: 'clamp(24px, 2.8vw, 42px)' }}
+                  className="font-bold text-[#efefef] mb-1.5"
+                  style={{ fontSize: 'clamp(22px, 2.6vw, 40px)' }}
                 >
                   {s.num}
                 </p>
-                <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest leading-tight">
+                <p className="text-xs font-mono text-text-subtle uppercase tracking-widest leading-tight">
                   {s.label}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* CTA tiles */}
-          <div className="grid grid-cols-2 gap-3">
+          {/* CTA tiles — flex-1 fills all remaining height */}
+          <div className="grid grid-cols-2 gap-3 flex-1 min-h-0">
             <Link
               href="/projects"
-              className="bg-accent hover:bg-orange-400 transition-colors duration-200 rounded-xl p-6 flex items-end justify-between group"
+              className="bg-accent hover:bg-orange-400 transition-colors duration-200 rounded-xl p-6 flex flex-col justify-between group"
             >
-              <div>
-                <p className="text-[10px] font-mono text-dark/60 uppercase tracking-widest mb-2">Portfolio</p>
+              <p className="text-[10px] font-mono text-dark/60 uppercase tracking-widest">Portfolio</p>
+              <div className="flex items-end justify-between">
                 <p className="text-dark font-black text-xl uppercase leading-tight">
                   View My<br />Work
                 </p>
+                <span className="text-dark text-3xl font-thin group-hover:translate-x-1.5 transition-transform duration-200">→</span>
               </div>
-              <span className="text-dark text-3xl font-thin group-hover:translate-x-1.5 transition-transform duration-200">
-                →
-              </span>
             </Link>
 
             <Link
               href="/about"
-              className="bg-dark-card border border-dark-border hover:border-[#3a3a3a] transition-colors rounded-xl p-6 flex items-end justify-between group"
+              className="bg-dark-card border border-dark-border hover:border-[#3a3a3a] transition-colors rounded-xl p-6 flex flex-col justify-between group"
             >
-              <div>
-                <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-2">Background</p>
+              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Background</p>
+              <div className="flex items-end justify-between">
                 <p className="text-[#efefef] font-black text-xl uppercase leading-tight">
                   About<br />Me
                 </p>
+                <span className="text-text-subtle text-3xl font-thin group-hover:text-[#efefef] group-hover:translate-x-1.5 transition-all duration-200">→</span>
               </div>
-              <span className="text-text-subtle text-3xl font-thin group-hover:text-[#efefef] group-hover:translate-x-1.5 transition-all duration-200">
-                →
-              </span>
             </Link>
           </div>
         </div>
