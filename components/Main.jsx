@@ -152,26 +152,47 @@ export default function Main() {
             </div>
 
             {/* Tiles — flex-1 fills the rest */}
-            <div className="flex-1 grid grid-cols-2 gap-3 min-h-0">
-              <Link
-                href="/projects"
-                className="bg-accent hover:bg-orange-400 transition-colors duration-200 rounded-xl p-5 flex flex-col justify-between group"
-              >
-                <p className="text-[10px] font-mono uppercase tracking-widest" style={{ color: 'rgba(15,15,15,0.6)' }}>Portfolio</p>
-                <div className="flex items-end justify-between">
-                  <p className="font-black text-lg uppercase leading-tight" style={{ color: '#0f0f0f' }}>View My<br />Work</p>
-                  <span className="text-2xl group-hover:translate-x-1.5 transition-transform duration-200" style={{ color: '#0f0f0f' }}>→</span>
-                </div>
-              </Link>
+            <div className="flex-1 flex flex-col gap-3 min-h-0">
+              <div className="flex-1 grid grid-cols-2 gap-3 min-h-0">
+                <Link
+                  href="/projects"
+                  className="bg-accent hover:bg-orange-400 transition-colors duration-200 rounded-xl p-5 flex flex-col justify-between group"
+                >
+                  <p className="text-[10px] font-mono uppercase tracking-widest" style={{ color: 'rgba(15,15,15,0.6)' }}>Portfolio</p>
+                  <div className="flex items-end justify-between">
+                    <p className="font-black text-lg uppercase leading-tight" style={{ color: '#0f0f0f' }}>View My<br />Work</p>
+                    <span className="text-2xl group-hover:translate-x-1.5 transition-transform duration-200" style={{ color: '#0f0f0f' }}>→</span>
+                  </div>
+                </Link>
 
+                <Link
+                  href="/about"
+                  className="bg-dark-card border border-dark-border hover:border-[#3a3a3a] transition-colors rounded-xl p-5 flex flex-col justify-between group"
+                >
+                  <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Background</p>
+                  <div className="flex items-end justify-between">
+                    <p className="font-black text-lg uppercase leading-tight" style={{ color: 'var(--c-text)' }}>About<br />Me</p>
+                    <span className="text-text-subtle text-2xl group-hover:translate-x-1.5 transition-all duration-200" style={{ color: 'var(--c-subtle)' }}>→</span>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Resume Match CTA */}
               <Link
-                href="/about"
-                className="bg-dark-card border border-dark-border hover:border-[#3a3a3a] transition-colors rounded-xl p-5 flex flex-col justify-between group"
+                href="/resume-match"
+                className="shrink-0 rounded-xl px-5 py-3 flex items-center justify-between group transition-all duration-200 hover:opacity-90"
+                style={{ background: 'linear-gradient(90deg, rgba(249,115,22,0.12) 0%, rgba(249,115,22,0.04) 100%)', border: '1px solid rgba(249,115,22,0.25)' }}
               >
-                <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Background</p>
-                <div className="flex items-end justify-between">
-                  <p className="font-black text-lg uppercase leading-tight" style={{ color: 'var(--c-text)' }}>About<br />Me</p>
-                  <span className="text-text-subtle text-2xl group-hover:translate-x-1.5 transition-all duration-200" style={{ color: 'var(--c-subtle)' }}>→</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-lg">🎯</span>
+                  <div>
+                    <p className="text-[10px] font-mono text-accent uppercase tracking-widest leading-none mb-0.5">For Recruiters</p>
+                    <p className="font-black text-sm uppercase" style={{ color: 'var(--c-text)' }}>Resume Match Checker</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono text-text-subtle hidden xl:block">spoiler: it&apos;s a match</span>
+                  <span className="text-accent text-xl group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </div>
               </Link>
             </div>
@@ -235,6 +256,21 @@ export default function Main() {
             <span style={{ color: 'var(--c-subtle)' }}>→</span>
           </Link>
         </div>
+
+        <Link
+          href="/resume-match"
+          className="rounded-xl px-4 py-3 flex items-center justify-between"
+          style={{ background: 'linear-gradient(90deg, rgba(249,115,22,0.12) 0%, rgba(249,115,22,0.04) 100%)', border: '1px solid rgba(249,115,22,0.25)' }}
+        >
+          <div className="flex items-center gap-3">
+            <span>🎯</span>
+            <div>
+              <p className="text-[9px] font-mono text-accent uppercase tracking-widest leading-none mb-0.5">For Recruiters</p>
+              <p className="font-black text-sm uppercase" style={{ color: 'var(--c-text)' }}>Resume Match Checker</p>
+            </div>
+          </div>
+          <span className="text-accent text-xl">→</span>
+        </Link>
       </div>
     </div>
   );
