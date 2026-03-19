@@ -1,41 +1,338 @@
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
-import ProjectItem from '@/components/ProjectItem';
+import { FaGithub, FaExternalLinkAlt, FaTrophy } from 'react-icons/fa';
 
+/* ── Inline mockup visuals ─────────────────────────────────────── */
+
+function SeraMockup() {
+  return (
+    <div className="h-full flex flex-col bg-[#111] rounded-xl overflow-hidden border border-dark-border font-mono text-xs select-none">
+      {/* bar */}
+      <div className="flex items-center gap-1.5 px-4 py-3 border-b border-dark-border bg-[#0f0f0f]">
+        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
+        <span className="ml-3 text-text-subtle text-[10px]">SERA — AI Health Assistant</span>
+      </div>
+      <div className="flex-1 overflow-hidden p-4 space-y-3">
+        {/* AI msg */}
+        <div className="flex gap-2 items-end">
+          <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent text-[8px] shrink-0">S</div>
+          <div className="bg-dark-card border border-dark-border rounded-2xl rounded-bl-sm px-3 py-2 max-w-[75%]">
+            <p className="text-[#efefef] text-[11px] leading-relaxed">Hi! I&apos;m SERA. How can I help you today?</p>
+          </div>
+        </div>
+        {/* user msg */}
+        <div className="flex justify-end">
+          <div className="bg-accent/10 border border-accent/20 rounded-2xl rounded-br-sm px-3 py-2 max-w-[75%]">
+            <p className="text-[#efefef] text-[11px] leading-relaxed">What are some healthy lifestyle tips?</p>
+          </div>
+        </div>
+        {/* AI msg */}
+        <div className="flex gap-2 items-end">
+          <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent text-[8px] shrink-0">S</div>
+          <div className="bg-dark-card border border-dark-border rounded-2xl rounded-bl-sm px-3 py-2 max-w-[80%]">
+            <p className="text-[#efefef] text-[11px] leading-relaxed">
+              Great question! Here are a few key habits:<br />
+              <span className="text-accent">01.</span> Sleep 7–9 hours<br />
+              <span className="text-accent">02.</span> Stay hydrated<br />
+              <span className="text-accent">03.</span> Move daily
+            </p>
+          </div>
+        </div>
+        {/* typing indicator */}
+        <div className="flex gap-2 items-end">
+          <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent text-[8px] shrink-0">S</div>
+          <div className="bg-dark-card border border-dark-border rounded-2xl rounded-bl-sm px-3 py-2">
+            <div className="flex gap-1 items-center h-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-text-subtle animate-bounce" style={{ animationDelay: '0ms' }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-text-subtle animate-bounce" style={{ animationDelay: '150ms' }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-text-subtle animate-bounce" style={{ animationDelay: '300ms' }} />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* input */}
+      <div className="px-4 py-3 border-t border-dark-border flex gap-2">
+        <div className="flex-1 bg-[#1a1a1a] border border-dark-border rounded-lg px-3 py-1.5 text-text-subtle text-[11px]">
+          Ask SERA anything…
+        </div>
+        <div className="w-7 h-7 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent text-[10px]">↑</div>
+      </div>
+    </div>
+  );
+}
+
+function MacroMockup() {
+  const macros = [
+    { label: 'Protein', val: 134, max: 160, color: '#f97316' },
+    { label: 'Carbs',   val: 210, max: 250, color: '#efefef' },
+    { label: 'Fats',    val: 48,  max: 65,  color: '#484848' },
+  ];
+  return (
+    <div className="bg-[#111] rounded-xl border border-dark-border p-5 select-none font-mono">
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-[10px] uppercase tracking-widest text-text-subtle">Today&apos;s Macros</span>
+        <span className="text-[10px] text-accent">1,820 / 2,200 kcal</span>
+      </div>
+      <div className="flex justify-center mb-5">
+        <div className="relative w-20 h-20">
+          <svg viewBox="0 0 80 80" className="w-full h-full -rotate-90">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#1a1a1a" strokeWidth="8" />
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#f97316" strokeWidth="8"
+              strokeDasharray="201" strokeDashoffset="50" strokeLinecap="round" />
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-[#efefef] text-base font-bold">83%</span>
+            <span className="text-text-subtle text-[9px]">goal</span>
+          </div>
+        </div>
+      </div>
+      <div className="space-y-3">
+        {macros.map(m => (
+          <div key={m.label}>
+            <div className="flex justify-between mb-1">
+              <span className="text-[10px] text-text-subtle">{m.label}</span>
+              <span className="text-[10px]" style={{ color: m.color }}>{m.val}g</span>
+            </div>
+            <div className="h-1.5 bg-[#1a1a1a] rounded-full overflow-hidden">
+              <div className="h-full rounded-full" style={{ width: `${(m.val / m.max) * 100}%`, background: m.color }} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function QuizMockup() {
+  return (
+    <div className="bg-[#111] rounded-xl border border-dark-border p-5 select-none font-mono">
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-[10px] uppercase tracking-widest text-text-subtle">QuizModoro</span>
+        <span className="text-[10px] text-green-400">Focus Mode</span>
+      </div>
+      <div className="flex justify-center mb-4">
+        <div className="relative w-20 h-20">
+          <svg viewBox="0 0 80 80" className="w-full h-full -rotate-90">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#1a1a1a" strokeWidth="7" />
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#22c55e" strokeWidth="7"
+              strokeDasharray="201" strokeDashoffset="100" strokeLinecap="round" />
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-[#efefef] text-base font-bold">12:34</span>
+            <span className="text-text-subtle text-[9px]">remaining</span>
+          </div>
+        </div>
+      </div>
+      <div className="bg-dark-card border border-dark-border rounded-lg p-3 mb-3">
+        <p className="text-[11px] text-[#efefef] leading-snug">What does &apos;O&apos; stand for in SOLID?</p>
+      </div>
+      <div className="grid grid-cols-2 gap-1.5">
+        {['Open/Closed', 'Object-Oriented', 'Overloading', 'Observable'].map((opt, i) => (
+          <div key={i} className={`rounded-md px-2 py-1.5 border text-[10px] text-center ${i === 0 ? 'border-green-500/40 bg-green-500/5 text-green-400' : 'border-dark-border text-text-subtle'}`}>
+            {opt}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function WordleMockup() {
+  const rows = [
+    ['C','R','A','N','E'],
+    ['S','H','O','U','T'],
+    ['P','L','A','N','T'],
+    ['','','','',''],
+  ];
+  const colors = [
+    ['absent','present','absent','correct','absent'],
+    ['absent','absent','correct','absent','correct'],
+    ['absent','absent','correct','correct','correct'],
+    ['','','','',''],
+  ];
+  const bg = { correct: '#2d5a27', present: '#6b5000', absent: '#1a1a1a', '': '#111' };
+  const border = { correct: '#3d7a37', present: '#8b6f00', absent: '#2a2a2a', '': '#2a2a2a' };
+  return (
+    <div className="bg-[#111] rounded-xl border border-dark-border p-5 select-none font-mono">
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-[10px] uppercase tracking-widest text-text-subtle">Unlimited Wordle</span>
+        <span className="text-[10px] text-accent">Streak: 7</span>
+      </div>
+      <div className="flex flex-col gap-1.5 items-center">
+        {rows.map((row, ri) => (
+          <div key={ri} className="flex gap-1.5">
+            {row.map((letter, ci) => (
+              <div
+                key={ci}
+                className="w-9 h-9 rounded flex items-center justify-center text-sm font-bold border"
+                style={{
+                  background: bg[colors[ri][ci]],
+                  borderColor: border[colors[ri][ci]],
+                  color: colors[ri][ci] ? '#efefef' : '#2a2a2a',
+                }}
+              >
+                {letter}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── TechPill ───────────────────────────────────────────────────── */
+const TechPill = ({ label }) => (
+  <span className="text-[11px] px-2 py-0.5 rounded font-mono text-text-subtle border border-dark-border bg-dark">
+    {label}
+  </span>
+);
+
+/* ── Project data ───────────────────────────────────────────────── */
 const projects = [
   {
     title: 'SERA',
+    subtitle: 'AI Sexual Health Chatbot',
     description:
-      'Fullstack AI sexual health chatbot delivering real-time, empathetic guidance powered by OpenAI GPT. JWT authentication, role-based access control, and voice interaction via Web Speech API.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS', 'OpenAI GPT', 'JWT'],
+      'Fullstack AI chatbot delivering real-time, empathetic guidance powered by OpenAI GPT. JWT authentication, role-based access control, and voice interaction via Web Speech API.',
+    tech: ['React', 'Node.js', 'MongoDB', 'OpenAI GPT', 'JWT', 'Tailwind CSS'],
     githubUrl: 'https://github.com/rahulbaweja7',
     badge: 'WiCS 2025 Winner',
-    featured: true,
+    Mockup: SeraMockup,
   },
   {
     title: 'MacroBuddy',
+    subtitle: 'Nutrition Tracker',
     description:
-      'Fullstack nutrition tracker with macro tracking, fast food alternatives, and personalized meal planning. Uses OpenAI to generate 50+ recipe suggestions based on user goals.',
-    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'OpenAI API'],
+      'Macro tracker with fast-food alternatives and AI-generated meal plans. OpenAI suggests 50+ recipes based on user goals.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'OpenAI API'],
     githubUrl: 'https://github.com/rahulbaweja7',
+    Mockup: MacroMockup,
   },
   {
     title: 'QuizModoro',
+    subtitle: 'Pomodoro + Active Recall',
     description:
-      'Productivity quiz app blending Pomodoro with active recall. Timed sessions, spaced repetition, and custom quiz sets.',
+      'Productivity quiz app blending Pomodoro technique with spaced repetition. Timed sessions and custom quiz sets.',
     tech: ['React', 'JavaScript', 'CSS', 'LocalStorage'],
     githubUrl: 'https://github.com/rahulbaweja7/quizmodoro',
+    Mockup: QuizMockup,
   },
   {
     title: 'Unlimited Wordle',
+    subtitle: 'Infinite Word Game',
     description:
-      'Unlimited version of the viral Wordle game — play as many rounds as you want. Win streaks, guess distribution, clean dark UI.',
+      'Play unlimited rounds of Wordle. Win streaks, guess distribution charts, and a clean dark UI.',
     tech: ['JavaScript', 'HTML', 'CSS'],
     githubUrl: 'https://github.com/rahulbaweja7',
+    Mockup: WordleMockup,
   },
 ];
 
-const Projects = () => {
+/* ── Featured card ──────────────────────────────────────────────── */
+function FeaturedCard({ project }) {
+  const { title, subtitle, description, tech, githubUrl, liveUrl, badge, Mockup } = project;
+  return (
+    <div className="card-interactive rounded-xl overflow-hidden border border-dark-border grid lg:grid-cols-2 group">
+      {/* left: content */}
+      <div className="p-8 flex flex-col justify-between">
+        <div>
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">01 — featured</span>
+            {badge && (
+              <span className="flex items-center gap-1.5 text-[10px] font-mono text-accent border border-accent/20 bg-accent/5 px-2.5 py-1 rounded">
+                <FaTrophy size={9} /> {badge}
+              </span>
+            )}
+          </div>
+          <h2 className="text-3xl font-black text-[#efefef] group-hover:text-accent transition-colors duration-200 mb-1 uppercase leading-none">
+            {title}
+          </h2>
+          <p className="text-xs font-mono text-text-subtle mb-5 uppercase tracking-widest">{subtitle}</p>
+          <p className="text-text-muted text-sm leading-relaxed mb-6">{description}</p>
+          <div className="flex flex-wrap gap-1.5 mb-8">
+            {tech.map((t, i) => <TechPill key={i} label={t} />)}
+          </div>
+        </div>
+        <div className="flex items-center gap-5 pt-5 border-t border-dark-border">
+          {githubUrl && githubUrl !== '#' && (
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs text-text-subtle hover:text-[#efefef] transition-colors duration-200">
+              <FaGithub size={14} /> Code
+            </a>
+          )}
+          {liveUrl && (
+            <a href={liveUrl} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs text-text-subtle hover:text-accent transition-colors duration-200">
+              <FaExternalLinkAlt size={11} /> Live
+            </a>
+          )}
+        </div>
+      </div>
+      {/* right: mockup */}
+      <div className="bg-[#0c0c0c] p-6 flex items-center justify-center border-l border-dark-border min-h-[340px]">
+        <div className="w-full max-w-[340px]" style={{ height: 340 }}>
+          <Mockup />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Small card ─────────────────────────────────────────────────── */
+function SmallCard({ project, index }) {
+  const { title, subtitle, description, tech, githubUrl, liveUrl, badge, Mockup } = project;
+  return (
+    <div className="card-interactive rounded-xl overflow-hidden border border-dark-border flex flex-col group">
+      {/* mockup area */}
+      <div className="bg-[#0c0c0c] p-5 border-b border-dark-border">
+        <Mockup />
+      </div>
+      {/* content */}
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex items-start justify-between gap-2 mb-3">
+          <div>
+            <span className="text-[10px] font-mono text-text-subtle block mb-1">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 className="text-[#efefef] text-lg font-black uppercase group-hover:text-accent transition-colors duration-200 leading-none">
+              {title}
+            </h3>
+            <p className="text-[10px] font-mono text-text-subtle mt-0.5 uppercase tracking-wider">{subtitle}</p>
+          </div>
+          {badge && (
+            <span className="flex items-center gap-1 text-[10px] font-mono text-accent border border-accent/20 bg-accent/5 px-2 py-1 rounded shrink-0">
+              <FaTrophy size={8} /> {badge}
+            </span>
+          )}
+        </div>
+        <p className="text-text-muted text-xs leading-relaxed mb-4 flex-1">{description}</p>
+        <div className="flex flex-wrap gap-1 mb-4">
+          {tech.map((t, i) => <TechPill key={i} label={t} />)}
+        </div>
+        <div className="flex items-center gap-4 pt-4 border-t border-dark-border">
+          {githubUrl && githubUrl !== '#' && (
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[11px] text-text-subtle hover:text-[#efefef] transition-colors duration-200">
+              <FaGithub size={12} /> Code
+            </a>
+          )}
+          {liveUrl && (
+            <a href={liveUrl} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[11px] text-text-subtle hover:text-accent transition-colors duration-200">
+              <FaExternalLinkAlt size={10} /> Live
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Page ───────────────────────────────────────────────────────── */
+export default function Projects() {
   return (
     <div className="min-h-screen bg-dark">
       <Head>
@@ -46,56 +343,39 @@ const Projects = () => {
 
       <main className="max-w-5xl mx-auto px-6 pt-28 pb-20">
         {/* Header */}
-        <div
-          className="mb-12 animate-fade-in-up"
-          style={{ opacity: 0, animationFillMode: 'forwards' }}
-        >
-          <h1 className="text-4xl sm:text-5xl font-light text-[#efefef] mb-3">
-            Things I&apos;ve built<span className="text-accent">.</span>
+        <div className="mb-10 animate-fade-in-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+          <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-3">Selected work</p>
+          <h1 className="text-4xl sm:text-5xl font-black uppercase text-[#efefef] leading-none mb-3">
+            Things I&apos;ve<br />
+            <span style={{ color: '#2c2c2c' }}>built.</span>
           </h1>
-          <p className="text-text-muted text-base">
-            From hackathon winners to tools I actually use.
-          </p>
+          <p className="text-text-muted text-sm">From hackathon winners to tools I actually use.</p>
         </div>
 
-        {/* Featured project */}
-        <div
-          className="mb-4 animate-fade-in-up delay-100"
-          style={{ opacity: 0, animationFillMode: 'forwards' }}
-        >
-          <ProjectItem index={0} {...projects[0]} />
+        {/* Featured */}
+        <div className="mb-4 animate-fade-in-up delay-100" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+          <FeaturedCard project={projects[0]} />
         </div>
 
-        {/* Rest in grid */}
+        {/* Grid */}
         <div className="grid md:grid-cols-3 gap-4">
           {projects.slice(1).map((project, i) => (
             <div
               key={i}
               className="animate-fade-in-up"
-              style={{
-                opacity: 0,
-                animationFillMode: 'forwards',
-                animationDelay: `${(i + 1) * 0.08}s`,
-              }}
+              style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: `${(i + 2) * 0.08}s` }}
             >
-              <ProjectItem index={i + 1} {...project} />
+              <SmallCard project={project} index={i + 1} />
             </div>
           ))}
         </div>
 
         {/* Footer */}
-        <div
-          className="mt-14 animate-fade-in"
-          style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: '0.5s' }}
-        >
+        <div className="mt-14 animate-fade-in" style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: '0.5s' }}>
           <p className="text-text-subtle text-sm font-mono">
             More on{' '}
-            <a
-              href="https://github.com/rahulbaweja7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-muted hover:text-accent transition-colors duration-200"
-            >
+            <a href="https://github.com/rahulbaweja7" target="_blank" rel="noopener noreferrer"
+              className="text-text-muted hover:text-accent transition-colors duration-200">
               github.com/rahulbaweja7
             </a>
           </p>
@@ -103,6 +383,4 @@ const Projects = () => {
       </main>
     </div>
   );
-};
-
-export default Projects;
+}
