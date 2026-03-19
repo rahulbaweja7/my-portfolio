@@ -112,7 +112,7 @@ function JobSection({ job, index }) {
       >
         <span
           className="font-black uppercase whitespace-nowrap leading-none"
-          style={{ fontSize: 'clamp(80px, 12vw, 160px)', color: isUpcoming ? 'rgba(249,115,22,0.04)' : 'rgba(255,255,255,0.025)' }}
+          style={{ fontSize: 'clamp(80px, 12vw, 160px)', color: isUpcoming ? 'rgba(249,115,22,0.04)' : 'var(--ghost-text)' }}
         >
           {job.company}
         </span>
@@ -128,7 +128,7 @@ function JobSection({ job, index }) {
           </span>
           <h2
             className="font-black uppercase leading-none mb-4"
-            style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', color: isUpcoming ? '#f97316' : '#efefef' }}
+            style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', color: isUpcoming ? '#f97316' : 'var(--c-text)' }}
           >
             {job.company}
           </h2>
@@ -140,7 +140,7 @@ function JobSection({ job, index }) {
         <div>
           {/* Role + badge */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            <h3 className="text-lg text-[#efefef] font-medium">{job.role}</h3>
+            <h3 className="text-lg font-medium" style={{ color: 'var(--c-text)' }}>{job.role}</h3>
             {isUpcoming && (
               <span className="flex items-center gap-1.5 text-[10px] font-mono text-accent border border-accent/30 rounded px-2 py-0.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
@@ -206,9 +206,9 @@ export default function Work() {
           <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-3">
             Selected experience
           </p>
-          <h1 className="font-black uppercase text-[#efefef] leading-none"
-            style={{ fontSize: 'clamp(48px, 7vw, 96px)' }}>
-            Work<span style={{ color: '#2c2c2c' }}>.</span>
+          <h1 className="font-black uppercase leading-none"
+            style={{ fontSize: 'clamp(48px, 7vw, 96px)', color: 'var(--c-text)' }}>
+            Work<span style={{ color: 'var(--c-ghost)' }}>.</span>
           </h1>
         </div>
 

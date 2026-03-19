@@ -50,7 +50,7 @@ export default function About() {
               className="absolute bottom-0 left-0 right-0 px-4 py-3"
               style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)' }}
             >
-              <p className="text-[#efefef] font-semibold text-sm">Rahul Baweja</p>
+              <p className="font-semibold text-sm" style={{ color: 'var(--c-text)' }}>Rahul Baweja</p>
               <p className="text-[10px] font-mono text-text-subtle uppercase tracking-wider">CS @ ASU</p>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function About() {
           >
             <div>
               <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-3">// about</p>
-              <h1 className="text-2xl font-black uppercase text-[#efefef] leading-tight mb-3">
+              <h1 className="text-2xl font-black uppercase leading-tight mb-3" style={{ color: 'var(--c-text)' }}>
                 I build things<br />people use.
               </h1>
               <p className="text-text-muted text-[13px] leading-relaxed">
@@ -73,15 +73,15 @@ export default function About() {
             </div>
             <div className="flex gap-3 mt-3">
               <a href="https://www.linkedin.com/in/rahulbaweja-/" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-[11px] font-mono text-text-subtle hover:text-[#efefef] transition-colors border border-dark-border rounded px-2.5 py-1 hover:border-[#3a3a3a]">
+                className="flex items-center gap-1.5 text-[11px] font-mono text-text-subtle hover:text-text-primary transition-colors border border-dark-border rounded px-2.5 py-1 hover:border-dark-border">
                 <FaLinkedinIn size={11} /> LinkedIn
               </a>
               <a href="https://github.com/rahulbaweja7" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-[11px] font-mono text-text-subtle hover:text-[#efefef] transition-colors border border-dark-border rounded px-2.5 py-1 hover:border-[#3a3a3a]">
+                className="flex items-center gap-1.5 text-[11px] font-mono text-text-subtle hover:text-text-primary transition-colors border border-dark-border rounded px-2.5 py-1 hover:border-dark-border">
                 <FaGithub size={11} /> GitHub
               </a>
               <a href="mailto:rbaweja1@asu.edu"
-                className="flex items-center gap-1.5 text-[11px] font-mono text-text-subtle hover:text-[#efefef] transition-colors border border-dark-border rounded px-2.5 py-1 hover:border-[#3a3a3a]">
+                className="flex items-center gap-1.5 text-[11px] font-mono text-text-subtle hover:text-text-primary transition-colors border border-dark-border rounded px-2.5 py-1 hover:border-dark-border">
                 <AiOutlineMail size={12} /> Email
               </a>
             </div>
@@ -100,8 +100,8 @@ export default function About() {
             <div>
               <p className="text-[10px] font-mono text-accent uppercase tracking-widest mb-3">Next role</p>
               <p
-                className="font-black uppercase text-[#efefef] leading-none tracking-tight"
-                style={{ fontSize: 'clamp(11px, 1.05vw, 15px)' }}
+                className="font-black uppercase leading-none tracking-tight"
+                style={{ fontSize: 'clamp(11px, 1.05vw, 15px)', color: 'var(--c-text)' }}
               >
                 Microsoft
               </p>
@@ -119,7 +119,7 @@ export default function About() {
             style={{ gridColumn: '3', gridRow: '2', opacity: 0, animationFillMode: 'forwards' }}
           >
             <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">GPA</p>
-            <p className="text-4xl font-black text-[#efefef]">3.72</p>
+            <p className="text-4xl font-black" style={{ color: 'var(--c-text)' }}>3.72</p>
             <p className="text-[10px] font-mono text-text-subtle">Dean&apos;s List</p>
           </div>
 
@@ -139,7 +139,7 @@ export default function About() {
             style={{ gridColumn: '5', gridRow: '2', opacity: 0, animationFillMode: 'forwards' }}
           >
             <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">School</p>
-            <p className="text-2xl font-black text-[#efefef]">ASU</p>
+            <p className="text-2xl font-black" style={{ color: 'var(--c-text)' }}>ASU</p>
             <p className="text-[10px] font-mono text-text-subtle">4+1 BS/MS</p>
           </div>
         </div>
@@ -151,12 +151,12 @@ export default function About() {
               <Image src="/assets/RahulLA.png" alt="Rahul" fill priority style={{ objectFit: 'cover', objectPosition: '50% 18%' }} />
             </div>
             <div className="p-4">
-              <p className="text-[#efefef] font-semibold text-sm">Rahul Baweja</p>
+              <p className="font-semibold text-sm" style={{ color: 'var(--c-text)' }}>Rahul Baweja</p>
               <p className="text-text-subtle text-[10px] font-mono">CS @ ASU · Full-Stack Engineer</p>
             </div>
           </div>
           <div className="card-interactive rounded-xl border border-dark-border p-5">
-            <h1 className="text-2xl font-black uppercase text-[#efefef] mb-3 leading-tight">
+            <h1 className="text-2xl font-black uppercase mb-3 leading-tight" style={{ color: 'var(--c-text)' }}>
               I build things<br />people use.
             </h1>
             <p className="text-text-muted text-sm leading-relaxed">
@@ -168,7 +168,12 @@ export default function About() {
             {[['GPA', '3.72', 'Dean\'s List'], ['Hackathon', '1st', 'WiCS 2025'], ['School', 'ASU', '4+1 BS/MS']].map(([label, val, sub]) => (
               <div key={label} className="card-interactive rounded-xl border border-dark-border p-3 text-center">
                 <p className="text-[9px] font-mono text-text-subtle uppercase mb-1">{label}</p>
-                <p className={`text-xl font-black ${label === 'Hackathon' ? 'text-accent' : 'text-[#efefef]'}`}>{val}</p>
+                <p
+                  className={`text-xl font-black ${label === 'Hackathon' ? 'text-accent' : ''}`}
+                  style={label !== 'Hackathon' ? { color: 'var(--c-text)' } : undefined}
+                >
+                  {val}
+                </p>
                 <p className="text-[9px] font-mono text-text-subtle">{sub}</p>
               </div>
             ))}
@@ -190,7 +195,7 @@ export default function About() {
                 className="card-interactive rounded-xl border border-dark-border p-4 flex flex-col items-center text-center gap-1.5"
               >
                 <span className="text-2xl">{item.emoji}</span>
-                <p className="text-[#efefef] text-xs font-bold">{item.label}</p>
+                <p className="text-xs font-bold" style={{ color: 'var(--c-text)' }}>{item.label}</p>
                 <p className="text-text-subtle text-[10px] font-mono leading-tight">{item.sub}</p>
               </div>
             ))}

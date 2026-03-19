@@ -6,12 +6,12 @@ import { FaGithub, FaExternalLinkAlt, FaTrophy } from 'react-icons/fa';
 
 function SeraMockup() {
   return (
-    <div className="h-full flex flex-col bg-[#111] rounded-xl overflow-hidden border border-dark-border font-mono text-xs select-none">
+    <div className="h-full flex flex-col rounded-xl overflow-hidden border border-dark-border font-mono text-xs select-none" style={{ background: 'var(--c-card-alt)' }}>
       {/* bar */}
-      <div className="flex items-center gap-1.5 px-4 py-3 border-b border-dark-border bg-[#0f0f0f]">
-        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
-        <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
+      <div className="flex items-center gap-1.5 px-4 py-3 border-b border-dark-border" style={{ background: 'var(--c-deep)' }}>
+        <span className="w-2.5 h-2.5 rounded-full bg-dark-border" />
+        <span className="w-2.5 h-2.5 rounded-full bg-dark-border" />
+        <span className="w-2.5 h-2.5 rounded-full bg-dark-border" />
         <span className="ml-3 text-text-subtle text-[10px]">SERA — AI Health Assistant</span>
       </div>
       <div className="flex-1 overflow-hidden p-4 space-y-3">
@@ -19,20 +19,20 @@ function SeraMockup() {
         <div className="flex gap-2 items-end">
           <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent text-[8px] shrink-0">S</div>
           <div className="bg-dark-card border border-dark-border rounded-2xl rounded-bl-sm px-3 py-2 max-w-[75%]">
-            <p className="text-[#efefef] text-[11px] leading-relaxed">Hi! I&apos;m SERA. How can I help you today?</p>
+            <p className="text-[11px] leading-relaxed" style={{ color: 'var(--c-text)' }}>Hi! I&apos;m SERA. How can I help you today?</p>
           </div>
         </div>
         {/* user msg */}
         <div className="flex justify-end">
           <div className="bg-accent/10 border border-accent/20 rounded-2xl rounded-br-sm px-3 py-2 max-w-[75%]">
-            <p className="text-[#efefef] text-[11px] leading-relaxed">What are some healthy lifestyle tips?</p>
+            <p className="text-[11px] leading-relaxed" style={{ color: 'var(--c-text)' }}>What are some healthy lifestyle tips?</p>
           </div>
         </div>
         {/* AI msg */}
         <div className="flex gap-2 items-end">
           <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent text-[8px] shrink-0">S</div>
           <div className="bg-dark-card border border-dark-border rounded-2xl rounded-bl-sm px-3 py-2 max-w-[80%]">
-            <p className="text-[#efefef] text-[11px] leading-relaxed">
+            <p className="text-[11px] leading-relaxed" style={{ color: 'var(--c-text)' }}>
               Great question! Here are a few key habits:<br />
               <span className="text-accent">01.</span> Sleep 7–9 hours<br />
               <span className="text-accent">02.</span> Stay hydrated<br />
@@ -54,7 +54,7 @@ function SeraMockup() {
       </div>
       {/* input */}
       <div className="px-4 py-3 border-t border-dark-border flex gap-2">
-        <div className="flex-1 bg-[#1a1a1a] border border-dark-border rounded-lg px-3 py-1.5 text-text-subtle text-[11px]">
+        <div className="flex-1 bg-dark-card border border-dark-border rounded-lg px-3 py-1.5 text-text-subtle text-[11px]">
           Ask SERA anything…
         </div>
         <div className="w-7 h-7 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent text-[10px]">↑</div>
@@ -70,7 +70,7 @@ function MacroMockup() {
     { label: 'Fats',    val: 48,  max: 65,  color: '#484848' },
   ];
   return (
-    <div className="bg-[#111] rounded-xl border border-dark-border p-5 select-none font-mono">
+    <div className="rounded-xl border border-dark-border p-5 select-none font-mono" style={{ background: 'var(--c-card-alt)' }}>
       <div className="flex items-center justify-between mb-4">
         <span className="text-[10px] uppercase tracking-widest text-text-subtle">Today&apos;s Macros</span>
         <span className="text-[10px] text-accent">1,820 / 2,200 kcal</span>
@@ -83,7 +83,7 @@ function MacroMockup() {
               strokeDasharray="201" strokeDashoffset="50" strokeLinecap="round" />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-[#efefef] text-base font-bold">83%</span>
+            <span className="text-base font-bold" style={{ color: 'var(--c-text)' }}>83%</span>
             <span className="text-text-subtle text-[9px]">goal</span>
           </div>
         </div>
@@ -95,7 +95,7 @@ function MacroMockup() {
               <span className="text-[10px] text-text-subtle">{m.label}</span>
               <span className="text-[10px]" style={{ color: m.color }}>{m.val}g</span>
             </div>
-            <div className="h-1.5 bg-[#1a1a1a] rounded-full overflow-hidden">
+            <div className="h-1.5 bg-dark-card rounded-full overflow-hidden">
               <div className="h-full rounded-full" style={{ width: `${(m.val / m.max) * 100}%`, background: m.color }} />
             </div>
           </div>
@@ -107,7 +107,7 @@ function MacroMockup() {
 
 function QuizMockup() {
   return (
-    <div className="bg-[#111] rounded-xl border border-dark-border p-5 select-none font-mono">
+    <div className="rounded-xl border border-dark-border p-5 select-none font-mono" style={{ background: 'var(--c-card-alt)' }}>
       <div className="flex items-center justify-between mb-4">
         <span className="text-[10px] uppercase tracking-widest text-text-subtle">QuizModoro</span>
         <span className="text-[10px] text-green-400">Focus Mode</span>
@@ -120,13 +120,13 @@ function QuizMockup() {
               strokeDasharray="201" strokeDashoffset="100" strokeLinecap="round" />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-[#efefef] text-base font-bold">12:34</span>
+            <span className="text-base font-bold" style={{ color: 'var(--c-text)' }}>12:34</span>
             <span className="text-text-subtle text-[9px]">remaining</span>
           </div>
         </div>
       </div>
       <div className="bg-dark-card border border-dark-border rounded-lg p-3 mb-3">
-        <p className="text-[11px] text-[#efefef] leading-snug">What does &apos;O&apos; stand for in SOLID?</p>
+        <p className="text-[11px] leading-snug" style={{ color: 'var(--c-text)' }}>What does &apos;O&apos; stand for in SOLID?</p>
       </div>
       <div className="grid grid-cols-2 gap-1.5">
         {['Open/Closed', 'Object-Oriented', 'Overloading', 'Observable'].map((opt, i) => (
@@ -155,7 +155,7 @@ function WordleMockup() {
   const bg = { correct: '#2d5a27', present: '#6b5000', absent: '#1a1a1a', '': '#111' };
   const border = { correct: '#3d7a37', present: '#8b6f00', absent: '#2a2a2a', '': '#2a2a2a' };
   return (
-    <div className="bg-[#111] rounded-xl border border-dark-border p-5 select-none font-mono">
+    <div className="rounded-xl border border-dark-border p-5 select-none font-mono" style={{ background: 'var(--c-card-alt)' }}>
       <div className="flex items-center justify-between mb-4">
         <span className="text-[10px] uppercase tracking-widest text-text-subtle">Unlimited Wordle</span>
         <span className="text-[10px] text-accent">Streak: 7</span>
@@ -247,7 +247,7 @@ function FeaturedCard({ project }) {
               </span>
             )}
           </div>
-          <h2 className="text-3xl font-black text-[#efefef] group-hover:text-accent transition-colors duration-200 mb-1 uppercase leading-none">
+          <h2 className="text-3xl font-black group-hover:text-accent transition-colors duration-200 mb-1 uppercase leading-none" style={{ color: 'var(--c-text)' }}>
             {title}
           </h2>
           <p className="text-xs font-mono text-text-subtle mb-5 uppercase tracking-widest">{subtitle}</p>
@@ -259,7 +259,7 @@ function FeaturedCard({ project }) {
         <div className="flex items-center gap-5 pt-5 border-t border-dark-border">
           {githubUrl && githubUrl !== '#' && (
             <a href={githubUrl} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs text-text-subtle hover:text-[#efefef] transition-colors duration-200">
+              className="flex items-center gap-1.5 text-xs text-text-subtle hover:text-text-primary transition-colors duration-200">
               <FaGithub size={14} /> Code
             </a>
           )}
@@ -272,7 +272,7 @@ function FeaturedCard({ project }) {
         </div>
       </div>
       {/* right: mockup */}
-      <div className="bg-[#0c0c0c] p-6 flex items-center justify-center border-l border-dark-border min-h-[340px]">
+      <div className="p-6 flex items-center justify-center border-l border-dark-border min-h-[340px]" style={{ background: 'var(--c-deep)' }}>
         <div className="w-full max-w-[340px]" style={{ height: 340 }}>
           <Mockup />
         </div>
@@ -287,7 +287,7 @@ function SmallCard({ project, index }) {
   return (
     <div className="card-interactive rounded-xl overflow-hidden border border-dark-border flex flex-col group">
       {/* mockup area */}
-      <div className="bg-[#0c0c0c] p-5 border-b border-dark-border">
+      <div className="p-5 border-b border-dark-border" style={{ background: 'var(--c-deep)' }}>
         <Mockup />
       </div>
       {/* content */}
@@ -297,7 +297,7 @@ function SmallCard({ project, index }) {
             <span className="text-[10px] font-mono text-text-subtle block mb-1">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <h3 className="text-[#efefef] text-lg font-black uppercase group-hover:text-accent transition-colors duration-200 leading-none">
+            <h3 className="text-lg font-black uppercase group-hover:text-accent transition-colors duration-200 leading-none" style={{ color: 'var(--c-text)' }}>
               {title}
             </h3>
             <p className="text-[10px] font-mono text-text-subtle mt-0.5 uppercase tracking-wider">{subtitle}</p>
@@ -315,7 +315,7 @@ function SmallCard({ project, index }) {
         <div className="flex items-center gap-4 pt-4 border-t border-dark-border">
           {githubUrl && githubUrl !== '#' && (
             <a href={githubUrl} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[11px] text-text-subtle hover:text-[#efefef] transition-colors duration-200">
+              className="flex items-center gap-1.5 text-[11px] text-text-subtle hover:text-text-primary transition-colors duration-200">
               <FaGithub size={12} /> Code
             </a>
           )}
@@ -345,9 +345,9 @@ export default function Projects() {
         {/* Header */}
         <div className="mb-10 animate-fade-in-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>
           <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-3">Selected work</p>
-          <h1 className="text-4xl sm:text-5xl font-black uppercase text-[#efefef] leading-none mb-3">
+          <h1 className="text-4xl sm:text-5xl font-black uppercase leading-none mb-3" style={{ color: 'var(--c-text)' }}>
             Things I&apos;ve<br />
-            <span style={{ color: '#2c2c2c' }}>built.</span>
+            <span style={{ color: 'var(--c-ghost)' }}>built.</span>
           </h1>
           <p className="text-text-muted text-sm">From hackathon winners to tools I actually use.</p>
         </div>

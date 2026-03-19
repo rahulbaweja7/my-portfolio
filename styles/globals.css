@@ -2,28 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme tokens ───────────────────────────────────────────────── */
+:root {
+  --c-bg:        #0f0f0f;
+  --c-card:      #1a1a1a;
+  --c-card-alt:  #111111;
+  --c-border:    #2a2a2a;
+  --c-border-2:  #3a3a3a;
+  --c-text:      #efefef;
+  --c-muted:     #808080;
+  --c-subtle:    #484848;
+  --c-deep:      #0c0c0c;
+  --c-ghost:     #2c2c2c;
+  --dot-color:   rgba(255,255,255,0.07);
+  --nav-bg:      rgba(10,10,10,0.92);
+  --nav-border:  rgba(255,255,255,0.06);
+  --ghost-text:  rgba(255,255,255,0.025);
+}
+
+:root.light {
+  --c-bg:        #f5f3ef;
+  --c-card:      #ffffff;
+  --c-card-alt:  #f8f6f2;
+  --c-border:    #e8e5e0;
+  --c-border-2:  #d0cdc8;
+  --c-text:      #0f0f0f;
+  --c-muted:     #6b6b6b;
+  --c-subtle:    #9a9a9a;
+  --c-deep:      #ede9e3;
+  --c-ghost:     #ccc9c4;
+  --dot-color:   rgba(0,0,0,0.045);
+  --nav-bg:      rgba(245,243,239,0.92);
+  --nav-border:  rgba(0,0,0,0.08);
+  --ghost-text:  rgba(0,0,0,0.035);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Thin accent stripe at very top of every page */
+/* Thin accent stripe at very top */
 body::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 2px;
   background: #f97316;
   z-index: 9999;
 }
 
-/* Subtle dot grid background */
+/* Dot grid overlay */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
   z-index: 9997;
@@ -36,43 +69,36 @@ body::after {
 
 @layer base {
   body {
-    @apply bg-dark text-[#efefef];
+    background: var(--c-bg);
+    color: var(--c-text);
+    transition: background 0.25s ease, color 0.25s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-normal;
   }
 
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0f0f0f;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #2a2a2a;
-    border-radius: 2px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #f97316;
-  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--c-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #f97316; }
 }
 
 @layer utilities {
   .card {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
   }
 
   .card-interactive {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
     transition: border-color 0.2s ease, background 0.2s ease;
   }
 
   .card-interactive:hover {
-    border-color: #3a3a3a;
-    background: #1f1f1f;
+    border-color: var(--c-border-2);
+    background: var(--c-card-alt);
   }
 }
 
@@ -91,17 +117,9 @@ body::after {
   50%       { opacity: 0; }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-.animate-blink {
-  animation: blink 1s step-end infinite;
-}
+.animate-fade-in-up  { animation: fadeInUp 0.6s ease-out forwards; }
+.animate-fade-in     { animation: fadeIn 0.6s ease-out forwards; }
+.animate-blink       { animation: blink 1s step-end infinite; }
 
 .delay-100  { animation-delay: 0.1s; }
 .delay-200  { animation-delay: 0.2s; }

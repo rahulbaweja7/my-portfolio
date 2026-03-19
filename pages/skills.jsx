@@ -89,7 +89,7 @@ function Prompt({ text }) {
       <span style={{ color: '#484848' }}>:</span>
       <span style={{ color: '#7aa2c8' }}>{DIR}</span>
       <span style={{ color: '#808080' }}>&nbsp;%&nbsp;</span>
-      <span style={{ color: '#efefef' }}>{text}</span>
+      <span style={{ color: 'var(--c-text)' }}>{text}</span>
     </div>
   );
 }
@@ -262,8 +262,8 @@ export default function Skills() {
           <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-2">
             Interactive terminal
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black uppercase text-[#efefef] leading-none">
-            Skill<span style={{ color: '#2c2c2c' }}>s.</span>
+          <h1 className="text-4xl sm:text-5xl font-black uppercase leading-none" style={{ color: 'var(--c-text)' }}>
+            Skill<span style={{ color: 'var(--c-ghost)' }}>s.</span>
           </h1>
         </div>
 
@@ -274,7 +274,7 @@ export default function Skills() {
           onClick={() => introComplete && inputRef.current?.focus()}
         >
           {/* Chrome bar */}
-          <div className="flex items-center gap-2 px-4 py-3 bg-[#141414] border-b border-dark-border select-none">
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-dark-border select-none" style={{ background: 'var(--c-card-alt)' }}>
             <span className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
             <span className="w-3 h-3 rounded-full" style={{ background: '#ffbd2e' }} />
             <span className="w-3 h-3 rounded-full" style={{ background: '#28c840' }} />
@@ -287,8 +287,8 @@ export default function Skills() {
           {/* Body */}
           <div
             ref={termRef}
-            className="bg-[#0d0d0d] px-5 py-4 overflow-y-auto"
-            style={{ height: 'min(calc(100vh - 280px), 520px)', minHeight: 380 }}
+            className="px-5 py-4 overflow-y-auto"
+            style={{ background: 'var(--c-deep)', height: 'min(calc(100vh - 280px), 520px)', minHeight: 380 }}
           >
             {/* Welcome */}
             <div className="font-mono text-[11px] text-text-subtle mb-4 leading-5 select-none">
@@ -308,7 +308,7 @@ export default function Skills() {
                 <span style={{ color: '#484848' }}>:</span>
                 <span style={{ color: '#7aa2c8' }}>{DIR}</span>
                 <span style={{ color: '#808080' }}>&nbsp;%&nbsp;</span>
-                <span style={{ color: '#efefef' }}>{typingText}</span>
+                <span style={{ color: 'var(--c-text)' }}>{typingText}</span>
                 <span className="animate-blink" style={{ color: '#f97316' }}>▋</span>
               </div>
             )}
@@ -320,7 +320,7 @@ export default function Skills() {
                 <span style={{ color: '#484848' }}>:</span>
                 <span style={{ color: '#7aa2c8' }}>{DIR}</span>
                 <span style={{ color: '#808080' }}>&nbsp;%&nbsp;</span>
-                <span style={{ color: '#efefef' }}>{userInput}</span>
+                <span style={{ color: 'var(--c-text)' }}>{userInput}</span>
                 <span className="animate-blink" style={{ color: '#f97316' }}>▋</span>
                 <input
                   ref={inputRef}

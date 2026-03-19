@@ -38,7 +38,7 @@ const Contact = () => {
           className="mb-14 animate-fade-in-up"
           style={{ opacity: 0, animationFillMode: 'forwards' }}
         >
-          <h1 className="text-4xl sm:text-5xl font-light text-[#efefef] mb-4">
+          <h1 className="text-4xl sm:text-5xl font-light mb-4" style={{ color: 'var(--c-text)' }}>
             Let&apos;s talk<span className="text-accent">.</span>
           </h1>
           <p className="text-text-muted text-base leading-relaxed max-w-sm">
@@ -65,7 +65,7 @@ const Contact = () => {
                 </span>
                 <div>
                   <p className="text-xs font-mono text-text-subtle mb-0.5">{link.label}</p>
-                  <p className="text-sm text-[#efefef]">{link.value}</p>
+                  <p className="text-sm" style={{ color: 'var(--c-text)' }}>{link.value}</p>
                 </div>
               </div>
               <span className="text-text-subtle text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-200">

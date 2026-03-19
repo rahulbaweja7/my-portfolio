@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$!&*%?';
 
-function ScrambleText({ text, as: Tag = 'span', className }) {
+function ScrambleText({ text, as: Tag = 'span', className, style }) {
   const [display, setDisplay] = useState(text);
   const iv = useRef(null);
   const scramble = () => {
@@ -22,7 +22,7 @@ function ScrambleText({ text, as: Tag = 'span', className }) {
     }, 22);
   };
   useEffect(() => () => clearInterval(iv.current), []);
-  return <Tag className={className} onMouseEnter={scramble} data-hover>{display}</Tag>;
+  return <Tag className={className} style={style} onMouseEnter={scramble} data-hover>{display}</Tag>;
 }
 
 const roles = [
@@ -86,7 +86,7 @@ export default function Main() {
               <div className="shrink-0 p-4 border-t border-dark-border">
                 <div className="flex items-center justify-between mb-2">
                   <div>
-                    <p className="text-[#efefef] font-semibold text-sm">Rahul Baweja</p>
+                    <p className="font-semibold text-sm" style={{ color: 'var(--c-text)' }}>Rahul Baweja</p>
                     <p className="text-[10px] font-mono text-text-subtle mt-0.5 uppercase tracking-wider">
                       CS Student · ASU
                     </p>
@@ -108,11 +108,11 @@ export default function Main() {
 
                 <div className="flex gap-4">
                   <a href="https://github.com/rahulbaweja7" target="_blank" rel="noopener noreferrer"
-                    className="text-text-subtle hover:text-[#efefef] transition-colors"><FaGithub size={15} /></a>
+                    className="text-text-subtle hover:text-text-primary transition-colors"><FaGithub size={15} /></a>
                   <a href="https://www.linkedin.com/in/rahulbaweja-/" target="_blank" rel="noopener noreferrer"
-                    className="text-text-subtle hover:text-[#efefef] transition-colors"><FaLinkedinIn size={14} /></a>
+                    className="text-text-subtle hover:text-text-primary transition-colors"><FaLinkedinIn size={14} /></a>
                   <a href="mailto:rbaweja1@asu.edu"
-                    className="text-text-subtle hover:text-[#efefef] transition-colors"><AiOutlineMail size={15} /></a>
+                    className="text-text-subtle hover:text-text-primary transition-colors"><AiOutlineMail size={15} /></a>
                 </div>
               </div>
             </div>
@@ -127,13 +127,13 @@ export default function Main() {
                 className="font-black uppercase leading-[0.88] tracking-tight select-none mb-4"
                 style={{ fontSize: 'clamp(60px, 6.2vw, 104px)' }}
               >
-                <ScrambleText text="FULL-STACK" as="div" className="text-[#efefef]" />
-                <div style={{ color: '#2c2c2c' }}>ENGINEER.</div>
+                <ScrambleText text="FULL-STACK" as="div" style={{ color: 'var(--c-text)' }} />
+                <div style={{ color: 'var(--c-ghost)' }}>ENGINEER.</div>
               </div>
               <p className="text-text-muted text-sm leading-relaxed max-w-lg">
                 CS student at Arizona State. Building scalable web apps, shipping real code,
                 winning hackathons. Incoming SWE intern at{' '}
-                <span className="text-[#efefef] font-medium">Microsoft</span>.
+                <span className="font-medium" style={{ color: 'var(--c-text)' }}>Microsoft</span>.
               </p>
             </div>
 
@@ -141,7 +141,7 @@ export default function Main() {
             <div className="shrink-0 grid grid-cols-4 gap-4 py-4 border-y border-dark-border">
               {stats.map((s, i) => (
                 <div key={i}>
-                  <p className="font-bold text-[#efefef] mb-1" style={{ fontSize: 'clamp(22px, 2.4vw, 38px)' }}>
+                  <p className="font-bold mb-1" style={{ fontSize: 'clamp(22px, 2.4vw, 38px)', color: 'var(--c-text)' }}>
                     {s.num}
                   </p>
                   <p className="text-xs font-mono text-text-subtle uppercase tracking-widest leading-tight">
@@ -157,10 +157,10 @@ export default function Main() {
                 href="/projects"
                 className="bg-accent hover:bg-orange-400 transition-colors duration-200 rounded-xl p-5 flex flex-col justify-between group"
               >
-                <p className="text-[10px] font-mono text-dark/60 uppercase tracking-widest">Portfolio</p>
+                <p className="text-[10px] font-mono uppercase tracking-widest" style={{ color: 'rgba(15,15,15,0.6)' }}>Portfolio</p>
                 <div className="flex items-end justify-between">
-                  <p className="text-dark font-black text-lg uppercase leading-tight">View My<br />Work</p>
-                  <span className="text-dark text-2xl group-hover:translate-x-1.5 transition-transform duration-200">→</span>
+                  <p className="font-black text-lg uppercase leading-tight" style={{ color: '#0f0f0f' }}>View My<br />Work</p>
+                  <span className="text-2xl group-hover:translate-x-1.5 transition-transform duration-200" style={{ color: '#0f0f0f' }}>→</span>
                 </div>
               </Link>
 
@@ -170,8 +170,8 @@ export default function Main() {
               >
                 <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Background</p>
                 <div className="flex items-end justify-between">
-                  <p className="text-[#efefef] font-black text-lg uppercase leading-tight">About<br />Me</p>
-                  <span className="text-text-subtle text-2xl group-hover:text-[#efefef] group-hover:translate-x-1.5 transition-all duration-200">→</span>
+                  <p className="font-black text-lg uppercase leading-tight" style={{ color: 'var(--c-text)' }}>About<br />Me</p>
+                  <span className="text-text-subtle text-2xl group-hover:translate-x-1.5 transition-all duration-200" style={{ color: 'var(--c-subtle)' }}>→</span>
                 </div>
               </Link>
             </div>
@@ -189,7 +189,7 @@ export default function Main() {
           </div>
           <div className="p-4">
             <div className="flex items-center justify-between mb-1">
-              <p className="text-[#efefef] font-semibold text-sm">Rahul Baweja</p>
+              <p className="font-semibold text-sm" style={{ color: 'var(--c-text)' }}>Rahul Baweja</p>
               <span className="flex items-center gap-1.5 text-[10px] font-mono text-green-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Open
               </span>
@@ -197,19 +197,19 @@ export default function Main() {
             <p className="text-[10px] font-mono text-text-subtle uppercase tracking-wider mb-3">CS Student · ASU</p>
             <div className="flex gap-4">
               <a href="https://github.com/rahulbaweja7" target="_blank" rel="noopener noreferrer"
-                className="text-text-subtle hover:text-[#efefef] transition-colors"><FaGithub size={16} /></a>
+                className="text-text-subtle hover:text-text-primary transition-colors"><FaGithub size={16} /></a>
               <a href="https://www.linkedin.com/in/rahulbaweja-/" target="_blank" rel="noopener noreferrer"
-                className="text-text-subtle hover:text-[#efefef] transition-colors"><FaLinkedinIn size={15} /></a>
+                className="text-text-subtle hover:text-text-primary transition-colors"><FaLinkedinIn size={15} /></a>
               <a href="mailto:rbaweja1@asu.edu"
-                className="text-text-subtle hover:text-[#efefef] transition-colors"><AiOutlineMail size={16} /></a>
+                className="text-text-subtle hover:text-text-primary transition-colors"><AiOutlineMail size={16} /></a>
             </div>
           </div>
         </div>
 
         <div className="font-black uppercase leading-[0.88] select-none"
           style={{ fontSize: 'clamp(48px, 13vw, 72px)' }}>
-          <ScrambleText text="FULL-STACK" as="div" className="text-[#efefef]" />
-          <div style={{ color: '#2c2c2c' }}>ENGINEER.</div>
+          <ScrambleText text="FULL-STACK" as="div" style={{ color: 'var(--c-text)' }} />
+          <div style={{ color: 'var(--c-ghost)' }}>ENGINEER.</div>
         </div>
 
         <p className="text-text-muted text-sm leading-relaxed">
@@ -219,7 +219,7 @@ export default function Main() {
         <div className="grid grid-cols-2 gap-3">
           {stats.map((s, i) => (
             <div key={i} className="bg-dark-card border border-dark-border rounded-xl p-4">
-              <p className="text-2xl font-bold text-[#efefef]">{s.num}</p>
+              <p className="text-2xl font-bold" style={{ color: 'var(--c-text)' }}>{s.num}</p>
               <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mt-1">{s.label}</p>
             </div>
           ))}
@@ -227,12 +227,12 @@ export default function Main() {
 
         <div className="grid grid-cols-2 gap-3">
           <Link href="/projects" className="bg-accent rounded-xl p-4 flex items-center justify-between hover:bg-orange-400 transition-colors">
-            <p className="text-dark font-black uppercase text-sm">View Work</p>
-            <span className="text-dark">→</span>
+            <p className="font-black uppercase text-sm" style={{ color: '#0f0f0f' }}>View Work</p>
+            <span style={{ color: '#0f0f0f' }}>→</span>
           </Link>
           <Link href="/about" className="bg-dark-card border border-dark-border rounded-xl p-4 flex items-center justify-between">
-            <p className="text-[#efefef] font-black uppercase text-sm">About Me</p>
-            <span className="text-text-subtle">→</span>
+            <p className="font-black uppercase text-sm" style={{ color: 'var(--c-text)' }}>About Me</p>
+            <span style={{ color: 'var(--c-subtle)' }}>→</span>
           </Link>
         </div>
       </div>

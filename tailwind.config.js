@@ -8,21 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: '#0f0f0f',
-        'dark-card': '#1a1a1a',
-        'dark-border': '#2a2a2a',
-        'dark-hover': '#222222',
-        accent: '#f97316',
-        'text-primary': '#efefef',
-        'text-muted': '#808080',
-        'text-subtle': '#484848',
+        dark:         'var(--c-bg)',
+        'dark-card':  'var(--c-card)',
+        'dark-border':'var(--c-border)',
+        'dark-hover': 'var(--c-card-alt)',
+        accent:       '#f97316',
+        'text-primary': 'var(--c-text)',
+        'text-muted':   'var(--c-muted)',
+        'text-subtle':  'var(--c-subtle)',
       },
       fontFamily: {
         mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'monospace'],
       },
       boxShadow: {
-        card: '0 4px 24px rgba(0,0,0,0.5)',
-        'card-hover': '0 8px 32px rgba(0,0,0,0.65)',
+        card:       '0 4px 24px rgba(0,0,0,0.12)',
+        'card-hover':'0 8px 32px rgba(0,0,0,0.18)',
       },
     },
   },
