@@ -61,7 +61,7 @@ export default function About() {
             style={{ gridColumn: '3 / span 3', gridRow: '1', opacity: 0, animationFillMode: 'forwards' }}
           >
             <div>
-              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-3">// about</p>
+              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-3">{'// about'}</p>
               <h1 className="text-2xl font-black uppercase leading-tight mb-3" style={{ color: 'var(--c-text)' }}>
                 I build things<br />people use.
               </h1>
@@ -186,7 +186,7 @@ export default function About() {
           style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: '0.5s' }}
         >
           <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-4">
-            // outside the code
+            {'// outside the code'}
           </p>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
             {outside.map((item, i) => (
