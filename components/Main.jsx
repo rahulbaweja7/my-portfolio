@@ -152,53 +152,42 @@ export default function Main() {
             </div>
 
             {/* Tiles — flex-1 fills the rest */}
-            <div className="flex-1 flex flex-col gap-3 min-h-0">
-              <div className="flex-1 grid grid-cols-2 gap-3 min-h-0">
-                <Link
-                  href="/projects"
-                  className="bg-accent hover:bg-orange-400 transition-colors duration-200 rounded-xl p-5 flex flex-col justify-between group"
-                >
-                  <p className="text-[10px] font-mono uppercase tracking-widest" style={{ color: 'rgba(15,15,15,0.6)' }}>Portfolio</p>
-                  <div className="flex items-end justify-between">
-                    <p className="font-black text-lg uppercase leading-tight" style={{ color: '#0f0f0f' }}>View My<br />Work</p>
-                    <span className="text-2xl group-hover:translate-x-1.5 transition-transform duration-200" style={{ color: '#0f0f0f' }}>→</span>
-                  </div>
-                </Link>
+            <div className="flex-1 grid grid-cols-3 gap-3 min-h-0">
+              <Link
+                href="/projects"
+                className="bg-accent hover:bg-orange-400 transition-colors duration-200 rounded-xl p-5 flex flex-col justify-between group"
+              >
+                <p className="text-[10px] font-mono uppercase tracking-widest" style={{ color: 'rgba(15,15,15,0.6)' }}>Portfolio</p>
+                <div className="flex items-end justify-between">
+                  <p className="font-black text-lg uppercase leading-tight" style={{ color: '#0f0f0f' }}>View My<br />Work</p>
+                  <span className="text-2xl group-hover:translate-x-1.5 transition-transform duration-200" style={{ color: '#0f0f0f' }}>→</span>
+                </div>
+              </Link>
 
-                <Link
-                  href="/about"
-                  className="bg-dark-card border border-dark-border hover:border-[#3a3a3a] transition-colors rounded-xl p-5 flex flex-col justify-between group"
-                >
-                  <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Background</p>
-                  <div className="flex items-end justify-between">
-                    <p className="font-black text-lg uppercase leading-tight" style={{ color: 'var(--c-text)' }}>About<br />Me</p>
-                    <span className="text-text-subtle text-2xl group-hover:translate-x-1.5 transition-all duration-200" style={{ color: 'var(--c-subtle)' }}>→</span>
-                  </div>
-                </Link>
-              </div>
+              <Link
+                href="/about"
+                className="bg-dark-card border border-dark-border hover:border-[#3a3a3a] transition-colors rounded-xl p-5 flex flex-col justify-between group"
+              >
+                <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">Background</p>
+                <div className="flex items-end justify-between">
+                  <p className="font-black text-lg uppercase leading-tight" style={{ color: 'var(--c-text)' }}>About<br />Me</p>
+                  <span className="text-text-subtle text-2xl group-hover:translate-x-1.5 transition-all duration-200" style={{ color: 'var(--c-subtle)' }}>→</span>
+                </div>
+              </Link>
 
-              {/* Resume Match CTA */}
               <Link
                 href="/resume-match"
-                className="shrink-0 rounded-xl p-5 flex items-center justify-between group transition-all duration-200"
+                className="rounded-xl p-5 flex flex-col justify-between group transition-all duration-200 hover:border-orange-400/60"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(249,115,22,0.18) 0%, rgba(249,115,22,0.06) 100%)',
-                  border: '1px solid rgba(249,115,22,0.4)',
-                  minHeight: 80,
+                  background: 'linear-gradient(135deg, rgba(249,115,22,0.14) 0%, rgba(249,115,22,0.04) 100%)',
+                  border: '1px solid rgba(249,115,22,0.35)',
                 }}
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 text-xl"
-                    style={{ background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.3)' }}>
-                    🎯
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-mono text-accent uppercase tracking-widest leading-none mb-1">For Recruiters</p>
-                    <p className="font-black text-base uppercase" style={{ color: 'var(--c-text)' }}>Resume Match Checker</p>
-                    <p className="text-[11px] font-mono mt-0.5" style={{ color: 'var(--c-muted)' }}>spoiler: it&apos;s always a match</p>
-                  </div>
+                <p className="text-[10px] font-mono text-accent uppercase tracking-widest">For Recruiters</p>
+                <div className="flex items-end justify-between">
+                  <p className="font-black text-lg uppercase leading-tight" style={{ color: 'var(--c-text)' }}>Resume<br />Match</p>
+                  <span className="text-accent text-2xl group-hover:translate-x-1.5 transition-transform duration-200">→</span>
                 </div>
-                <span className="text-accent text-2xl font-bold group-hover:translate-x-1.5 transition-transform duration-200 shrink-0">→</span>
               </Link>
             </div>
           </div>
