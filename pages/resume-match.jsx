@@ -36,22 +36,6 @@ const INSIGHTS = [
   "⚡  Once deployed to prod on a Friday. It worked.",
 ];
 
-function ScoreBar({ score, delay }) {
-  const [width, setWidth] = useState(0);
-  useEffect(() => {
-    const t = setTimeout(() => setWidth(score), delay);
-    return () => clearTimeout(t);
-  }, [score, delay]);
-  const color = score === 100 ? '#22c55e' : score >= 98 ? '#f97316' : '#7aa2c8';
-  return (
-    <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--c-border)' }}>
-      <div
-        className="h-full rounded-full"
-        style={{ width: `${width}%`, background: color, transition: 'width 0.9s cubic-bezier(0.22,1,0.36,1)' }}
-      />
-    </div>
-  );
-}
 
 function Counter({ target, delay }) {
   const [val, setVal] = useState(0);
@@ -286,122 +270,146 @@ export default function ResumeMatch() {
 
         {/* ── RESULT PHASE ── */}
         {phase === 'result' && (
-          <div className="space-y-4 animate-fade-in-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="space-y-3 animate-fade-in-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>
 
-            {/* Score hero */}
+            {/* ── Hero: score + verdict side by side ── */}
             <div
-              className="rounded-xl border p-8 text-center relative overflow-hidden"
-              style={{ background: 'rgba(249,115,22,0.04)', borderColor: 'rgba(249,115,22,0.35)' }}
+              className="rounded-xl border overflow-hidden relative"
+              style={{ borderColor: 'rgba(249,115,22,0.4)', background: 'var(--c-card)' }}
             >
-              {/* bg glow */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.08) 0%, transparent 70%)' }}
-              />
+              {/* top accent bar */}
+              <div style={{ height: 3, background: 'linear-gradient(90deg, #f97316, #fb923c, transparent)' }} />
 
-              <p className="text-[10px] font-mono text-accent uppercase tracking-widest mb-2">
-                Analysis Complete · Confidence: 100%
-              </p>
+              <div className="flex flex-col sm:flex-row">
+                {/* Score column */}
+                <div
+                  className="flex flex-col items-center justify-center px-10 py-8 sm:border-r"
+                  style={{ borderColor: 'rgba(249,115,22,0.2)', background: 'rgba(249,115,22,0.04)', minWidth: 220 }}
+                >
+                  <p className="text-[9px] font-mono text-accent uppercase tracking-[0.2em] mb-2">Match Score</p>
+                  <div className="font-black leading-none" style={{ fontSize: 'clamp(80px, 14vw, 112px)', color: '#f97316', letterSpacing: '-0.04em' }}>
+                    <Counter target={98.7} delay={200} />
+                  </div>
+                  <p className="text-lg font-black" style={{ color: 'var(--c-muted)', marginTop: -4 }}>%</p>
+                </div>
 
-              <div className="font-black leading-none mb-2" style={{ fontSize: 'clamp(72px, 14vw, 120px)', color: '#f97316' }}>
-                <Counter target={98.7} delay={200} />
-                <span style={{ fontSize: '0.35em', color: 'var(--c-muted)' }}>%</span>
+                {/* Verdict column */}
+                <div className="flex-1 px-8 py-8 flex flex-col justify-between gap-6">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <span
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded font-mono text-[10px] font-bold uppercase tracking-widest"
+                        style={{ background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)', color: '#22c55e' }}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                        STRONG HIRE
+                      </span>
+                      <span
+                        className="inline-flex items-center px-3 py-1 rounded font-mono text-[10px] uppercase tracking-widest"
+                        style={{ background: 'var(--c-card-alt)', border: '1px solid var(--c-border)', color: 'var(--c-muted)' }}
+                      >
+                        Confidence: 100%
+                      </span>
+                    </div>
+                    <p className="font-black uppercase tracking-tight leading-none mb-2" style={{ fontSize: 'clamp(26px, 4vw, 36px)', color: 'var(--c-text)' }}>
+                      Match<br />Confirmed.
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--c-muted)', maxWidth: 320 }}>
+                      847 data points analyzed. The 1.3% gap exists only because our engineers
+                      were too embarrassed to put 100%.
+                    </p>
+                  </div>
+                  <p className="text-[10px] font-mono" style={{ color: 'var(--c-subtle)' }}>
+                    report_id: RB-{Math.random().toString(36).slice(2,8).toUpperCase()} · generated {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </p>
+                </div>
               </div>
-
-              <p className="text-2xl font-black uppercase tracking-widest mb-3" style={{ color: 'var(--c-text)' }}>
-                Match Confirmed
-              </p>
-
-              <div
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase tracking-widest"
-                style={{ background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)', color: '#22c55e' }}
-              >
-                ✦ STRONG HIRE · DO NOT PASS ON THIS ONE
-              </div>
-
-              <p className="text-text-muted text-sm mt-4 max-w-sm mx-auto">
-                Our algorithm analyzed <span className="text-accent font-mono">847</span> data points and
-                reached a verdict in record time. The 1.3% gap is a rounding error.
-              </p>
             </div>
 
-            {/* Category breakdown */}
+            {/* ── Category grid ── */}
             <div
-              className="rounded-xl border border-dark-border p-6"
+              className="rounded-xl border border-dark-border overflow-hidden"
               style={{ background: 'var(--c-card)' }}
             >
-              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-5">
-                {'// breakdown by category'}
-              </p>
-              <div className="space-y-3.5">
+              <div className="px-5 py-3 border-b border-dark-border flex items-center justify-between"
+                style={{ background: 'var(--c-card-alt)' }}>
+                <span className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">{'// breakdown'}</span>
+                <span className="text-[10px] font-mono text-accent">avg: 98.8 / 100</span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-px" style={{ background: 'var(--c-border)' }}>
                 {CATEGORIES.map((cat, i) => (
-                  <div key={i} className="flex items-center gap-4">
-                    <span className="text-xs font-mono w-36 shrink-0" style={{ color: 'var(--c-text)' }}>
-                      {cat.label}
-                    </span>
-                    <ScoreBar score={cat.score} delay={300 + i * 120} />
-                    <span className="text-xs font-mono w-6 text-right shrink-0" style={{ color: cat.score === 100 ? '#22c55e' : '#f97316' }}>
+                  <div key={i} className="px-5 py-4 flex flex-col gap-1 relative overflow-hidden"
+                    style={{ background: 'var(--c-card)' }}>
+                    {/* faint score watermark */}
+                    <span className="absolute right-3 top-1 font-black select-none pointer-events-none"
+                      style={{ fontSize: 56, color: cat.score === 100 ? 'rgba(34,197,94,0.06)' : 'rgba(249,115,22,0.06)', lineHeight: 1 }}>
                       {cat.score}
                     </span>
-                    <span className="text-[10px] font-mono text-text-subtle w-28 shrink-0 hidden sm:block">
-                      {cat.note}
+                    <p className="text-[9px] font-mono text-text-subtle uppercase tracking-widest">{cat.label}</p>
+                    <p className="font-black text-2xl leading-none"
+                      style={{ color: cat.score === 100 ? '#22c55e' : '#f97316' }}>
+                      {cat.score}<span className="text-sm font-normal" style={{ color: 'var(--c-muted)' }}>/100</span>
+                    </p>
+                    <p className="text-[10px] font-mono italic" style={{ color: 'var(--c-subtle)' }}>{cat.note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Insights as log entries ── */}
+            <div
+              className="rounded-xl border border-dark-border overflow-hidden"
+              style={{ background: 'var(--c-card)' }}
+            >
+              <div className="px-5 py-3 border-b border-dark-border flex items-center gap-3"
+                style={{ background: 'var(--c-card-alt)' }}>
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">algorithm_output.log</span>
+              </div>
+              <div className="p-5 space-y-1" style={{ background: 'var(--c-deep)' }}>
+                {INSIGHTS.map((ins, i) => (
+                  <div key={i} className="flex items-start gap-3 py-1.5 border-b last:border-0"
+                    style={{ borderColor: 'rgba(255,255,255,0.04)' }}>
+                    <span className="shrink-0 text-[10px] font-mono mt-0.5 w-10"
+                      style={{ color: i % 3 === 0 ? '#22c55e' : i % 3 === 1 ? '#f97316' : '#7aa2c8' }}>
+                      {['INFO', 'PASS', 'NOTE'][i % 3]}
+                    </span>
+                    <span className="text-[11px] font-mono leading-relaxed" style={{ color: 'var(--c-muted)' }}>
+                      {ins.replace(/^[^\s]+\s+/, '')}
                     </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Insights */}
-            <div
-              className="rounded-xl border border-dark-border p-6"
-              style={{ background: 'var(--c-card)' }}
-            >
-              <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-4">
-                {'// key insights from the algorithm'}
-              </p>
-              <div className="space-y-2.5">
-                {INSIGHTS.map((ins, i) => (
-                  <p key={i} className="text-sm font-mono leading-relaxed" style={{ color: 'var(--c-muted)', animationDelay: `${i * 0.05}s` }}>
-                    {ins}
-                  </p>
-                ))}
-              </div>
+            {/* ── CTA ── */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a
+                href="mailto:rbaweja1@asu.edu"
+                className="flex items-center justify-between px-6 py-5 rounded-xl group transition-all duration-200 hover:bg-orange-400"
+                style={{ background: '#f97316' }}
+              >
+                <div>
+                  <p className="text-[9px] font-mono uppercase tracking-widest mb-0.5" style={{ color: 'rgba(15,15,15,0.6)' }}>Next step</p>
+                  <p className="font-black text-base uppercase" style={{ color: '#0f0f0f' }}>Schedule the Interview</p>
+                </div>
+                <span className="text-2xl font-black group-hover:translate-x-1.5 transition-transform duration-200" style={{ color: '#0f0f0f' }}>→</span>
+              </a>
+              <button
+                onClick={reset}
+                className="flex items-center justify-between px-6 py-5 rounded-xl group transition-all duration-200 hover:border-[var(--c-border-2)]"
+                style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)' }}
+              >
+                <div>
+                  <p className="text-[9px] font-mono text-text-subtle uppercase tracking-widest mb-0.5">Try again</p>
+                  <p className="font-black text-base uppercase" style={{ color: 'var(--c-text)' }}>Another Job</p>
+                </div>
+                <span className="text-2xl group-hover:translate-x-1 transition-transform duration-200" style={{ color: 'var(--c-subtle)' }}>↺</span>
+              </button>
             </div>
 
-            {/* Disclaimer + CTA */}
-            <div
-              className="rounded-xl border p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-              style={{ background: 'var(--c-card-alt)', borderColor: 'var(--c-border)' }}
-            >
-              <div>
-                <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-1">
-                  Recommendation
-                </p>
-                <p className="text-sm font-mono" style={{ color: 'var(--c-text)' }}>
-                  Schedule the interview. You already know the outcome.
-                </p>
-              </div>
-              <div className="flex gap-3 shrink-0">
-                <a
-                  href="mailto:rbaweja1@asu.edu"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-wide transition-all duration-200 hover:opacity-90"
-                  style={{ background: '#f97316', color: '#0f0f0f' }}
-                >
-                  Hire Me →
-                </a>
-                <button
-                  onClick={reset}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wide border transition-all duration-200 hover:border-[#3a3a3a]"
-                  style={{ borderColor: 'var(--c-border)', color: 'var(--c-muted)' }}
-                >
-                  Try Another JD
-                </button>
-              </div>
-            </div>
-
-            {/* fun footer note */}
-            <p className="text-center text-[11px] font-mono text-text-subtle opacity-40 pt-2">
-              * this tool is 100% satirical and 100% accurate. results are non-negotiable.
+            <p className="text-center text-[10px] font-mono text-text-subtle opacity-30 pt-1">
+              * 100% satirical · 100% accurate · results are final and non-negotiable
             </p>
           </div>
         )}
