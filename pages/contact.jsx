@@ -34,14 +34,7 @@ function getStatus(h) {
 }
 
 const REASONS = [
-  '💼 Full-time', '🚀 Internships', '⚡ Freelance', '🤝 Collabs', '☕ Just coffee',
-];
-
-const STATS = [
-  { value: '3',    label: 'internships'      },
-  { value: '3.72', label: 'GPA'              },
-  { value: '1st',  label: 'hackathon'        },
-  { value: '\'26', label: 'Microsoft intern' },
+  '💼 Full-time', '🚀 Internships', '🤝 Collabs', '☕ Just coffee',
 ];
 
 export default function Contact() {
@@ -118,16 +111,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-px rounded-xl overflow-hidden animate-fade-in-up delay-500"
-              style={{ opacity: 0, animationFillMode: 'forwards', background: 'var(--c-border)' }}>
-              {STATS.map(({ value, label }) => (
-                <div key={label} className="px-4 py-4 flex flex-col" style={{ background: 'var(--c-card)' }}>
-                  <p className="text-2xl font-black mb-1" style={{ color: 'var(--c-text)' }}>{value}</p>
-                  <p className="text-[9px] font-mono text-text-subtle uppercase tracking-widest leading-tight">{label}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* ── RIGHT — sticky contact card ── */}
@@ -293,23 +276,14 @@ export default function Contact() {
             </a>
           </div>
 
-          {/* Open to + stats mobile */}
+          {/* Open to — mobile */}
           <div className="animate-fade-in-up delay-500" style={{ opacity: 0, animationFillMode: 'forwards' }}>
-            <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-3">Open to</p>
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2">
               {REASONS.map(r => (
                 <span key={r} className="px-3 py-1.5 rounded-lg text-xs font-mono"
                   style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)', color: 'var(--c-muted)' }}>
                   {r}
                 </span>
-              ))}
-            </div>
-            <div className="grid grid-cols-4 gap-px rounded-xl overflow-hidden" style={{ background: 'var(--c-border)' }}>
-              {STATS.map(({ value, label }) => (
-                <div key={label} className="px-3 py-3 flex flex-col" style={{ background: 'var(--c-card)' }}>
-                  <p className="text-lg font-black mb-0.5" style={{ color: 'var(--c-text)' }}>{value}</p>
-                  <p className="text-[8px] font-mono text-text-subtle uppercase tracking-widest leading-tight">{label}</p>
-                </div>
               ))}
             </div>
           </div>
