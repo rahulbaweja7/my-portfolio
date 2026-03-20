@@ -59,6 +59,7 @@ export default function ResumeMatch() {
   const [jd, setJd]           = useState('');
   const [url, setUrl]         = useState('');
   const [phase, setPhase]     = useState('input');   // input | loading | result
+  const [score, setScore]     = useState(98.7);
   const [steps, setSteps]     = useState([]);
   const [activeIdx, setActiveIdx] = useState(-1);
   const cancelRef = useRef(false);
@@ -68,6 +69,7 @@ export default function ResumeMatch() {
   const runAnalysis = async () => {
     if (!isReady) return;
     cancelRef.current = false;
+    setScore(parseFloat((96.5 + Math.random() * 3).toFixed(1)));
     setPhase('loading');
     setSteps([]);
     setActiveIdx(0);
@@ -305,10 +307,10 @@ export default function ResumeMatch() {
                   </div>
                   <div className="sm:text-right shrink-0">
                     <div className="font-black leading-none mb-1" style={{ fontSize: 'clamp(52px, 10vw, 76px)', color: '#22c55e', letterSpacing: '-0.03em' }}>
-                      <Counter target={98.7} delay={300} />
+                      <Counter target={score} delay={300} />
                     </div>
                     <p className="text-sm font-bold" style={{ color: '#22c55e' }}>▲ +∞%  ALL TIME HIGH</p>
-                    <p className="text-[10px] mt-1" style={{ color: '#2a2a2a' }}>52W HIGH: 98.7 · 52W LOW: also 98.7</p>
+                    <p className="text-[10px] mt-1" style={{ color: '#2a2a2a' }}>52W HIGH: {score} · 52W LOW: also {score}</p>
                   </div>
                 </div>
 
