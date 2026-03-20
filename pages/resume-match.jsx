@@ -268,148 +268,181 @@ export default function ResumeMatch() {
           </div>
         )}
 
-        {/* ── RESULT PHASE ── */}
+        {/* ── RESULT PHASE — Bloomberg Terminal ── */}
         {phase === 'result' && (
-          <div className="space-y-3 animate-fade-in-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="animate-fade-in" style={{ opacity: 0, animationFillMode: 'forwards' }}>
 
-            {/* ── Hero: score + verdict side by side ── */}
-            <div
-              className="rounded-xl border overflow-hidden relative"
-              style={{ borderColor: 'rgba(249,115,22,0.4)', background: 'var(--c-card)' }}
-            >
-              {/* top accent bar */}
-              <div style={{ height: 3, background: 'linear-gradient(90deg, #f97316, #fb923c, transparent)' }} />
+            <div className="rounded-xl overflow-hidden" style={{ border: '1px solid #2a2a2a', fontFamily: 'ui-monospace, monospace' }}>
 
-              <div className="flex flex-col sm:flex-row">
-                {/* Score column */}
-                <div
-                  className="flex flex-col items-center justify-center px-10 py-8 sm:border-r"
-                  style={{ borderColor: 'rgba(249,115,22,0.2)', background: 'rgba(249,115,22,0.04)', minWidth: 220 }}
-                >
-                  <p className="text-[9px] font-mono text-accent uppercase tracking-[0.2em] mb-2">Match Score</p>
-                  <div className="font-black leading-none" style={{ fontSize: 'clamp(80px, 14vw, 112px)', color: '#f97316', letterSpacing: '-0.04em' }}>
-                    <Counter target={98.7} delay={200} />
-                  </div>
-                  <p className="text-lg font-black" style={{ color: 'var(--c-muted)', marginTop: -4 }}>%</p>
+              {/* ── Orange header bar ── */}
+              <div className="flex items-center justify-between px-4 py-2" style={{ background: '#f97316' }}>
+                <div className="flex items-center gap-4">
+                  <span className="font-black text-sm tracking-widest" style={{ color: '#0f0f0f' }}>RAHUL.DEV</span>
+                  <span className="text-[10px] font-bold tracking-wider hidden sm:block" style={{ color: 'rgba(15,15,15,0.65)' }}>CANDIDATE SECURITIES · LIVE</span>
                 </div>
+                <div className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'rgba(15,15,15,0.5)' }} />
+                  <span className="text-[10px] font-bold" style={{ color: 'rgba(15,15,15,0.65)' }}>MARKET OPEN</span>
+                </div>
+              </div>
 
-                {/* Verdict column */}
-                <div className="flex-1 px-8 py-8 flex flex-col justify-between gap-6">
+              {/* ── Terminal body ── */}
+              <div style={{ background: '#080808' }}>
+
+                {/* Ticker row */}
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between px-6 pt-5 pb-5 gap-4"
+                  style={{ borderBottom: '1px solid #161616' }}>
                   <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <span
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded font-mono text-[10px] font-bold uppercase tracking-widest"
-                        style={{ background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)', color: '#22c55e' }}
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                        STRONG HIRE
+                    <p className="font-black text-xl tracking-wider mb-1" style={{ color: '#f97316' }}>RAHUL.DEV</p>
+                    <p className="text-[11px] mb-3" style={{ color: '#444' }}>FULL-STACK ENGINEER · ARIZONA STATE UNIVERSITY · PHOENIX, AZ</p>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-[10px] px-2 py-0.5 font-bold rounded"
+                        style={{ background: 'rgba(34,197,94,0.12)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.25)' }}>
+                        ▲ STRONG BUY
                       </span>
-                      <span
-                        className="inline-flex items-center px-3 py-1 rounded font-mono text-[10px] uppercase tracking-widest"
-                        style={{ background: 'var(--c-card-alt)', border: '1px solid var(--c-border)', color: 'var(--c-muted)' }}
-                      >
-                        Confidence: 100%
-                      </span>
+                      <span className="text-[10px]" style={{ color: '#333' }}>12 analysts · 0 sell ratings · consensus: immediate hire</span>
                     </div>
-                    <p className="font-black uppercase tracking-tight leading-none mb-2" style={{ fontSize: 'clamp(26px, 4vw, 36px)', color: 'var(--c-text)' }}>
-                      Match<br />Confirmed.
-                    </p>
-                    <p className="text-sm leading-relaxed" style={{ color: 'var(--c-muted)', maxWidth: 320 }}>
-                      847 data points analyzed. The 1.3% gap exists only because our engineers
-                      were too embarrassed to put 100%.
-                    </p>
                   </div>
-                  <p className="text-[10px] font-mono" style={{ color: 'var(--c-subtle)' }}>
-                    report_id: RB-{Math.random().toString(36).slice(2,8).toUpperCase()} · generated {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  <div className="sm:text-right shrink-0">
+                    <div className="font-black leading-none mb-1" style={{ fontSize: 'clamp(52px, 10vw, 76px)', color: '#22c55e', letterSpacing: '-0.03em' }}>
+                      <Counter target={98.7} delay={300} />
+                    </div>
+                    <p className="text-sm font-bold" style={{ color: '#22c55e' }}>▲ +∞%  ALL TIME HIGH</p>
+                    <p className="text-[10px] mt-1" style={{ color: '#2a2a2a' }}>52W HIGH: 98.7 · 52W LOW: also 98.7</p>
+                  </div>
+                </div>
+
+                {/* Chart */}
+                <div className="px-6 py-4" style={{ borderBottom: '1px solid #161616' }}>
+                  <p className="text-[10px] mb-2" style={{ color: '#333' }}>
+                    MATCH SCORE OVER TIME &nbsp;·&nbsp;
+                    <span style={{ color: '#444' }}>1D</span> &nbsp;
+                    <span style={{ color: '#444' }}>1W</span> &nbsp;
+                    <span style={{ color: '#444' }}>1M</span> &nbsp;
+                    <span style={{ color: '#f97316' }}>ALL</span>
+                    <span style={{ color: '#333', marginLeft: 12 }}>(same chart either way)</span>
                   </p>
-                </div>
-              </div>
-            </div>
-
-            {/* ── Category grid ── */}
-            <div
-              className="rounded-xl border border-dark-border overflow-hidden"
-              style={{ background: 'var(--c-card)' }}
-            >
-              <div className="px-5 py-3 border-b border-dark-border flex items-center justify-between"
-                style={{ background: 'var(--c-card-alt)' }}>
-                <span className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">{'// breakdown'}</span>
-                <span className="text-[10px] font-mono text-accent">avg: 98.8 / 100</span>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-px" style={{ background: 'var(--c-border)' }}>
-                {CATEGORIES.map((cat, i) => (
-                  <div key={i} className="px-5 py-4 flex flex-col gap-1 relative overflow-hidden"
-                    style={{ background: 'var(--c-card)' }}>
-                    {/* faint score watermark */}
-                    <span className="absolute right-3 top-1 font-black select-none pointer-events-none"
-                      style={{ fontSize: 56, color: cat.score === 100 ? 'rgba(34,197,94,0.06)' : 'rgba(249,115,22,0.06)', lineHeight: 1 }}>
-                      {cat.score}
-                    </span>
-                    <p className="text-[9px] font-mono text-text-subtle uppercase tracking-widest">{cat.label}</p>
-                    <p className="font-black text-2xl leading-none"
-                      style={{ color: cat.score === 100 ? '#22c55e' : '#f97316' }}>
-                      {cat.score}<span className="text-sm font-normal" style={{ color: 'var(--c-muted)' }}>/100</span>
-                    </p>
-                    <p className="text-[10px] font-mono italic" style={{ color: 'var(--c-subtle)' }}>{cat.note}</p>
+                  <div className="flex gap-2">
+                    {/* Y-axis */}
+                    <div className="flex flex-col justify-between pb-1 shrink-0" style={{ height: 90 }}>
+                      {['100', '95', '90', '85', '80'].map(v => (
+                        <span key={v} style={{ fontSize: 9, color: '#2a2a2a', lineHeight: 1 }}>{v}</span>
+                      ))}
+                    </div>
+                    {/* SVG chart */}
+                    <div className="flex-1">
+                      <svg width="100%" height="90" viewBox="0 0 500 90" preserveAspectRatio="none">
+                        {[18, 36, 54, 72].map(y => (
+                          <line key={y} x1="0" y1={y} x2="500" y2={y} stroke="#111" strokeWidth="1" />
+                        ))}
+                        <path
+                          d="M0,72 C25,70 45,65 75,60 S115,52 145,46 S185,38 215,32 S255,25 285,19 S325,13 355,9 S400,5 435,3 L500,1 L500,90 L0,90Z"
+                          fill="rgba(34,197,94,0.07)"
+                        />
+                        <path
+                          d="M0,72 C25,70 45,65 75,60 S115,52 145,46 S185,38 215,32 S255,25 285,19 S325,13 355,9 S400,5 435,3 L500,1"
+                          stroke="#22c55e" strokeWidth="1.5" fill="none"
+                          className="draw-chart"
+                          style={{ strokeDasharray: 700, strokeDashoffset: 700 }}
+                        />
+                        <circle cx="500" cy="1" r="3" fill="#22c55e" />
+                      </svg>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
 
-            {/* ── Insights as log entries ── */}
-            <div
-              className="rounded-xl border border-dark-border overflow-hidden"
-              style={{ background: 'var(--c-card)' }}
-            >
-              <div className="px-5 py-3 border-b border-dark-border flex items-center gap-3"
-                style={{ background: 'var(--c-card-alt)' }}>
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-[10px] font-mono text-text-subtle uppercase tracking-widest">algorithm_output.log</span>
-              </div>
-              <div className="p-5 space-y-1" style={{ background: 'var(--c-deep)' }}>
-                {INSIGHTS.map((ins, i) => (
-                  <div key={i} className="flex items-start gap-3 py-1.5 border-b last:border-0"
-                    style={{ borderColor: 'rgba(255,255,255,0.04)' }}>
-                    <span className="shrink-0 text-[10px] font-mono mt-0.5 w-10"
-                      style={{ color: i % 3 === 0 ? '#22c55e' : i % 3 === 1 ? '#f97316' : '#7aa2c8' }}>
-                      {['INFO', 'PASS', 'NOTE'][i % 3]}
-                    </span>
-                    <span className="text-[11px] font-mono leading-relaxed" style={{ color: 'var(--c-muted)' }}>
-                      {ins.replace(/^[^\s]+\s+/, '')}
-                    </span>
+                {/* Two-col: analyst ratings + fundamentals */}
+                <div className="grid grid-cols-1 sm:grid-cols-2" style={{ borderBottom: '1px solid #161616' }}>
+                  <div className="px-6 py-4" style={{ borderBottom: '1px solid #161616', borderRight: '0px' }}>
+                    <p className="text-[10px] font-bold tracking-widest mb-3" style={{ color: '#f97316' }}>ANALYST RATINGS</p>
+                    {[
+                      ['Goldman Sachs',     'STRONG BUY', '#22c55e'],
+                      ['Morgan Stanley',    'STRONG BUY', '#22c55e'],
+                      ['JPMorgan Chase',    'STRONG BUY', '#22c55e'],
+                      ['Your Hiring Mgr',  '"just hire him"', '#f97316'],
+                      ['Your Future CEO',  'approved ✓',  '#22c55e'],
+                    ].map(([firm, rating, color]) => (
+                      <div key={firm} className="flex items-center justify-between mb-2">
+                        <span style={{ fontSize: 11, color: '#444' }}>{firm}</span>
+                        <span style={{ fontSize: 11, fontWeight: 'bold', color }}>{rating}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                  <div className="px-6 py-4" style={{ borderLeft: '1px solid #161616' }}>
+                    <p className="text-[10px] font-bold tracking-widest mb-3" style={{ color: '#f97316' }}>FUNDAMENTALS</p>
+                    {[
+                      ['GPA',            '3.72 / 4.0'],
+                      ['Hackathon',      '1st place'],
+                      ['Internships',    '3 completed'],
+                      ['Ships on',       'fridays (works)'],
+                      ['Debug speed',    'attempt 848'],
+                      ['Coffee / day',   '☕☕☕'],
+                    ].map(([k, v]) => (
+                      <div key={k} className="flex items-center justify-between mb-2">
+                        <span style={{ fontSize: 11, color: '#444' }}>{k}</span>
+                        <span style={{ fontSize: 11, color: '#888' }}>{v}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Order panel */}
+                <div className="px-6 py-4 flex flex-wrap items-center gap-4" style={{ borderBottom: '1px solid #161616' }}>
+                  <div>
+                    <p className="text-[10px] mb-2" style={{ color: '#333' }}>ORDER TYPE: IMMEDIATE HIRE &nbsp;·&nbsp; QTY: 1 &nbsp;·&nbsp; PRICE: make an offer</p>
+                    <div className="flex flex-wrap gap-2">
+                      <a
+                        href="mailto:rbaweja1@asu.edu"
+                        className="flex items-center gap-2 px-5 py-2 font-black text-sm tracking-wider transition-opacity hover:opacity-90"
+                        style={{ background: '#22c55e', color: '#000' }}
+                      >
+                        ▶ BUY &nbsp;(HIRE NOW)
+                      </a>
+                      <button disabled
+                        className="px-5 py-2 font-bold text-sm tracking-wider"
+                        style={{ background: '#0d0d0d', color: '#222', border: '1px solid #1a1a1a', cursor: 'not-allowed' }}>
+                        ▼ SELL &nbsp;[UNAVAILABLE]
+                      </button>
+                      <button onClick={reset}
+                        className="px-4 py-2 text-xs tracking-wider transition-colors"
+                        style={{ background: 'transparent', color: '#333', border: '1px solid #1e1e1e' }}>
+                        ↺ NEW SEARCH
+                      </button>
+                    </div>
+                  </div>
+                  <div className="ml-auto text-right">
+                    <p style={{ fontSize: 10, color: '#2a2a2a' }}>MARKET CAP</p>
+                    <p style={{ fontSize: 22, fontWeight: 900, color: '#f97316' }}>∞</p>
+                  </div>
+                </div>
+
+                {/* News ticker */}
+                <div className="overflow-hidden py-1.5" style={{ borderTop: '1px solid #111' }}>
+                  <div className="ticker-scroll" style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                    {[
+                      'RAHUL.DEV surges to all-time high following JD submission',
+                      'BREAKING: algorithm refuses to consider other candidates',
+                      'Analysts raise price target to ∞ citing "immaculate vibe"',
+                      'Source: candidate deployed to prod on a Friday — it worked',
+                      'Microsoft confirms intern "genuinely dangerous" in best way',
+                      'Vibe check: 100/100 for third consecutive quarter',
+                      'Risk disclosure: NOT hiring is the real risk here',
+                    ].flatMap((item, i) => [
+                      <span key={i} style={{ marginRight: 48, fontSize: 10, color: '#3a3a3a' }}>
+                        <span style={{ color: '#f97316', marginRight: 8 }}>●</span>{item}
+                      </span>,
+                      <span key={`d${i}`} style={{ marginRight: 48, fontSize: 10, color: '#3a3a3a' }}>
+                        <span style={{ color: '#f97316', marginRight: 8 }}>●</span>{item}
+                      </span>,
+                    ])}
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            {/* ── CTA ── */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <a
-                href="mailto:rbaweja1@asu.edu"
-                className="flex items-center justify-between px-6 py-5 rounded-xl group transition-all duration-200 hover:bg-orange-400"
-                style={{ background: '#f97316' }}
-              >
-                <div>
-                  <p className="text-[9px] font-mono uppercase tracking-widest mb-0.5" style={{ color: 'rgba(15,15,15,0.6)' }}>Next step</p>
-                  <p className="font-black text-base uppercase" style={{ color: '#0f0f0f' }}>Schedule the Interview</p>
-                </div>
-                <span className="text-2xl font-black group-hover:translate-x-1.5 transition-transform duration-200" style={{ color: '#0f0f0f' }}>→</span>
-              </a>
-              <button
-                onClick={reset}
-                className="flex items-center justify-between px-6 py-5 rounded-xl group transition-all duration-200 hover:border-[var(--c-border-2)]"
-                style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)' }}
-              >
-                <div>
-                  <p className="text-[9px] font-mono text-text-subtle uppercase tracking-widest mb-0.5">Try again</p>
-                  <p className="font-black text-base uppercase" style={{ color: 'var(--c-text)' }}>Another Job</p>
-                </div>
-                <span className="text-2xl group-hover:translate-x-1 transition-transform duration-200" style={{ color: 'var(--c-subtle)' }}>↺</span>
-              </button>
-            </div>
-
-            <p className="text-center text-[10px] font-mono text-text-subtle opacity-30 pt-1">
-              * 100% satirical · 100% accurate · results are final and non-negotiable
+            <p className="text-center text-[10px] font-mono text-text-subtle opacity-25 mt-4">
+              * past performance indicative of future results · this candidate only goes up
             </p>
           </div>
         )}
