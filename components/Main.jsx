@@ -180,20 +180,25 @@ export default function Main() {
               {/* Resume Match CTA */}
               <Link
                 href="/resume-match"
-                className="shrink-0 rounded-xl px-5 py-3 flex items-center justify-between group transition-all duration-200 hover:opacity-90"
-                style={{ background: 'linear-gradient(90deg, rgba(249,115,22,0.12) 0%, rgba(249,115,22,0.04) 100%)', border: '1px solid rgba(249,115,22,0.25)' }}
+                className="shrink-0 rounded-xl p-5 flex items-center justify-between group transition-all duration-200"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(249,115,22,0.18) 0%, rgba(249,115,22,0.06) 100%)',
+                  border: '1px solid rgba(249,115,22,0.4)',
+                  minHeight: 80,
+                }}
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-lg">🎯</span>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 text-xl"
+                    style={{ background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.3)' }}>
+                    🎯
+                  </div>
                   <div>
-                    <p className="text-[10px] font-mono text-accent uppercase tracking-widest leading-none mb-0.5">For Recruiters</p>
-                    <p className="font-black text-sm uppercase" style={{ color: 'var(--c-text)' }}>Resume Match Checker</p>
+                    <p className="text-[10px] font-mono text-accent uppercase tracking-widest leading-none mb-1">For Recruiters</p>
+                    <p className="font-black text-base uppercase" style={{ color: 'var(--c-text)' }}>Resume Match Checker</p>
+                    <p className="text-[11px] font-mono mt-0.5" style={{ color: 'var(--c-muted)' }}>spoiler: it&apos;s always a match</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-text-subtle hidden xl:block">spoiler: it&apos;s a match</span>
-                  <span className="text-accent text-xl group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </div>
+                <span className="text-accent text-2xl font-bold group-hover:translate-x-1.5 transition-transform duration-200 shrink-0">→</span>
               </Link>
             </div>
           </div>
@@ -259,17 +264,24 @@ export default function Main() {
 
         <Link
           href="/resume-match"
-          className="rounded-xl px-4 py-3 flex items-center justify-between"
-          style={{ background: 'linear-gradient(90deg, rgba(249,115,22,0.12) 0%, rgba(249,115,22,0.04) 100%)', border: '1px solid rgba(249,115,22,0.25)' }}
+          className="rounded-xl p-4 flex items-center justify-between group"
+          style={{
+            background: 'linear-gradient(135deg, rgba(249,115,22,0.18) 0%, rgba(249,115,22,0.06) 100%)',
+            border: '1px solid rgba(249,115,22,0.4)',
+          }}
         >
           <div className="flex items-center gap-3">
-            <span>🎯</span>
+            <div className="flex items-center justify-center w-9 h-9 rounded-lg shrink-0"
+              style={{ background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.3)' }}>
+              🎯
+            </div>
             <div>
               <p className="text-[9px] font-mono text-accent uppercase tracking-widest leading-none mb-0.5">For Recruiters</p>
               <p className="font-black text-sm uppercase" style={{ color: 'var(--c-text)' }}>Resume Match Checker</p>
+              <p className="text-[10px] font-mono mt-0.5" style={{ color: 'var(--c-muted)' }}>spoiler: it&apos;s always a match</p>
             </div>
           </div>
-          <span className="text-accent text-xl">→</span>
+          <span className="text-accent text-xl font-bold group-hover:translate-x-1 transition-transform duration-200 shrink-0">→</span>
         </Link>
       </div>
     </div>
