@@ -55,7 +55,7 @@ const jobs = [
     ],
   },
   {
-    company:  'Arizona State',
+    company:  'Arizona State University',
     role:     'Teaching Assistant — Intro to Java',
     period:   'Aug 2023 – May 2024',
     location: 'Tempe, AZ',

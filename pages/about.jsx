@@ -106,7 +106,7 @@ function ProfileContent() {
 
       {/* Bio */}
       <p style={{ fontSize: 12.5, color: 'var(--c-muted)', lineHeight: 1.7, marginBottom: 18 }}>
-        CS student at <span style={{ color: 'var(--c-text)', fontWeight: 600 }}>Arizona State</span> (BS/MS 4+1).
+        CS student at <span style={{ color: 'var(--c-text)', fontWeight: 600 }}>Arizona State University</span> (BS/MS 4+1).
         I build production-grade apps, win hackathons, and ship features people actually use.
         Incoming SWE intern at <span style={{ color: '#f97316', fontWeight: 700 }}>Microsoft</span>.
       </p>

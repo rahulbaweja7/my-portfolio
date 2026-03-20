@@ -131,7 +131,7 @@ export default function Main() {
                 <div style={{ color: 'var(--c-ghost)' }}>ENGINEER.</div>
               </div>
               <p className="text-text-muted text-sm leading-relaxed max-w-lg">
-                CS student at Arizona State. Building scalable web apps, shipping real code,
+                CS student at Arizona State University. Building scalable web apps, shipping real code,
                 winning hackathons. Incoming SWE intern at{' '}
                 <span className="font-medium" style={{ color: 'var(--c-text)' }}>Microsoft</span>.
               </p>
@@ -228,7 +228,7 @@ export default function Main() {
         </div>
 
         <p className="text-text-muted text-sm leading-relaxed">
-          CS student at Arizona State. Building apps, shipping code, winning hackathons.
+          CS student at Arizona State University. Building apps, shipping code, winning hackathons.
         </p>
 
         <div className="grid grid-cols-2 gap-3">
