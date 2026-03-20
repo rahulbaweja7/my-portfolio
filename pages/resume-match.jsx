@@ -71,27 +71,34 @@ function Counter({ target, delay }) {
 }
 
 export default function ResumeMatch() {
+  const [tab, setTab]         = useState('paste');   // paste | url
   const [jd, setJd]           = useState('');
+  const [url, setUrl]         = useState('');
   const [phase, setPhase]     = useState('input');   // input | loading | result
   const [steps, setSteps]     = useState([]);
   const [activeIdx, setActiveIdx] = useState(-1);
   const cancelRef = useRef(false);
 
+  const isReady = tab === 'paste' ? jd.trim().length > 0 : url.trim().length > 0;
+
   const runAnalysis = async () => {
-    if (!jd.trim()) return;
+    if (!isReady) return;
     cancelRef.current = false;
     setPhase('loading');
     setSteps([]);
     setActiveIdx(0);
 
     const sleep = ms => new Promise(r => setTimeout(r, ms));
-    let elapsed = 0;
-    for (let i = 0; i < STEPS.length; i++) {
+    const steps = tab === 'url'
+      ? [{ ms: 900, text: `Fetching job posting from ${url.replace(/https?:\/\//, '').split('/')[0]}...` }, ...STEPS]
+      : STEPS;
+
+    for (let i = 0; i < steps.length; i++) {
       if (cancelRef.current) return;
       setActiveIdx(i);
-      await sleep(STEPS[i].ms);
+      await sleep(steps[i].ms);
       if (cancelRef.current) return;
-      setSteps(prev => [...prev, STEPS[i].text]);
+      setSteps(prev => [...prev, steps[i].text]);
     }
     await sleep(400);
     if (!cancelRef.current) setPhase('result');
@@ -103,6 +110,7 @@ export default function ResumeMatch() {
     setSteps([]);
     setActiveIdx(-1);
     setJd('');
+    setUrl('');
   };
 
   return (
@@ -147,39 +155,82 @@ export default function ResumeMatch() {
                 <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#ff5f57' }} />
                 <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#ffbd2e' }} />
                 <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#28c840' }} />
-                <span className="ml-3 text-[11px] font-mono text-text-subtle">job_description.txt</span>
+                {/* tabs */}
+                <div className="ml-4 flex gap-1">
+                  {[{ id: 'paste', label: 'Paste JD' }, { id: 'url', label: 'Job URL' }].map(t => (
+                    <button
+                      key={t.id}
+                      onClick={() => setTab(t.id)}
+                      className="px-3 py-1 rounded text-[11px] font-mono transition-all duration-150"
+                      style={{
+                        background: tab === t.id ? 'rgba(249,115,22,0.15)' : 'transparent',
+                        color: tab === t.id ? '#f97316' : 'var(--c-muted)',
+                        border: tab === t.id ? '1px solid rgba(249,115,22,0.3)' : '1px solid transparent',
+                      }}
+                    >
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+                <span className="ml-auto text-[11px] font-mono text-text-subtle">
+                  {tab === 'paste' ? 'job_description.txt' : 'job_posting.url'}
+                </span>
               </div>
 
-              <textarea
-                value={jd}
-                onChange={e => setJd(e.target.value)}
-                placeholder={`Paste the job description here...\n\nExample:\n  "We're looking for a full-stack engineer with React, Node.js,\n   and strong problem-solving skills. Must be a team player..."`}
-                rows={10}
-                className="w-full resize-none outline-none font-mono text-sm leading-relaxed p-5"
-                style={{
-                  background: 'var(--c-deep)',
-                  color: 'var(--c-text)',
-                  caretColor: '#f97316',
-                  cursor: 'text',
-                }}
-                spellCheck={false}
-              />
+              {tab === 'paste' ? (
+                <textarea
+                  value={jd}
+                  onChange={e => setJd(e.target.value)}
+                  placeholder={`Paste the job description here...\n\nExample:\n  "We're looking for a full-stack engineer with React, Node.js,\n   and strong problem-solving skills. Must be a team player..."`}
+                  rows={10}
+                  className="w-full resize-none outline-none font-mono text-sm leading-relaxed p-5"
+                  style={{
+                    background: 'var(--c-deep)',
+                    color: 'var(--c-text)',
+                    caretColor: '#f97316',
+                    cursor: 'text',
+                  }}
+                  spellCheck={false}
+                />
+              ) : (
+                <div className="p-5" style={{ background: 'var(--c-deep)', minHeight: 200 }}>
+                  <p className="text-[11px] font-mono text-text-subtle mb-3">$ enter job posting url</p>
+                  <div className="flex items-center gap-2 rounded-lg px-4 py-3"
+                    style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)' }}>
+                    <span className="text-text-subtle font-mono text-sm shrink-0">🔗</span>
+                    <input
+                      type="url"
+                      value={url}
+                      onChange={e => setUrl(e.target.value)}
+                      placeholder="https://jobs.lever.co/company/role-id"
+                      className="flex-1 outline-none bg-transparent font-mono text-sm"
+                      style={{ color: 'var(--c-text)', caretColor: '#f97316', cursor: 'text' }}
+                      spellCheck={false}
+                    />
+                  </div>
+                  <p className="text-[10px] font-mono text-text-subtle mt-3 opacity-60">
+                    Works with LinkedIn, Lever, Greenhouse, Workday, Indeed — basically anywhere.
+                  </p>
+                </div>
+              )}
 
               <div
                 className="flex items-center justify-between px-5 py-3 border-t border-dark-border"
                 style={{ background: 'var(--c-card-alt)' }}
               >
                 <span className="text-[11px] font-mono text-text-subtle">
-                  {jd.length > 0 ? `${jd.trim().split(/\s+/).length} words · ready to analyze` : 'waiting for input...'}
+                  {tab === 'paste'
+                    ? (jd.length > 0 ? `${jd.trim().split(/\s+/).length} words · ready to analyze` : 'waiting for input...')
+                    : (url.length > 0 ? 'url ready · fetching job data...' : 'waiting for url...')}
                 </span>
                 <button
                   onClick={runAnalysis}
-                  disabled={!jd.trim()}
+                  disabled={!isReady}
                   className="flex items-center gap-2 px-5 py-2 rounded-lg font-mono text-sm font-bold uppercase tracking-wide transition-all duration-200"
                   style={{
-                    background: jd.trim() ? '#f97316' : 'var(--c-border)',
-                    color: jd.trim() ? '#0f0f0f' : 'var(--c-subtle)',
-                    cursor: jd.trim() ? 'pointer' : 'not-allowed',
+                    background: isReady ? '#f97316' : 'var(--c-border)',
+                    color: isReady ? '#0f0f0f' : 'var(--c-subtle)',
+                    cursor: isReady ? 'pointer' : 'not-allowed',
                   }}
                 >
                   Run Analysis →
