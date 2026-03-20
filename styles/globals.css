@@ -150,3 +150,30 @@ body::after {
 .delay-500  { animation-delay: 0.5s; }
 .delay-700  { animation-delay: 0.7s; }
 .delay-1000 { animation-delay: 1s; }
+
+/* ── Boot screen glitch ── */
+@keyframes glitchR {
+  0%,100% { clip-path: inset(12% 0 76% 0); transform: translateX(-5px); }
+  20%     { clip-path: inset(55% 0 22% 0); transform: translateX(5px);  }
+  40%     { clip-path: inset(78% 0 4%  0); transform: translateX(-3px); }
+  60%     { clip-path: inset(30% 0 48% 0); transform: translateX(4px);  }
+  80%     { clip-path: inset(5%  0 88% 0); transform: translateX(-5px); }
+}
+@keyframes glitchC {
+  0%,100% { clip-path: inset(68% 0 8%  0); transform: translateX(5px);  }
+  20%     { clip-path: inset(18% 0 72% 0); transform: translateX(-5px); }
+  40%     { clip-path: inset(42% 0 36% 0); transform: translateX(3px);  }
+  60%     { clip-path: inset(85% 0 2%  0); transform: translateX(-4px); }
+  80%     { clip-path: inset(3%  0 60% 0); transform: translateX(5px);  }
+}
+@keyframes glitchShake {
+  0%,100% { transform: translateX(0);    }
+  10%     { transform: translateX(-3px); }
+  30%     { transform: translateX(3px);  }
+  50%     { transform: translateX(-2px); }
+  70%     { transform: translateX(2px);  }
+  90%     { transform: translateX(-1px); }
+}
+.glitch-r { animation: glitchR 0.35s infinite linear; }
+.glitch-c { animation: glitchC 0.35s infinite linear; }
+.glitch-shake { animation: glitchShake 0.28s infinite linear; }
