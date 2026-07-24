@@ -688,7 +688,7 @@ const projects = [
     description:
       'Smart macro tracker with goal-based meal planning and AI-generated alternatives. OpenAI suggests 50+ recipes aligned to your cut, maintain, or bulk goals.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'OpenAI API'],
-    githubUrl: 'https://github.com/rahulbaweja7',
+    githubUrl: 'https://github.com/rahulbaweja7/macrobuddy',
     Mockup: InteractiveMacro,
   },
   {
