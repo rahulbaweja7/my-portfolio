@@ -993,7 +993,7 @@ export default function Projects() {
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-3 gap-4" style={{ gridAutoRows: '580px' }}>
+        <div className="grid md:grid-cols-3 gap-4" style={{ gridAutoRows: 'minmax(580px, auto)' }}>
           {projects.slice(1).map((project, i) => (
             <SmallCard
               key={i}
