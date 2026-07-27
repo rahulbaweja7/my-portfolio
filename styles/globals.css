@@ -62,13 +62,6 @@ body::after {
   z-index: 9997;
 }
 
-/* Hide default cursor on pointer devices */
-@media (pointer: fine) {
-  * { cursor: none !important; }
-  input, textarea, [contenteditable] { cursor: text !important; }
-  button, a, [role="button"], label { cursor: pointer !important; }
-}
-
 @layer base {
   body {
     background: var(--c-bg);
