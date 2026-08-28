@@ -134,17 +134,17 @@ export default function Home() {
 
       <Navbar />
 
-      <main className="min-h-screen pt-28 pb-24 px-6" style={{ background: 'var(--c-bg)' }}>
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_320px] gap-12">
-          <div className="max-w-3xl">
+      <main className="min-h-screen lg:h-screen lg:overflow-hidden pt-24 pb-8 px-6" style={{ background: 'var(--c-bg)' }}>
+        <div className="max-w-6xl mx-auto h-full grid lg:grid-cols-[1fr_320px] gap-12">
+          <div className="max-w-3xl flex flex-col min-h-0">
 
             {/* Header + About */}
-            <div className="flex flex-col-reverse sm:flex-row sm:items-start gap-8 mb-12">
+            <div className="flex flex-col-reverse sm:flex-row sm:items-start gap-6 mb-6 shrink-0">
               <div className="flex-1 min-w-0">
-                <h1 className="font-bold leading-none mb-3" style={{ fontSize: 'clamp(36px, 6vw, 56px)', color: 'var(--c-text)' }}>
+                <h1 className="font-bold leading-none mb-2" style={{ fontSize: 'clamp(30px, 5vw, 44px)', color: 'var(--c-text)' }}>
                   Hey, I&apos;m Rahul<span style={{ color: '#f97316' }}>.</span>
                 </h1>
-                <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6">
+                <div className="flex flex-wrap gap-x-5 gap-y-2 mb-4">
                   {socials.map(s => (
                     <a
                       key={s.label}
@@ -159,7 +159,7 @@ export default function Home() {
                     </a>
                   ))}
                 </div>
-                <h2 className="text-lg font-bold mb-3" style={{ color: 'var(--c-text)' }}>About Me</h2>
+                <h2 className="text-base font-bold mb-2" style={{ color: 'var(--c-text)' }}>About Me</h2>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--c-muted)' }}>
                   Hi, I&apos;m Rahul. I&apos;m 22, a CS student at Arizona State, and an incoming
                   SWE intern at Microsoft. I build things, and sometimes they win: first place at
@@ -171,7 +171,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="relative w-40 sm:w-48 aspect-[3/4] shrink-0 mx-auto sm:mx-0">
+              <div className="relative w-32 sm:w-36 aspect-[3/4] shrink-0 mx-auto sm:mx-0">
                 <div
                   className="relative w-full h-full overflow-hidden rounded-2xl grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
@@ -190,10 +190,10 @@ export default function Home() {
             </div>
 
             {/* Experience + Projects */}
-            <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
-              <section>
-                <h2 className="text-lg font-bold mb-2" style={{ color: 'var(--c-text)' }}>Experience</h2>
-                <div>
+            <div className="grid md:grid-cols-2 gap-x-10 gap-y-6 flex-1 min-h-0">
+              <section className="flex flex-col min-h-0">
+                <h2 className="text-lg font-bold mb-2 shrink-0" style={{ color: 'var(--c-text)' }}>Experience</h2>
+                <div className="overflow-y-auto nice-scroll pr-2">
                   {experience.map((e, i) => (
                     <Row
                       key={i}
@@ -208,9 +208,9 @@ export default function Home() {
                 </div>
               </section>
 
-              <section>
-                <h2 className="text-lg font-bold mb-2" style={{ color: 'var(--c-text)' }}>Projects</h2>
-                <div>
+              <section className="flex flex-col min-h-0">
+                <h2 className="text-lg font-bold mb-2 shrink-0" style={{ color: 'var(--c-text)' }}>Projects</h2>
+                <div className="overflow-y-auto nice-scroll pr-2">
                   {projects.map((p, i) => (
                     <Row
                       key={i}
@@ -229,8 +229,8 @@ export default function Home() {
           </div>
 
           {/* Sidebar */}
-          <aside className="lg:pt-[100px]">
-            <div className="lg:sticky lg:top-28 space-y-4">
+          <aside className="lg:pt-2 lg:h-full lg:overflow-y-auto nice-scroll lg:pr-1">
+            <div className="space-y-4">
               <SpotifyTopTracks />
               <GithubActivity />
             </div>
