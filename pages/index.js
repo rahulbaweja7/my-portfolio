@@ -13,96 +13,102 @@ const socials = [
 
 const experience = [
   {
-    company: 'Microsoft', role: 'Software Engineer Intern', period: 'Summer 2026',
+    company: 'Microsoft', role: 'Software Engineer Intern', period: 'Aug 2026 – Nov 2026',
     upcoming: true,
-    bullets: ['Incoming SWE intern — details TBD.'],
+    description: 'Joining the IDNA team to build identity and network access solutions across Azure-integrated enterprise systems, applying full-stack and cloud engineering skills at scale.',
+    tech: 'Azure, C#, TypeScript',
   },
   {
-    company: 'SuperWorld', role: 'Software Engineer Intern', period: 'May 2025 – Present',
-    bullets: [
-      'Architected a reusable component library shipped across 3+ product surfaces',
-      'Integrated REST APIs cutting data-fetch boilerplate by ~40%',
-      'Owned features end-to-end from Figma handoff to production',
-    ],
+    company: 'SuperWorld', role: 'Software Engineer Intern', period: 'Sep 2025 – Nov 2025',
+    description: 'Architected 6 reusable React + TypeScript components adopted across 12+ call sites, consolidating 800 lines of duplicated UI code and cutting new-feature build time by 25%. Optimized the Orders dashboard by integrating 8 REST endpoints via TanStack Query with caching and optimistic mutations, reducing redundant network calls by 60% and load time from 1.9s to 0.8s. Expanded test coverage from 58% to 84% by writing 42 Jest + React Testing Library unit tests, catching 3 regressions pre-release.',
+    tech: 'React, TypeScript, TanStack Query, Jest',
   },
   {
-    company: 'IDX Exchange', role: 'Software Engineer Intern', period: 'May – Aug 2025',
-    bullets: [
-      'Led a team of 4 to build a real estate search platform from scratch',
-      'Integrated CoreLogic API, cutting property query latency by 40%',
-      'Built JWT auth + RBAC for 1,000+ users end-to-end',
-    ],
+    company: 'IDX Exchange', role: 'Software Engineer Intern', period: 'May 2025 – Aug 2025',
+    description: 'Led 4 engineers building a real estate search platform with 10+ fullstack features including filters, map integration, and photo galleries. Integrated CoreLogic’s Web API and a secure MySQL schema, reducing data query latency by 40%. Took end-to-end ownership of authentication for 1,000+ users, from schema design to production, with zero downtime across 20+ releases.',
+    tech: 'React, PHP, MySQL, CoreLogic API',
   },
   {
-    company: 'Arizona State University', role: 'Teaching Assistant — Intro to Java', period: 'Aug 2023 – May 2024',
-    bullets: [
-      'Mentored 100+ students through weekly office hours and labs',
-      'Facilitated 30+ sessions on DSA, OOP, and debugging',
-    ],
-  },
-  {
-    company: 'Eazy2Biz', role: 'Software Engineer Intern', period: 'May – Aug 2023',
-    bullets: [
-      'Reduced frontend bugs by 25% with typed reusable React components',
-      'Built PDF-sharing via WhatsApp Business API from scratch',
-      'Cut client onboarding time by 60% with streamlined flows',
-    ],
+    company: 'Eazy2Biz', role: 'Software Engineer Intern', period: 'May 2023 – Aug 2023',
+    description: 'Produced scalable, reusable UI components with TypeScript and React, reducing frontend bugs by 25%. Designed a document sharing system enabling users to export and distribute PDFs via WhatsApp Web API, cutting manual admin time by 35%. Streamlined registration and permission management through a REST API with JWT authentication, improving onboarding speed by 60%.',
+    tech: 'React, TypeScript, JWT, WhatsApp API',
   },
 ];
 
 const projects = [
   {
-    title: 'SERA', subtitle: 'AI sexual health & relationship chatbot',
-    bullets: ['Fullstack AI chatbot delivering real-time, empathetic guidance, powered by OpenAI GPT'],
+    title: 'Applycation', subtitle: 'Automated job application tracker', period: 'Jun 2026 – Sep 2026',
+    description: 'Eliminated manual job entry for job seekers by integrating the Gmail API to auto-parse and populate applications, growing the platform to 300+ active users with zero paid marketing. Decoupled email notifications from the request cycle with a BullMQ async job queue and hardened the codebase with CI/CD, Zod validation, and CSRF protection, sustaining 80%+ test coverage across all production deployments.',
+    tech: 'React 19, Node.js, Express, MongoDB, BullMQ, GitHub Actions',
+    href: 'https://github.com/rahulbaweja7',
+  },
+  {
+    title: 'SERA', subtitle: 'AI sexual health chatbot', badge: 'WiCS 2025', period: 'Mar 2025 – May 2025',
+    description: 'Won 1st place at WiCS Hackathon 2025 by leading the full-stack design of an AI sexual health chatbot combining OpenAI GPT with real-time voice via the Web Speech API and JWT-secured RBAC, beating 30+ competing teams. Grounded GPT responses in verified sexual health literature with a RAG pipeline indexing curated medical sources via MongoDB Atlas Vector Search, eliminating off-topic hallucinations.',
+    tech: 'React, Node.js, MongoDB Atlas Vector Search, RAG, Tailwind CSS',
     href: 'https://github.com/rahulbaweja7',
   },
   {
     title: 'MacroBuddy', subtitle: 'AI nutrition tracker',
-    bullets: ['Smart macro tracker with goal-based meal planning and AI-generated recipes'],
+    description: 'Smart macro tracker with goal-based meal planning and AI-generated alternatives. OpenAI suggests 50+ recipes aligned to cut, maintain, or bulk goals.',
+    tech: 'React, Node.js, Express, MongoDB, OpenAI API',
     href: 'https://github.com/rahulbaweja7/macrobuddy',
   },
   {
     title: 'QuizModoro', subtitle: 'Pomodoro + active recall',
-    bullets: ['Productivity quiz app blending Pomodoro sessions with spaced repetition'],
+    description: 'Productivity quiz app blending Pomodoro sessions with spaced repetition. Custom quiz sets, timed focus sessions, and performance tracking.',
+    tech: 'React, JavaScript, LocalStorage',
     href: 'https://github.com/rahulbaweja7/quizmodoro',
   },
   {
     title: 'Unlimited Wordle', subtitle: 'Infinite word game',
-    bullets: ['Unlimited rounds of Wordle with a large curated word bank and full game logic'],
+    description: 'Unlimited rounds of Wordle with a large curated word bank and full color-coded game logic, streaks, and instant play-again.',
+    tech: 'JavaScript, HTML, CSS',
     href: 'https://github.com/rahulbaweja7',
   },
 ];
 
-function Row({ title, subtitle, period, upcoming, bullets, href }) {
+function Row({ title, subtitle, period, badge, upcoming, description, tech, href }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b" style={{ borderColor: 'var(--c-border)' }}>
       <button
         onClick={() => setOpen(o => !o)}
         data-hover
-        className="w-full flex items-baseline justify-between gap-3 py-3.5 text-left group"
+        className="w-full flex items-start justify-between gap-3 py-3.5 text-left group"
       >
-        <span className="text-sm">
-          <span
-            className="font-semibold group-hover:text-accent transition-colors duration-150"
-            style={{ color: upcoming ? '#f97316' : 'var(--c-text)' }}
-          >
-            {title}
+        <span className="text-sm flex-1 min-w-0">
+          <span className="flex items-baseline flex-wrap gap-x-2">
+            <span
+              className="font-semibold group-hover:text-accent transition-colors duration-150"
+              style={{ color: upcoming ? '#f97316' : 'var(--c-text)' }}
+            >
+              {title}
+            </span>
+            {badge && (
+              <span className="text-[9px] uppercase tracking-wide px-1.5 py-0.5 rounded"
+                style={{ color: '#f97316', border: '1px solid rgba(249,115,22,0.3)', background: 'rgba(249,115,22,0.06)' }}>
+                {badge}
+              </span>
+            )}
           </span>
-          <span style={{ color: 'var(--c-muted)' }}> — {subtitle}{period ? `, ${period}` : ''}</span>
+          <span className="block text-xs mt-0.5" style={{ color: 'var(--c-muted)' }}>
+            {subtitle}{period ? ` — ${period}` : ''}
+          </span>
         </span>
         <span
-          className="shrink-0 text-xs transition-transform duration-200"
+          className="shrink-0 mt-1 text-xs transition-transform duration-200"
           style={{ color: 'var(--c-subtle)', transform: open ? 'rotate(180deg)' : 'none' }}
         >
           ▾
         </span>
       </button>
-      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? 160 : 0 }}>
-        <div className="pb-4 space-y-1.5">
-          {bullets.map((b, i) => (
-            <p key={i} className="text-xs leading-relaxed" style={{ color: 'var(--c-muted)' }}>{b}</p>
-          ))}
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? 320 : 0 }}>
+        <div className="pb-4 space-y-2">
+          <p className="text-xs leading-relaxed" style={{ color: 'var(--c-muted)' }}>{description}</p>
+          {tech && (
+            <p className="text-[11px] italic" style={{ color: 'var(--c-subtle)' }}>{tech}</p>
+          )}
           {href && (
             <a href={href} target="_blank" rel="noopener noreferrer" data-hover
               className="inline-block text-[11px] pt-1 underline underline-offset-2"
@@ -189,7 +195,15 @@ export default function Home() {
                 <h2 className="text-lg font-bold mb-2" style={{ color: 'var(--c-text)' }}>Experience</h2>
                 <div>
                   {experience.map((e, i) => (
-                    <Row key={i} title={e.company} subtitle={e.role} period={e.period} upcoming={e.upcoming} bullets={e.bullets} />
+                    <Row
+                      key={i}
+                      title={e.company}
+                      subtitle={e.role}
+                      period={e.period}
+                      upcoming={e.upcoming}
+                      description={e.description}
+                      tech={e.tech}
+                    />
                   ))}
                 </div>
               </section>
@@ -198,7 +212,16 @@ export default function Home() {
                 <h2 className="text-lg font-bold mb-2" style={{ color: 'var(--c-text)' }}>Projects</h2>
                 <div>
                   {projects.map((p, i) => (
-                    <Row key={i} title={p.title} subtitle={p.subtitle} bullets={p.bullets} href={p.href} />
+                    <Row
+                      key={i}
+                      title={p.title}
+                      subtitle={p.subtitle}
+                      period={p.period}
+                      badge={p.badge}
+                      description={p.description}
+                      tech={p.tech}
+                      href={p.href}
+                    />
                   ))}
                 </div>
               </section>
