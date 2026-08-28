@@ -134,9 +134,9 @@ export default function Home() {
 
       <Navbar />
 
-      <main className="min-h-screen lg:h-screen lg:overflow-hidden pt-24 pb-8 px-6" style={{ background: 'var(--c-bg)' }}>
+      <main className="min-h-screen lg:h-screen lg:overflow-hidden pt-24 pb-16 lg:pb-8 px-6" style={{ background: 'var(--c-bg)' }}>
         <div className="max-w-6xl mx-auto h-full grid lg:grid-cols-[1fr_320px] gap-12">
-          <div className="max-w-3xl flex flex-col min-h-0">
+          <div className="max-w-3xl lg:flex lg:flex-col lg:min-h-0">
 
             {/* Header + About */}
             <div className="flex flex-col-reverse sm:flex-row sm:items-start gap-6 mb-6 shrink-0">
@@ -190,10 +190,10 @@ export default function Home() {
             </div>
 
             {/* Experience + Projects */}
-            <div className="grid md:grid-cols-2 gap-x-10 gap-y-6 flex-1 min-h-0">
-              <section className="flex flex-col min-h-0">
+            <div className="grid md:grid-cols-2 gap-x-10 gap-y-6 lg:flex-1 lg:min-h-0">
+              <section className="lg:flex lg:flex-col lg:min-h-0">
                 <h2 className="text-lg font-bold mb-2 shrink-0" style={{ color: 'var(--c-text)' }}>Experience</h2>
-                <div className="overflow-y-auto nice-scroll pr-2">
+                <div className="lg:overflow-y-auto nice-scroll lg:pr-2">
                   {experience.map((e, i) => (
                     <Row
                       key={i}
@@ -208,9 +208,9 @@ export default function Home() {
                 </div>
               </section>
 
-              <section className="flex flex-col min-h-0">
+              <section className="lg:flex lg:flex-col lg:min-h-0">
                 <h2 className="text-lg font-bold mb-2 shrink-0" style={{ color: 'var(--c-text)' }}>Projects</h2>
-                <div className="overflow-y-auto nice-scroll pr-2">
+                <div className="lg:overflow-y-auto nice-scroll lg:pr-2">
                   {projects.map((p, i) => (
                     <Row
                       key={i}

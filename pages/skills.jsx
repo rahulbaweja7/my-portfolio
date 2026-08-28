@@ -287,7 +287,7 @@ export default function Skills() {
           {/* Body */}
           <div
             ref={termRef}
-            className="px-5 py-4 overflow-y-auto"
+            className="px-5 py-4 overflow-y-auto overflow-x-auto nice-scroll"
             style={{ background: 'var(--c-deep)', height: 'min(calc(100vh - 280px), 520px)', minHeight: 380 }}
           >
             {/* Welcome */}
