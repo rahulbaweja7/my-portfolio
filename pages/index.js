@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import SpotifyTopTracks from '@/components/SpotifyTopTracks';
+import GithubActivity from '@/components/GithubActivity';
 
 const socials = [
   { label: 'GitHub',   href: 'https://github.com/rahulbaweja7' },
@@ -128,7 +129,7 @@ export default function Home() {
       <Navbar />
 
       <main className="min-h-screen pt-28 pb-24 px-6" style={{ background: 'var(--c-bg)' }}>
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_260px] gap-12">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_320px] gap-12">
           <div className="max-w-3xl">
 
             {/* Header */}
@@ -193,8 +194,9 @@ export default function Home() {
 
           {/* Sidebar */}
           <aside className="lg:pt-[100px]">
-            <div className="lg:sticky lg:top-28">
+            <div className="lg:sticky lg:top-28 space-y-4">
               <SpotifyTopTracks />
+              <GithubActivity />
             </div>
           </aside>
         </div>
