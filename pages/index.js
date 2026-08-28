@@ -136,7 +136,7 @@ export default function Home() {
             <div className="flex items-center justify-between gap-6 mb-4">
               <div>
                 <h1 className="font-bold leading-none mb-3" style={{ fontSize: 'clamp(36px, 6vw, 56px)', color: 'var(--c-text)' }}>
-                  Hey, I'm Rahul<span style={{ color: '#f97316' }}>.</span>
+                  Hey, I&apos;m Rahul<span style={{ color: '#f97316' }}>.</span>
                 </h1>
                 <div className="flex flex-wrap gap-x-5 gap-y-2">
                   {socials.map(s => (
@@ -163,9 +163,9 @@ export default function Home() {
             <section className="mt-10 mb-12">
               <h2 className="text-lg font-bold mb-3" style={{ color: 'var(--c-text)' }}>About Me</h2>
               <p className="text-sm leading-relaxed max-w-xl" style={{ color: 'var(--c-muted)' }}>
-                I'm a CS student at Arizona State University building fullstack apps around
+                I&apos;m a CS student at Arizona State University building fullstack apps around
                 AI, developer tools, and automation. Previously interned at SuperWorld and
-                IDX Exchange, TA'd Intro to Java, and shipped a handful of side projects that
+                IDX Exchange, TA&apos;d Intro to Java, and shipped a handful of side projects that
                 won a few hackathons along the way.
               </p>
             </section>
