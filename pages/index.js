@@ -132,13 +132,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_320px] gap-12">
           <div className="max-w-3xl">
 
-            {/* Header */}
-            <div className="flex items-center justify-between gap-6 mb-4">
-              <div>
+            {/* Header + About */}
+            <div className="flex flex-col-reverse sm:flex-row sm:items-start gap-8 mb-12">
+              <div className="flex-1 min-w-0">
                 <h1 className="font-bold leading-none mb-3" style={{ fontSize: 'clamp(36px, 6vw, 56px)', color: 'var(--c-text)' }}>
                   Hey, I&apos;m Rahul<span style={{ color: '#f97316' }}>.</span>
                 </h1>
-                <div className="flex flex-wrap gap-x-5 gap-y-2">
+                <div className="flex flex-wrap gap-x-5 gap-y-2 mb-6">
                   {socials.map(s => (
                     <a
                       key={s.label}
@@ -153,22 +153,35 @@ export default function Home() {
                     </a>
                   ))}
                 </div>
+                <h2 className="text-lg font-bold mb-3" style={{ color: 'var(--c-text)' }}>About Me</h2>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--c-muted)' }}>
+                  Hi, I&apos;m Rahul. I&apos;m 22, a CS student at Arizona State, and an incoming
+                  SWE intern at Microsoft. I build things, and sometimes they win: first place at
+                  WiCS 2025, three internships in before Microsoft. I&apos;m finishing a 4+1 BS/MS
+                  and TA&apos;d Intro to Java for 100+ students who now know more about pointers
+                  than they probably wanted to. When I&apos;m not shipping code (usually at 2AM,
+                  running on bad coffee), I&apos;m watching Barça blow a lead or losing a ranked
+                  match I had no business queuing for.
+                </p>
               </div>
-              <div className="relative w-20 h-20 shrink-0 overflow-hidden rounded-full" style={{ border: '1px solid var(--c-border)' }}>
-                <Image src="/assets/RahulAnimated.png" alt="Rahul" fill style={{ objectFit: 'cover' }} />
+
+              <div className="relative w-40 sm:w-48 aspect-[3/4] shrink-0 mx-auto sm:mx-0">
+                <div
+                  className="relative w-full h-full overflow-hidden rounded-2xl grayscale hover:grayscale-0 transition-all duration-300"
+                  style={{
+                    border: '1px solid var(--c-border)',
+                    boxShadow: '0 0 0 4px rgba(249,115,22,0.08), 0 12px 32px rgba(249,115,22,0.14)',
+                  }}
+                  data-hover
+                >
+                  <Image src="/assets/RahulLA.png" alt="Rahul" fill style={{ objectFit: 'cover', objectPosition: '50% 18%' }} />
+                </div>
+                <span
+                  className="absolute bottom-2.5 right-2.5 w-4 h-4 rounded-full animate-pulse"
+                  style={{ background: '#22c55e', border: '2.5px solid var(--c-bg)' }}
+                />
               </div>
             </div>
-
-            {/* About */}
-            <section className="mt-10 mb-12">
-              <h2 className="text-lg font-bold mb-3" style={{ color: 'var(--c-text)' }}>About Me</h2>
-              <p className="text-sm leading-relaxed max-w-xl" style={{ color: 'var(--c-muted)' }}>
-                I&apos;m a CS student at Arizona State University building fullstack apps around
-                AI, developer tools, and automation. Previously interned at SuperWorld and
-                IDX Exchange, TA&apos;d Intro to Java, and shipped a handful of side projects that
-                won a few hackathons along the way.
-              </p>
-            </section>
 
             {/* Experience + Projects */}
             <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
