@@ -6,12 +6,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useTheme } from '@/context/ThemeContext';
 
 const navLinks = [
-  { href: '/',         label: 'Home'     },
-  { href: '/about',    label: 'About'    },
-  { href: '/work',     label: 'Work'     },
-  { href: '/skills',   label: 'Skills'   },
-  { href: '/projects', label: 'Projects' },
-  { href: '/contact',  label: 'Contact'  },
+  { href: '/', label: 'Home' },
 ];
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#';
