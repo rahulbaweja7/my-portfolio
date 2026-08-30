@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <header
       className="fixed top-0 left-0 right-0 z-[100] px-6 py-4 border-b"
-      style={{ background: 'var(--nav-bg)', borderColor: 'var(--nav-border)' }}
+      style={{ background: 'var(--c-bg)', borderColor: 'var(--nav-border)' }}
     >
       <nav className="max-w-6xl mx-auto flex items-center justify-between">
         <Link href="/" className="text-sm font-medium" style={{ color: 'var(--c-text)' }} data-hover>
