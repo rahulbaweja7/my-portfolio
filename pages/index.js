@@ -8,6 +8,7 @@ import GithubActivity from '@/components/GithubActivity';
 const socials = [
   { label: 'GitHub',   href: 'https://github.com/rahulbaweja7' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rahulbaweja-/' },
+  { label: 'Twitter',  href: 'https://x.com/RahulBaweja07' },
   { label: 'Email',    href: 'mailto:rbaweja1@asu.edu' },
 ];
 
