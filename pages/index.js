@@ -175,7 +175,7 @@ export default function Home() {
                 <h1 className="font-bold leading-none mb-2" style={{ fontSize: 'clamp(30px, 5vw, 44px)', color: 'var(--c-text)' }}>
                   Hey, I&apos;m Rahul<span style={{ color: '#f97316' }}>.</span>
                 </h1>
-                <div className="flex flex-wrap gap-x-5 gap-y-2 mb-4">
+                <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3">
                   {socials.map(s => (
                     <a
                       key={s.label}
@@ -190,6 +190,9 @@ export default function Home() {
                     </a>
                   ))}
                 </div>
+                <p className="text-sm mb-4" style={{ color: 'var(--c-muted)' }}>
+                  22, CS student at Arizona State, incoming SWE intern at Microsoft.
+                </p>
                 <h2 className="text-base font-bold mb-2" style={{ color: 'var(--c-text)' }}>About Me</h2>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--c-muted)' }}>
                   Hi, I&apos;m Rahul. I&apos;m 22, a CS student at Arizona State, and an incoming
