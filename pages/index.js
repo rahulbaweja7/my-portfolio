@@ -195,13 +195,9 @@ export default function Home() {
                 </p>
                 <h2 className="text-base font-bold mb-2" style={{ color: 'var(--c-text)' }}>About Me</h2>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--c-muted)' }}>
-                  Hi, I&apos;m Rahul. I&apos;m 22, a CS student at Arizona State, and an incoming
-                  SWE intern at Microsoft. I build things, and sometimes they win: first place at
-                  WiCS 2025, three internships in before Microsoft. I&apos;m finishing a 4+1 BS/MS
-                  and TA&apos;d Intro to Java for 100+ students who now know more about pointers
-                  than they probably wanted to. When I&apos;m not shipping code (usually at 2AM,
-                  running on bad coffee), I&apos;m watching Barça blow a lead or losing a ranked
-                  match I had no business queuing for.
+                  I build fullstack apps around AI, dev tools, and automation. Three internships
+                  in, TA&apos;d Intro to Java for 100+ students, and won 1st at WiCS 2025. Outside
+                  of code: Barça games and ranked matches I probably shouldn&apos;t queue for.
                 </p>
               </div>
 
