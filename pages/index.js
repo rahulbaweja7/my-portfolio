@@ -42,31 +42,31 @@ const experience = [
 
 const projects = [
   {
-    title: 'Applycation', subtitle: 'Automated job application tracker', period: 'Jun 2026 – Sep 2026',
+    title: 'Applycation', subtitle: 'Automated job application tracker', period: 'Jun 2026 – Sep 2026', domain: null,
     description: 'Eliminated manual job entry for job seekers by integrating the Gmail API to auto-parse and populate applications, growing the platform to 300+ active users with zero paid marketing. Decoupled email notifications from the request cycle with a BullMQ async job queue and hardened the codebase with CI/CD, Zod validation, and CSRF protection, sustaining 80%+ test coverage across all production deployments.',
     tech: 'React 19, Node.js, Express, MongoDB, BullMQ, GitHub Actions',
     href: 'https://github.com/rahulbaweja7',
   },
   {
-    title: 'SERA', subtitle: 'AI sexual health chatbot', badge: 'WiCS 2025', period: 'Mar 2025 – May 2025',
+    title: 'SERA', subtitle: 'AI sexual health chatbot', badge: 'WiCS 2025', period: 'Mar 2025 – May 2025', domain: null,
     description: 'Won 1st place at WiCS Hackathon 2025 by leading the full-stack design of an AI sexual health chatbot combining OpenAI GPT with real-time voice via the Web Speech API and JWT-secured RBAC, beating 30+ competing teams. Grounded GPT responses in verified sexual health literature with a RAG pipeline indexing curated medical sources via MongoDB Atlas Vector Search, eliminating off-topic hallucinations.',
     tech: 'React, Node.js, MongoDB Atlas Vector Search, RAG, Tailwind CSS',
     href: 'https://github.com/rahulbaweja7',
   },
   {
-    title: 'MacroBuddy', subtitle: 'AI nutrition tracker',
+    title: 'MacroBuddy', subtitle: 'AI nutrition tracker', domain: null,
     description: 'Smart macro tracker with goal-based meal planning and AI-generated alternatives. OpenAI suggests 50+ recipes aligned to cut, maintain, or bulk goals.',
     tech: 'React, Node.js, Express, MongoDB, OpenAI API',
     href: 'https://github.com/rahulbaweja7/macrobuddy',
   },
   {
-    title: 'QuizModoro', subtitle: 'Pomodoro + active recall',
+    title: 'QuizModoro', subtitle: 'Pomodoro + active recall', domain: null,
     description: 'Productivity quiz app blending Pomodoro sessions with spaced repetition. Custom quiz sets, timed focus sessions, and performance tracking.',
     tech: 'React, JavaScript, LocalStorage',
     href: 'https://github.com/rahulbaweja7/quizmodoro',
   },
   {
-    title: 'Unlimited Wordle', subtitle: 'Infinite word game',
+    title: 'Unlimited Wordle', subtitle: 'Infinite word game', domain: null,
     description: 'Unlimited rounds of Wordle with a large curated word bank and full color-coded game logic, streaks, and instant play-again.',
     tech: 'JavaScript, HTML, CSS',
     href: 'https://github.com/rahulbaweja7',
@@ -253,6 +253,7 @@ export default function Home() {
                       description={p.description}
                       tech={p.tech}
                       href={p.href}
+                      domain={p.domain}
                     />
                   ))}
                 </div>
