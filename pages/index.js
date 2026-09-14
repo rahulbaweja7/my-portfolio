@@ -15,22 +15,26 @@ const socials = [
 const experience = [
   {
     company: 'Microsoft', role: 'Software Engineer Intern', period: 'Aug 2026 – Nov 2026',
+    domain: 'microsoft.com',
     upcoming: true,
     description: 'Joining the IDNA team to build identity and network access solutions across Azure-integrated enterprise systems, applying full-stack and cloud engineering skills at scale.',
     tech: 'Azure, C#, TypeScript',
   },
   {
     company: 'SuperWorld', role: 'Software Engineer Intern', period: 'Sep 2025 – Nov 2025',
+    domain: 'superworld.co',
     description: 'Architected 6 reusable React + TypeScript components adopted across 12+ call sites, consolidating 800 lines of duplicated UI code and cutting new-feature build time by 25%. Optimized the Orders dashboard by integrating 8 REST endpoints via TanStack Query with caching and optimistic mutations, reducing redundant network calls by 60% and load time from 1.9s to 0.8s. Expanded test coverage from 58% to 84% by writing 42 Jest + React Testing Library unit tests, catching 3 regressions pre-release.',
     tech: 'React, TypeScript, TanStack Query, Jest',
   },
   {
     company: 'IDX Exchange', role: 'Software Engineer Intern', period: 'May 2025 – Aug 2025',
+    domain: 'idxexchange.com',
     description: 'Led 4 engineers building a real estate search platform with 10+ fullstack features including filters, map integration, and photo galleries. Integrated CoreLogic’s Web API and a secure MySQL schema, reducing data query latency by 40%. Took end-to-end ownership of authentication for 1,000+ users, from schema design to production, with zero downtime across 20+ releases.',
     tech: 'React, PHP, MySQL, CoreLogic API',
   },
   {
     company: 'Eazy2Biz', role: 'Software Engineer Intern', period: 'May 2023 – Aug 2023',
+    domain: null,
     description: 'Produced scalable, reusable UI components with TypeScript and React, reducing frontend bugs by 25%. Designed a document sharing system enabling users to export and distribute PDFs via WhatsApp Web API, cutting manual admin time by 35%. Streamlined registration and permission management through a REST API with JWT authentication, improving onboarding speed by 60%.',
     tech: 'React, TypeScript, JWT, WhatsApp API',
   },
@@ -69,15 +73,41 @@ const projects = [
   },
 ];
 
-function Row({ title, subtitle, period, badge, upcoming, description, tech, href }) {
+function CompanyLogo({ domain, name }) {
+  const [failed, setFailed] = useState(!domain);
+
+  if (failed) {
+    return (
+      <div
+        className="w-9 h-9 rounded-lg shrink-0 flex items-center justify-center text-xs font-bold"
+        style={{ background: 'var(--c-border)', color: 'var(--c-muted)' }}
+      >
+        {name.charAt(0)}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
+      alt={`${name} logo`}
+      className="w-9 h-9 rounded-lg shrink-0 object-contain p-1.5"
+      style={{ background: 'var(--c-border)' }}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
+function Row({ title, subtitle, period, badge, upcoming, description, tech, href, domain }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b" style={{ borderColor: 'var(--c-border)' }}>
       <button
         onClick={() => setOpen(o => !o)}
         data-hover
-        className="w-full flex items-start justify-between gap-3 py-3.5 text-left group"
+        className="w-full flex items-start gap-3 py-3.5 text-left group"
       >
+        {domain !== undefined && <CompanyLogo domain={domain} name={title} />}
         <span className="text-sm flex-1 min-w-0">
           <span className="flex items-baseline flex-wrap gap-x-2">
             <span
@@ -105,7 +135,7 @@ function Row({ title, subtitle, period, badge, upcoming, description, tech, href
         </span>
       </button>
       <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? 320 : 0 }}>
-        <div className="pb-4 space-y-2">
+        <div className={`pb-4 space-y-2 ${domain !== undefined ? 'pl-12' : ''}`}>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--c-muted)' }}>{description}</p>
           {tech && (
             <p className="text-[11px] italic" style={{ color: 'var(--c-subtle)' }}>{tech}</p>
@@ -204,6 +234,7 @@ export default function Home() {
                       upcoming={e.upcoming}
                       description={e.description}
                       tech={e.tech}
+                      domain={e.domain}
                     />
                   ))}
                 </div>
