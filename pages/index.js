@@ -16,8 +16,7 @@ const experience = [
   {
     company: 'Microsoft', role: 'Software Engineer Intern', period: 'Aug 2026 – Nov 2026',
     domain: 'microsoft.com',
-    upcoming: true,
-    description: 'Joining the IDNA team to build identity and network access solutions across Azure-integrated enterprise systems, applying full-stack and cloud engineering skills at scale.',
+    description: 'Working on the IDNA team building identity and network access solutions across Azure-integrated enterprise systems, applying full-stack and cloud engineering skills at scale.',
     tech: 'Azure, C#, TypeScript',
   },
   {
@@ -191,7 +190,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm mb-4" style={{ color: 'var(--c-muted)' }}>
-                  22, CS student at Arizona State, incoming SWE intern at Microsoft.
+                  22, CS student at Arizona State, SWE intern at Microsoft.
                 </p>
                 <h2 className="text-base font-bold mb-2" style={{ color: 'var(--c-text)' }}>About Me</h2>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--c-muted)' }}>
