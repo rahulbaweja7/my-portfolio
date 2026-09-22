@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,6 +14,7 @@ module.exports = {
         'dark-border':'var(--c-border)',
         'dark-hover': 'var(--c-card-alt)',
         accent:       '#f97316',
+        ring:         '#f97316',
         'text-primary': 'var(--c-text)',
         'text-muted':   'var(--c-muted)',
         'text-subtle':  'var(--c-subtle)',

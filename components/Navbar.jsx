@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
+import { NotificationBell } from '@/components/ui/notification-bell';
 
 export default function Navbar() {
   const { theme, toggle } = useTheme();
@@ -19,6 +20,14 @@ export default function Navbar() {
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             open
           </span>
+
+          <NotificationBell
+            count={1}
+            color="orange"
+            size={28}
+            aria-label="Open to opportunities — say hi"
+            onClick={() => { window.location.href = 'mailto:rbaweja1@asu.edu'; }}
+          />
 
           <button
             onClick={toggle}

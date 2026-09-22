@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import SpotifyTopTracks from '@/components/SpotifyTopTracks';
 import GithubActivity from '@/components/GithubActivity';
+import { AnimatedCounter } from '@/components/ui/animated-counter';
+import { CodeBlock } from '@/components/ui/code-block';
 
 const socials = [
   { label: 'GitHub',   href: 'https://github.com/rahulbaweja7' },
@@ -152,7 +154,26 @@ function Row({ title, subtitle, period, badge, upcoming, description, tech, href
   );
 }
 
+const whoamiSnippet = `$ whoami
+Rahul Baweja
+
+$ current
+Software Engineer Intern @ Microsoft
+
+$ stack --top
+TypeScript, React, Node.js, Azure
+
+$ status
+open to Summer 2027 SWE internships`;
+
 export default function Home() {
+  const [counted, setCounted] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setCounted(true), 200);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <>
       <Head>
@@ -198,6 +219,35 @@ export default function Home() {
                   in, TA&apos;d Intro to Java for 100+ students, and won 1st at WiCS 2025. Outside
                   of code: Barça games and ranked matches I probably shouldn&apos;t queue for.
                 </p>
+
+                <div className="flex items-center gap-5 mt-4 font-mono text-xs" style={{ color: 'var(--c-subtle)' }}>
+                  <span className="flex items-baseline gap-1">
+                    <AnimatedCounter
+                      value={counted ? experience.length : 0}
+                      suffix="+"
+                      className="text-sm font-semibold"
+                      style={{ color: '#f97316' }}
+                    />
+                    internships
+                  </span>
+                  <span className="flex items-baseline gap-1">
+                    <AnimatedCounter
+                      value={counted ? projects.length : 0}
+                      suffix="+"
+                      className="text-sm font-semibold"
+                      style={{ color: '#f97316' }}
+                    />
+                    projects
+                  </span>
+                  <span className="flex items-baseline gap-1">
+                    <AnimatedCounter
+                      value={counted ? 1 : 0}
+                      className="text-sm font-semibold"
+                      style={{ color: '#f97316' }}
+                    />
+                    hackathon win
+                  </span>
+                </div>
               </div>
 
               <div className="relative w-32 sm:w-36 aspect-[3/4] shrink-0 mx-auto sm:mx-0">
@@ -262,6 +312,14 @@ export default function Home() {
           {/* Sidebar */}
           <aside className="lg:pt-2 lg:h-full lg:overflow-y-auto nice-scroll lg:pr-1">
             <div className="space-y-4">
+              <CodeBlock
+                code={whoamiSnippet}
+                language="bash"
+                filename="whoami.sh"
+                accent="#f97316"
+                mode="auto"
+                showLineNumbers={false}
+              />
               <SpotifyTopTracks />
               <GithubActivity />
             </div>
