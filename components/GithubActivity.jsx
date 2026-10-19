@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { FaGithub } from 'react-icons/fa';
 import { useTheme } from '@/context/ThemeContext';
@@ -14,6 +15,23 @@ const palette = {
 
 export default function GithubActivity({ username = 'rahulbaweja7' }) {
   const { theme } = useTheme();
+  const scrollRef = useRef(null);
+
+  // The calendar is wider than the card and loads async, so keep its scroll
+  // container pinned to the right edge (latest month) whenever it re-renders.
+  useEffect(() => {
+    const root = scrollRef.current;
+    if (!root) return;
+    const scrollToLatest = () => {
+      root.querySelectorAll('*').forEach(el => {
+        if (el.scrollWidth > el.clientWidth) el.scrollLeft = el.scrollWidth;
+      });
+    };
+    const observer = new MutationObserver(scrollToLatest);
+    observer.observe(root, { childList: true, subtree: true });
+    scrollToLatest();
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="rounded-xl p-4" style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)' }}>
@@ -30,7 +48,7 @@ export default function GithubActivity({ username = 'rahulbaweja7' }) {
         </p>
       </a>
 
-      <div className="gh-cal-scroll">
+      <div ref={scrollRef} className="gh-cal-scroll">
         <GitHubCalendar
           username={username}
           colorScheme={theme}
