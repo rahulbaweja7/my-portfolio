@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import SpotifyTopTracks from '@/components/SpotifyTopTracks';
 import GithubActivity from '@/components/GithubActivity';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
-import { CodeBlock } from '@/components/ui/code-block';
 
 const socials = [
   { label: 'GitHub',   href: 'https://github.com/rahulbaweja7' },
@@ -153,18 +152,6 @@ function Row({ title, subtitle, period, badge, upcoming, description, tech, href
   );
 }
 
-const whoamiSnippet = `$ whoami
-Rahul Baweja
-
-$ current
-Software Engineer Intern @ Microsoft
-
-$ stack --top
-TypeScript, React, Node.js, Azure
-
-$ status
-open to Summer 2027 SWE internships`;
-
 export default function Home() {
   const [counted, setCounted] = useState(false);
 
@@ -310,14 +297,6 @@ export default function Home() {
           {/* Sidebar */}
           <aside className="lg:pt-2 lg:h-full lg:overflow-y-auto nice-scroll lg:pr-1">
             <div className="space-y-4">
-              <CodeBlock
-                code={whoamiSnippet}
-                language="bash"
-                filename="whoami.sh"
-                accent="#f97316"
-                mode="auto"
-                showLineNumbers={false}
-              />
               <SpotifyTopTracks />
               <GithubActivity />
             </div>
