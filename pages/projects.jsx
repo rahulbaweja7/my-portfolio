@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Navbar from '@/components/Navbar';
 import { FaGithub, FaExternalLinkAlt, FaTrophy } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 
@@ -973,9 +972,8 @@ export default function Projects() {
         <title>Projects | Rahul Baweja</title>
         <meta name="description" content="Projects by Rahul Baweja" />
       </Head>
-      <Navbar />
 
-      <main className="max-w-5xl mx-auto px-6 pt-28 pb-20">
+      <main className="max-w-5xl mx-auto px-6 pt-14 pb-20">
         {/* Header */}
         <div className="mb-10 animate-fade-in-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>
           <p className="text-[10px] font-mono text-text-subtle uppercase tracking-widest mb-3">Selected work</p>

@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Navbar from '@/components/Navbar';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
@@ -373,8 +372,7 @@ function Desktop() {
   const dateStr = time.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
 
   return (
-    /* Navbar is fixed at top:16, height:44 → bottom of nav = 60px. Add 12px breathing room → start at 72px. */
-    <div style={{ paddingTop: 72, height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div style={{ paddingTop: 16, height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Desktop canvas */}
       <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
         {/* Subtle center glow */}
@@ -453,7 +451,7 @@ function Desktop() {
 /* ─── Mobile ── */
 function Mobile() {
   return (
-    <div className="px-4 pt-24 pb-10 space-y-3">
+    <div className="px-4 pt-10 pb-10 space-y-3">
       <div className="rounded-xl overflow-hidden" style={{ border: '1.5px dashed rgba(249,115,22,0.35)' }}>
         <div className="relative h-52">
           <Image src="/assets/RahulLA.png" alt="Rahul" fill priority style={{ objectFit: 'cover', objectPosition: '50% 18%' }} />
@@ -673,7 +671,6 @@ export default function About() {
         {!booted && <BootScreen onDone={() => setBooted(true)} />}
       </div>
 
-      <Navbar />
       <div className="hidden md:block" style={{ height: '100vh' }}><Desktop /></div>
       <div className="md:hidden" style={{ minHeight: '100vh', overflowY: 'auto' }}><Mobile /></div>
     </div>

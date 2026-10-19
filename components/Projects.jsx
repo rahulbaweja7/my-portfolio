@@ -4,12 +4,10 @@
 // import unlimitedwordleImg from '../public/assets/projects/unlimitedwordle.png'
 // import comingSoonImg from '../public/assets/projects/comingSoonNew.png'
 // import ProjectItem from './ProjectItem'
-// import Navbar from '@/components/Navbar'
 
 // const Projects = () => {
 //   return (
 //     <div id="projects" className='w-full'>
-//             <Navbar/>
 
 //       <div className='max-w-[1240px] mx-auto px-2 py-16'>
 //         <p className='uppercase text-xl tracking-widest text-[#5651e5] font-bold'>Projects</p>

@@ -1,14 +1,12 @@
 // import React from 'react';
 // import Link from 'next/link';
 // import Image from 'next/image';
-// import Navbar from '@/components/Navbar';
 // import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 // import { AiOutlineMail } from 'react-icons/ai';
 // import { BsFillPersonLinesFill } from 'react-icons/bs';
 
 // const About = () => {
 //   return (
-//       // <Navbar />
 //       <div id="about" className="flex flex-col md:h-screen bg-linen p-2 py-16 ">
       
 //       <main className="flex-grow py-12 md:py-16 lg:py-20 px-4 md:px-6">

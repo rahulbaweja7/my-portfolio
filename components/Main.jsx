@@ -1,4 +1,3 @@
-import Navbar from '@/components/Navbar';
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
@@ -55,7 +54,6 @@ export default function Main() {
 
   return (
     <div className="min-h-screen bg-dark flex flex-col">
-      <Navbar />
 
       {/* ══ DESKTOP ══ */}
       <div className="hidden lg:flex flex-1 items-center px-6 max-w-[1380px] mx-auto w-full">
@@ -195,7 +193,7 @@ export default function Main() {
       </div>
 
       {/* ══ MOBILE ══ */}
-      <div className="lg:hidden px-4 pt-24 pb-10 space-y-4">
+      <div className="lg:hidden px-4 pt-10 pb-10 space-y-4">
         <div className="rounded-2xl bg-dark-card overflow-hidden"
           style={{ border: '1.5px dashed rgba(249,115,22,0.4)' }}>
           <div className="relative h-52">

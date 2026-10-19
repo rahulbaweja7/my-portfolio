@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import Navbar from '@/components/Navbar';
 import SpotifyTopTracks from '@/components/SpotifyTopTracks';
 import GithubActivity from '@/components/GithubActivity';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
@@ -183,9 +182,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
 
-      <main className="min-h-screen lg:h-screen lg:overflow-hidden pt-24 pb-16 lg:pb-8 px-6" style={{ background: 'var(--c-bg)' }}>
+      <main className="min-h-screen lg:h-screen lg:overflow-hidden pt-10 pb-16 lg:pb-8 px-6" style={{ background: 'var(--c-bg)' }}>
         <div className="max-w-6xl mx-auto h-full grid lg:grid-cols-[1fr_320px] gap-12">
           <div className="max-w-3xl lg:flex lg:flex-col lg:min-h-0">
 

@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Navbar from '@/components/Navbar';
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
@@ -105,9 +104,8 @@ export default function ResumeMatch() {
         <title>Resume Match | Rahul Baweja</title>
         <meta name="description" content="Paste a job description. The algorithm has already decided." />
       </Head>
-      <Navbar />
 
-      <main className="max-w-3xl mx-auto px-6 pt-28 pb-24">
+      <main className="max-w-3xl mx-auto px-6 pt-14 pb-24">
 
         {/* ── Header ── */}
         <div className="mb-10 animate-fade-in-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>

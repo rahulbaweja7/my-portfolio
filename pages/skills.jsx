@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Navbar from '@/components/Navbar';
 import { useEffect, useRef, useState } from 'react';
 
 /* ── Skill data ─────────────────────────────────────────────────── */
@@ -251,9 +250,8 @@ export default function Skills() {
         <title>Skills | Rahul Baweja</title>
         <meta name="description" content="Skills and stack of Rahul Baweja" />
       </Head>
-      <Navbar />
 
-      <main className="max-w-5xl mx-auto px-6 pt-28 pb-10">
+      <main className="max-w-5xl mx-auto px-6 pt-14 pb-10">
         {/* Header */}
         <div
           className="mb-6 animate-fade-in-up"

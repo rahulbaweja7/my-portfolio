@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Navbar from '@/components/Navbar';
 import { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
@@ -68,9 +67,8 @@ export default function Contact() {
         <title>Contact | Rahul Baweja</title>
         <meta name="description" content="Get in touch with Rahul Baweja." />
       </Head>
-      <Navbar />
 
-      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-20 min-h-screen flex flex-col justify-center overflow-hidden">
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-10 pb-20 min-h-screen flex flex-col justify-center overflow-hidden">
 
         {/* ════ Desktop: two-column ════ */}
         <div className="hidden lg:flex gap-16 items-start">

@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Navbar from '@/components/Navbar';
 import { useEffect, useRef, useState } from 'react';
 
 const jobs = [
@@ -239,9 +238,8 @@ export default function Work() {
         <title>Work | Rahul Baweja</title>
         <meta name="description" content="Work experience of Rahul Baweja" />
       </Head>
-      <Navbar />
 
-      <main className="max-w-3xl mx-auto px-6 pt-28 pb-20">
+      <main className="max-w-3xl mx-auto px-6 pt-14 pb-20">
 
         {/* Header */}
         <div className="mb-12 animate-fade-in-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>

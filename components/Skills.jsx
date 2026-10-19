@@ -1,11 +1,9 @@
-// import Navbar from '@/components/Navbar'
 // import Image from 'next/image'
 // import React from 'react'
 
 // const Skills = () =>{
 //   return (
 //     <div id="skills" className='w-full lg:h-screen p-2'>
-//       <Navbar />
 //       <div className='max-w-[1240px] mx-auto flex flex-col justify-center h-full'>
 //         <h1 className='text-10xl tracking-widest uppercase text-[#5651e5] mb-8 py-10'>
 //           Skills
