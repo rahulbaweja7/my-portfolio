@@ -64,12 +64,6 @@ const projects = [
     tech: 'React, JavaScript, LocalStorage',
     href: 'https://github.com/rahulbaweja7/quizmodoro',
   },
-  {
-    title: 'Unlimited Wordle', subtitle: 'Infinite word game', domain: null,
-    description: 'Unlimited rounds of Wordle with a large curated word bank and full color-coded game logic, streaks, and instant play-again.',
-    tech: 'JavaScript, HTML, CSS',
-    href: 'https://github.com/rahulbaweja7',
-  },
 ];
 
 function CompanyLogo({ domain, name }) {
