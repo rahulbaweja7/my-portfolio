@@ -1,14 +1,16 @@
+import { useRouter } from 'next/router';
 import { useTheme } from '@/context/ThemeContext';
 
 export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
+  const { pathname } = useRouter();
   const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
 
   return (
     <button
       onClick={toggle}
       data-hover
-      className="theme-toggle fixed bottom-5 right-5 z-[200] flex items-center justify-center w-9 h-9 rounded-full"
+      className={`theme-toggle fixed right-5 ${pathname === '/about' ? 'bottom-5 md:bottom-[62px]' : 'bottom-5'} z-[200] flex items-center justify-center w-9 h-9 rounded-full`}
       style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)', color: 'var(--c-text)' }}
       aria-label={label}
       title={label}
