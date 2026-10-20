@@ -28,7 +28,19 @@ export function ThemeProvider({ children }) {
       applyTheme(next);
     };
     mq.addEventListener('change', onSystemChange);
-    return () => mq.removeEventListener('change', onSystemChange);
+
+    // Keep other open tabs in sync
+    const onStorage = e => {
+      if (e.key !== 'theme' || (e.newValue !== 'dark' && e.newValue !== 'light')) return;
+      setThemeState(e.newValue);
+      applyTheme(e.newValue);
+    };
+    window.addEventListener('storage', onStorage);
+
+    return () => {
+      mq.removeEventListener('change', onSystemChange);
+      window.removeEventListener('storage', onStorage);
+    };
   }, []);
 
   const setTheme = next => {
