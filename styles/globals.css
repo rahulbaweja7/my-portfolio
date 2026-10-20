@@ -4,6 +4,7 @@
 
 /* ── Theme tokens ───────────────────────────────────────────────── */
 :root {
+  color-scheme:  dark;
   --c-bg:        #0f0f0f;
   --c-card:      #1a1a1a;
   --c-card-alt:  #111111;
@@ -21,6 +22,7 @@
 }
 
 :root.light {
+  color-scheme:  light;
   --c-bg:        #f5f3ef;
   --c-card:      #ffffff;
   --c-card-alt:  #f8f6f2;
