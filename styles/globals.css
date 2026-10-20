@@ -19,6 +19,10 @@
   --nav-bg:      rgba(10,10,10,0.92);
   --nav-border:  rgba(255,255,255,0.06);
   --ghost-text:  rgba(255,255,255,0.025);
+  --taskbar-bg:     rgba(6,6,6,0.97);
+  --taskbar-line:   rgba(255,255,255,0.06);
+  --taskbar-active: rgba(255,255,255,0.07);
+  --taskbar-dim:    #4a4a4a;
 }
 
 :root.light {
@@ -37,6 +41,10 @@
   --nav-bg:      rgba(245,243,239,0.92);
   --nav-border:  rgba(0,0,0,0.08);
   --ghost-text:  rgba(0,0,0,0.035);
+  --taskbar-bg:     rgba(255,255,255,0.9);
+  --taskbar-line:   rgba(0,0,0,0.08);
+  --taskbar-active: rgba(0,0,0,0.06);
+  --taskbar-dim:    #a8a8a8;
 }
 
 html {

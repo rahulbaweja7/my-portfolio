@@ -397,7 +397,7 @@ function Desktop() {
       {/* Taskbar — anchored to bottom */}
       <div style={{
         height: 46, flexShrink: 0,
-        background: 'rgba(6,6,6,0.97)', borderTop: '1px solid rgba(255,255,255,0.06)',
+        background: 'var(--taskbar-bg)', borderTop: '1px solid var(--taskbar-line)',
         backdropFilter: 'blur(20px)', display: 'flex', alignItems: 'center',
         padding: '0 12px', gap: 2, zIndex: 9999,
       }}>
@@ -411,7 +411,7 @@ function Desktop() {
                 style={{
                   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                   gap: 2, padding: '4px 10px', borderRadius: 7, border: 'none', cursor: 'pointer',
-                  background: active ? 'rgba(255,255,255,0.07)' : 'transparent',
+                  background: active ? 'var(--taskbar-active)' : 'transparent',
                   transition: 'all 0.15s',
                 }}>
                 <span style={{ fontSize: 13, opacity: active ? 1 : 0.3 }}>{cfg.icon}</span>
@@ -423,7 +423,7 @@ function Desktop() {
           })}
         </div>
 
-        <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.06)', margin: '0 8px' }} />
+        <div style={{ width: 1, height: 20, background: 'var(--taskbar-line)', margin: '0 8px' }} />
 
         <div style={{ display: 'flex', gap: 14, alignItems: 'center', paddingRight: 12 }}>
           {[{ href: 'https://github.com/rahulbaweja7', label: 'GH' },
@@ -438,7 +438,7 @@ function Desktop() {
           ))}
         </div>
 
-        <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.06)' }} />
+        <div style={{ width: 1, height: 20, background: 'var(--taskbar-line)' }} />
 
         <div style={{ textAlign: 'right', padding: '0 8px' }}>
           <p style={{ fontSize: 11, fontFamily: 'monospace', color: 'var(--c-text)', lineHeight: 1.3, whiteSpace: 'nowrap' }}>{timeStr}</p>
