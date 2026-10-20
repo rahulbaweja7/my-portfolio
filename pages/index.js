@@ -246,10 +246,6 @@ export default function Home() {
                 >
                   <Image src="/assets/RahulLA.png" alt="Rahul" fill style={{ objectFit: 'cover', objectPosition: '50% 18%' }} />
                 </div>
-                <span
-                  className="absolute bottom-2.5 right-2.5 w-4 h-4 rounded-full animate-pulse"
-                  style={{ background: '#22c55e', border: '2.5px solid var(--c-bg)' }}
-                />
               </div>
             </div>
 
