@@ -229,6 +229,8 @@ body::after {
 
 /* ── Theme toggle ───────────────────────────────────────────────── */
 .theme-toggle {
+  margin-right: env(safe-area-inset-right, 0px);
+  margin-bottom: env(safe-area-inset-bottom, 0px);
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   transition: border-color 0.2s, transform 0.2s;
 }
