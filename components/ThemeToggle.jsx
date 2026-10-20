@@ -2,6 +2,7 @@ import { useTheme } from '@/context/ThemeContext';
 
 export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
+  const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
 
   return (
     <button
@@ -9,7 +10,8 @@ export default function ThemeToggle() {
       data-hover
       className="theme-toggle fixed bottom-5 right-5 z-[200] flex items-center justify-center w-9 h-9 rounded-full"
       style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)', color: 'var(--c-text)' }}
-      aria-label="Toggle theme"
+      aria-label={label}
+      title={label}
     >
       {theme === 'dark' ? (
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
