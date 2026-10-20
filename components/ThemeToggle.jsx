@@ -1,10 +1,24 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from '@/context/ThemeContext';
 
 export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
   const { pathname } = useRouter();
-  const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  const label = `${theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} (Shift+D)`;
+
+  // Shift+D toggles the theme, except while typing
+  useEffect(() => {
+    const onKey = e => {
+      if (!e.shiftKey || e.metaKey || e.ctrlKey || e.altKey || e.key.toLowerCase() !== 'd') return;
+      const el = document.activeElement;
+      if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
+      e.preventDefault();
+      toggle();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [toggle]);
 
   return (
     <button
