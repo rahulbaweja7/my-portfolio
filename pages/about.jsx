@@ -360,16 +360,17 @@ function Desktop() {
   const [minimized, setMinimized] = useState(() => Object.fromEntries(WINS.map(w => [w.id, w.minStart])));
   const [zMap,  setZMap]  = useState(() => Object.fromEntries(WINS.map((w, i) => [w.id, i + 1])));
   const [maxZ,  setMaxZ]  = useState(WINS.length + 1);
-  const [time,  setTime]  = useState(new Date());
+  const [time,  setTime]  = useState(null);
 
-  useEffect(() => { const t = setInterval(() => setTime(new Date()), 1000); return () => clearInterval(t); }, []);
+  // Start the clock on the client only, so server and client HTML match
+  useEffect(() => { setTime(new Date()); const t = setInterval(() => setTime(new Date()), 1000); return () => clearInterval(t); }, []);
 
   const focus    = id => { const z = maxZ + 1; setMaxZ(z); setZMap(p => ({ ...p, [id]: z })); };
   const minimize = id => setMinimized(p => ({ ...p, [id]: true }));
   const restore  = id => { setMinimized(p => ({ ...p, [id]: false })); focus(id); };
 
-  const timeStr = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  const dateStr = time.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+  const timeStr = time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--';
+  const dateStr = time ? time.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' }) : '';
 
   return (
     <div style={{ paddingTop: 16, height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
