@@ -237,7 +237,7 @@ export default function Home() {
 
               <div className="relative w-32 sm:w-36 aspect-[3/4] shrink-0 mx-auto sm:mx-0">
                 <div
-                  className="relative w-full h-full overflow-hidden rounded-2xl grayscale hover:grayscale-0 transition-all duration-300"
+                  className="relative w-full h-full overflow-hidden rounded-2xl"
                   style={{
                     border: '1px solid var(--c-border)',
                     boxShadow: '0 0 0 4px rgba(249,115,22,0.08), 0 12px 32px rgba(249,115,22,0.14)',
