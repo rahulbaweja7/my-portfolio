@@ -2,9 +2,12 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 const Ctx = createContext({ theme: 'dark', toggle: () => {}, setTheme: () => {} });
 
+const THEME_COLORS = { dark: '#0f0f0f', light: '#f5f3ef' };
+
 function applyTheme(t) {
   document.documentElement.classList.remove('dark', 'light');
   document.documentElement.classList.add(t);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLORS[t]);
 }
 
 export function ThemeProvider({ children }) {
