@@ -1,9 +1,14 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-const Ctx = createContext({ theme: 'dark', toggle: () => {} });
+const Ctx = createContext({ theme: 'dark', toggle: () => {}, setTheme: () => {} });
+
+function applyTheme(t) {
+  document.documentElement.classList.remove('dark', 'light');
+  document.documentElement.classList.add(t);
+}
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setThemeState] = useState('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -11,21 +16,20 @@ export function ThemeProvider({ children }) {
     const stored = localStorage.getItem('theme');
     const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const t = stored || sys;
-    setTheme(t);
-    document.documentElement.classList.remove('dark', 'light');
-    document.documentElement.classList.add(t);
+    setThemeState(t);
+    applyTheme(t);
   }, []);
 
-  const toggle = () => {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
+  const setTheme = next => {
+    setThemeState(next);
     localStorage.setItem('theme', next);
-    document.documentElement.classList.remove('dark', 'light');
-    document.documentElement.classList.add(next);
+    applyTheme(next);
   };
 
+  const toggle = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+
   return (
-    <Ctx.Provider value={{ theme: mounted ? theme : 'dark', toggle }}>
+    <Ctx.Provider value={{ theme: mounted ? theme : 'dark', toggle, setTheme }}>
       {children}
     </Ctx.Provider>
   );
