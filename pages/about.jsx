@@ -415,7 +415,7 @@ function Desktop() {
                   transition: 'all 0.15s',
                 }}>
                 <span style={{ fontSize: 13, opacity: active ? 1 : 0.3 }}>{cfg.icon}</span>
-                <span style={{ fontSize: 8, fontFamily: 'monospace', color: active ? '#f97316' : '#2a2a2a', letterSpacing: '0.05em' }}>
+                <span style={{ fontSize: 8, fontFamily: 'monospace', color: active ? '#f97316' : 'var(--taskbar-dim)', letterSpacing: '0.05em' }}>
                   {TASKBAR_LABELS[cfg.id]}
                 </span>
               </button>
@@ -430,9 +430,9 @@ function Desktop() {
             { href: 'https://www.linkedin.com/in/rahulbaweja-/', label: 'LI' },
             { href: 'mailto:rbaweja1@asu.edu', label: '✉' }].map(({ href, label }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: 10, fontFamily: 'monospace', fontWeight: 700, color: '#333', textDecoration: 'none', transition: 'color 0.15s', letterSpacing: '0.05em' }}
+              style={{ fontSize: 10, fontFamily: 'monospace', fontWeight: 700, color: 'var(--taskbar-dim)', textDecoration: 'none', transition: 'color 0.15s', letterSpacing: '0.05em' }}
               onMouseEnter={e => e.target.style.color = '#f97316'}
-              onMouseLeave={e => e.target.style.color = '#333'}>
+              onMouseLeave={e => e.target.style.color = 'var(--taskbar-dim)'}>
               {label}
             </a>
           ))}
@@ -442,7 +442,7 @@ function Desktop() {
 
         <div style={{ textAlign: 'right', padding: '0 8px' }}>
           <p style={{ fontSize: 11, fontFamily: 'monospace', color: 'var(--c-text)', lineHeight: 1.3, whiteSpace: 'nowrap' }}>{timeStr}</p>
-          <p style={{ fontSize: 9, fontFamily: 'monospace', color: '#383838', lineHeight: 1.3, whiteSpace: 'nowrap' }}>{dateStr}</p>
+          <p style={{ fontSize: 9, fontFamily: 'monospace', color: 'var(--taskbar-dim)', lineHeight: 1.3, whiteSpace: 'nowrap' }}>{dateStr}</p>
         </div>
       </div>
     </div>
