@@ -249,3 +249,6 @@ body::after {
   from { opacity: 0; transform: rotate(-90deg) scale(0.6); }
   to   { opacity: 1; transform: rotate(0) scale(1); }
 }
+@media print {
+  .theme-toggle { display: none !important; }
+}
