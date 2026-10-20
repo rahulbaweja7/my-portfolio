@@ -18,6 +18,17 @@ export function ThemeProvider({ children }) {
     const t = stored || sys;
     setThemeState(t);
     applyTheme(t);
+
+    // Follow OS theme changes until the visitor picks one explicitly
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onSystemChange = e => {
+      if (localStorage.getItem('theme')) return;
+      const next = e.matches ? 'dark' : 'light';
+      setThemeState(next);
+      applyTheme(next);
+    };
+    mq.addEventListener('change', onSystemChange);
+    return () => mq.removeEventListener('change', onSystemChange);
   }, []);
 
   const setTheme = next => {
