@@ -21,7 +21,7 @@ const experience = [
   },
   {
     company: 'SuperWorld', role: 'Software Engineer Intern', period: 'Sep 2025 – Nov 2025',
-    domain: 'superworld.co',
+    domain: 'superworldapp.com',
     description: 'Architected 6 reusable React + TypeScript components adopted across 12+ call sites, consolidating 800 lines of duplicated UI code and cutting new-feature build time by 25%. Optimized the Orders dashboard by integrating 8 REST endpoints via TanStack Query with caching and optimistic mutations, reducing redundant network calls by 60% and load time from 1.9s to 0.8s. Expanded test coverage from 58% to 84% by writing 42 Jest + React Testing Library unit tests, catching 3 regressions pre-release.',
     tech: 'React, TypeScript, TanStack Query, Jest',
   },
