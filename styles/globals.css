@@ -252,3 +252,11 @@ body::after {
 @media print {
   .theme-toggle { display: none !important; }
 }
+
+/* Applied for a moment while switching themes */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, fill 0.3s ease !important;
+}

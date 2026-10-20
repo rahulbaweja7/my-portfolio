@@ -44,6 +44,12 @@ export function ThemeProvider({ children }) {
   }, []);
 
   const setTheme = next => {
+    // Briefly enable color transitions so the switch fades instead of snapping
+    const root = document.documentElement;
+    root.classList.add('theme-transition');
+    clearTimeout(window.__themeTransitionTimer);
+    window.__themeTransitionTimer = setTimeout(() => root.classList.remove('theme-transition'), 350);
+
     setThemeState(next);
     localStorage.setItem('theme', next);
     applyTheme(next);
