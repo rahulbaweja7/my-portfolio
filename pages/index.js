@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import SpotifyTopTracks from '@/components/SpotifyTopTracks';
 import GithubActivity from '@/components/GithubActivity';
+import ViewCounter from '@/components/ViewCounter';
 import { AnimatedCounter } from '@/components/ui/animated-counter';
 
 const socials = [
@@ -281,6 +282,10 @@ export default function Home() {
                 </div>
               </section>
             </div>
+
+            <footer className="pt-6 lg:pt-4 shrink-0">
+              <ViewCounter />
+            </footer>
           </div>
 
           {/* Sidebar */}
