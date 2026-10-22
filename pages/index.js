@@ -160,7 +160,6 @@ export default function Home() {
         <title>Rahul Baweja</title>
         <meta name="description" content="Rahul Baweja — Software Engineer. Experience and projects, one page." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
 
