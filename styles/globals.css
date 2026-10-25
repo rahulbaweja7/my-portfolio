@@ -121,11 +121,6 @@ body::after {
 }
 
 @layer utilities {
-  .card {
-    background: var(--c-card);
-    border: 1px solid var(--c-border);
-  }
-
 }
 
 
