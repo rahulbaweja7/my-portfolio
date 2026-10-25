@@ -136,9 +136,11 @@ body::after {
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   transition: border-color 0.2s, transform 0.2s;
 }
-.theme-toggle:hover {
-  border-color: #f97316 !important;
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .theme-toggle:hover {
+    border-color: #f97316 !important;
+    transform: translateY(-1px);
+  }
 }
 .theme-toggle:focus-visible {
   outline: 2px solid #f97316;
