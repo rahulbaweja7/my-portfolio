@@ -120,9 +120,6 @@ body::after {
   ::-webkit-scrollbar-thumb:hover { background: #f97316; }
 }
 
-@layer utilities {
-}
-
 
 .draw-chart {
   animation: drawChart 1.8s cubic-bezier(0.4,0,0.2,1) 0.4s forwards;
