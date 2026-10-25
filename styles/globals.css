@@ -157,11 +157,6 @@ body::after {
 .animate-fade-in     { animation: fadeIn 0.6s ease-out forwards; }
 .animate-blink       { animation: blink 1s step-end infinite; }
 
-/* Mockup interactive glow on card hover */
-.group:hover .mockup-glow {
-  box-shadow: 0 0 0 1px rgba(249,115,22,0.25), 0 4px 24px rgba(249,115,22,0.06);
-}
-
 .delay-100  { animation-delay: 0.1s; }
 .delay-200  { animation-delay: 0.2s; }
 .delay-300  { animation-delay: 0.3s; }
