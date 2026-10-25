@@ -56,7 +56,7 @@ export default function SpotifyTopTracks() {
                   {i + 1}
                 </span>
                 {t.albumArt && (
-                  <img src={t.albumArt} alt="" className="w-9 h-9 rounded shrink-0 object-cover" />
+                  <img src={t.albumArt} alt="" loading="lazy" decoding="async" width={36} height={36} className="w-9 h-9 rounded shrink-0 object-cover" />
                 )}
                 <span className="min-w-0">
                   <span
