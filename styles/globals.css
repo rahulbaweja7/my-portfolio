@@ -189,11 +189,6 @@ body::after {
   animation: drawChart 1.8s cubic-bezier(0.4,0,0.2,1) 0.4s forwards;
 }
 
-/* ── News ticker scroll ── */
-@keyframes tickerScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
 .ticker-scroll {
   animation: tickerScroll 28s linear infinite;
 }
