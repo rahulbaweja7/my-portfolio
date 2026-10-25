@@ -126,16 +126,6 @@ body::after {
     border: 1px solid var(--c-border);
   }
 
-  .card-interactive {
-    background: var(--c-card);
-    border: 1px solid var(--c-border);
-    transition: border-color 0.2s ease, background 0.2s ease;
-  }
-
-  .card-interactive:hover {
-    border-color: var(--c-border-2);
-    background: var(--c-card-alt);
-  }
 }
 
 
