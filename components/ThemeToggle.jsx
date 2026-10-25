@@ -22,7 +22,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       data-hover
-      className="theme-toggle fixed right-5 bottom-5 z-[200] flex items-center justify-center w-9 h-9 rounded-full"
+      className="theme-toggle fixed right-5 bottom-5 z-[200] flex items-center justify-center w-11 h-11 sm:w-9 sm:h-9 rounded-full"
       style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)', color: 'var(--c-text)' }}
       aria-label={label}
       title={label}
