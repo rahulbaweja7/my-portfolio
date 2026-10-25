@@ -165,7 +165,7 @@ export default function Home() {
 
 
       <main className="min-h-screen lg:h-screen lg:overflow-hidden pt-10 pb-16 lg:pb-8 px-6" style={{ background: 'var(--c-bg)' }}>
-        <div className="max-w-6xl mx-auto h-full grid lg:grid-cols-[1fr_320px] gap-12">
+        <div className="max-w-6xl mx-auto h-full grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12">
           <div className="max-w-3xl lg:flex lg:flex-col lg:min-h-0">
 
             {/* Header + About */}
