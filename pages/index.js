@@ -85,6 +85,9 @@ function CompanyLogo({ domain, name }) {
     <img
       src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
       alt={`${name} logo`}
+      width={36}
+      height={36}
+      decoding="async"
       className="w-9 h-9 rounded-lg shrink-0 object-contain p-1.5"
       style={{ background: 'var(--c-border)' }}
       onError={() => setFailed(true)}
