@@ -176,7 +176,7 @@ export default function Home() {
                 <h1 className="font-bold leading-none mb-2" style={{ fontSize: 'clamp(30px, 5vw, 44px)', color: 'var(--c-text)' }}>
                   Hey, I&apos;m Rahul<span style={{ color: '#f97316' }}>.</span>
                 </h1>
-                <div className="flex flex-wrap gap-x-5 gap-y-2 mb-3">
+                <div className="flex flex-wrap gap-x-5 gap-y-0 sm:gap-y-2 mb-3">
                   {socials.map(s => (
                     <a
                       key={s.label}
@@ -184,7 +184,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       data-hover
-                      className="text-sm underline underline-offset-4 decoration-1 transition-colors duration-200"
+                      className="text-sm underline underline-offset-4 decoration-1 transition-colors duration-200 py-1.5 sm:py-0"
                       style={{ color: 'var(--c-muted)', textDecorationColor: 'var(--c-border-2)' }}
                     >
                       {s.label}
