@@ -237,7 +237,7 @@ export default function Home() {
                   }}
                   data-hover
                 >
-                  <Image src="/assets/RahulLA.png" alt="Rahul" fill style={{ objectFit: 'cover', objectPosition: '50% 18%' }} />
+                  <Image src="/assets/RahulLA.png" alt="Rahul" fill sizes="(min-width: 640px) 144px, 128px" priority style={{ objectFit: 'cover', objectPosition: '50% 18%' }} />
                 </div>
               </div>
             </div>
