@@ -201,7 +201,7 @@ export default function Home() {
                   of code: Barça games and ranked matches I probably shouldn&apos;t queue for.
                 </p>
 
-                <div className="flex items-center gap-5 mt-4 font-mono text-xs" style={{ color: 'var(--c-subtle)' }}>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 font-mono text-xs" style={{ color: 'var(--c-subtle)' }}>
                   <span className="flex items-baseline gap-1">
                     <AnimatedCounter
                       value={counted ? experience.length : 0}
