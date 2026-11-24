@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import GithubActivity from '@/components/GithubActivity';
 import ViewCounter from '@/components/ViewCounter';
 import styles from '@/styles/Home.module.css';
 
@@ -83,6 +84,11 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className={styles.section} aria-labelledby="activity">
+          <h2 className={styles.heading} id="activity">Activity</h2>
+          <GithubActivity minimal />
         </section>
 
         <footer className={styles.footer}>
