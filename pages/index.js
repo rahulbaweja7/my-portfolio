@@ -53,38 +53,40 @@ export default function Home() {
           </nav>
         </header>
 
-        <section className={styles.section} aria-labelledby="experience">
-          <h2 className={styles.heading} id="experience">Experience</h2>
-          <ul className={styles.list}>
-            {experience.map(e => (
-              <li key={e.company} className={styles.row}>
-                <span className={styles.name}>{e.company}</span>
-                <span className={styles.role}>{e.role}</span>
-                <span className={styles.year}>{e.year}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <div className={styles.columns}>
+          <section className={styles.section} aria-labelledby="experience">
+            <h2 className={styles.heading} id="experience">Experience</h2>
+            <ul className={styles.list}>
+              {experience.map(e => (
+                <li key={e.company} className={styles.row}>
+                  <span className={styles.name}>{e.company}</span>
+                  <span className={styles.role}>{e.role}</span>
+                  <span className={styles.year}>{e.year}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-        <section className={styles.section} aria-labelledby="projects">
-          <h2 className={styles.heading} id="projects">Projects</h2>
-          <ul className={styles.list}>
-            {projects.map(p => (
-              <li key={p.name}>
-                <a
-                  className={`${styles.row} ${styles.projectLink}`}
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className={styles.name}>{p.name}</span>
-                  <span className={styles.description}>{p.description}</span>
-                  <Arrow className={styles.arrow} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+          <section className={styles.section} aria-labelledby="projects">
+            <h2 className={styles.heading} id="projects">Projects</h2>
+            <ul className={styles.list}>
+              {projects.map(p => (
+                <li key={p.name}>
+                  <a
+                    className={`${styles.row} ${styles.projectLink}`}
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className={styles.name}>{p.name}</span>
+                    <span className={styles.description}>{p.description}</span>
+                    <Arrow className={styles.arrow} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
 
         <section className={styles.section} aria-labelledby="activity">
           <h2 className={styles.heading} id="activity">Activity</h2>
