@@ -1,9 +1,9 @@
 .page {
-  width: min(920px, calc(100% - 48px));
-  margin: 88px auto 64px;
+  width: min(960px, calc(100% - 48px));
+  margin: 40px auto 24px;
   font-family: var(--font-serif), Georgia, "Times New Roman", serif;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.5;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
 }
@@ -20,7 +20,7 @@
 }
 
 .title {
-  margin: 0 0 28px;
+  margin: 0 0 12px;
   font-size: 40px;
   line-height: 1.15;
   font-weight: 600;
@@ -30,8 +30,7 @@
 .prose {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 640px;
+  gap: 8px;
 }
 
 .prose p {
@@ -50,18 +49,18 @@
 .columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 56px;
+  column-gap: 48px;
 }
 
 .section {
-  margin-top: 72px;
+  margin-top: 32px;
 }
 
 .heading {
-  margin: 0 0 14px;
-  padding-bottom: 12px;
+  margin: 0 0 4px;
+  padding-bottom: 8px;
   border-bottom: 1px solid currentColor;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -72,31 +71,30 @@
   padding: 0;
 }
 
-.row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
-  column-gap: 16px;
-  padding: 12px 0;
+/* Width of the last column: fixed so every row lines up */
+.listYear {
+  --end: 4rem;
 }
 
-.name {
-  grid-column: 1;
-  grid-row: 1;
+.listLink {
+  --end: 1rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr) var(--end, auto);
+  align-items: baseline;
+  column-gap: 16px;
+  padding: 7px 0;
 }
 
 .role,
 .description {
-  grid-column: 1 / -1;
-  grid-row: 2;
-  margin-top: 2px;
   font-size: 16px;
   opacity: 0.75;
 }
 
 .year {
-  grid-column: 2;
-  grid-row: 1;
   justify-self: end;
   font-variant-numeric: tabular-nums;
 }
@@ -122,18 +120,23 @@
 }
 
 .arrow {
-  grid-column: 2;
-  grid-row: 1;
   justify-self: end;
   align-self: center;
 }
 
 .footer {
-  margin-top: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 20px;
   font-size: 16px;
 }
 
-@media (max-width: 760px) {
+.footer p {
+  margin: 0;
+}
+
+@media (max-width: 1007px) {
   .columns {
     grid-template-columns: 1fr;
   }
@@ -150,10 +153,34 @@
   }
 
   .section {
-    margin-top: 48px;
+    margin-top: 40px;
+  }
+
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    padding: 10px 0;
+  }
+
+  .name {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .year,
+  .arrow {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .role,
+  .description {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 2px;
   }
 
   .footer {
-    margin-top: 48px;
+    margin-top: 32px;
   }
 }

@@ -61,7 +61,7 @@ export default function Home() {
         <div className={styles.columns}>
           <section className={styles.section} aria-labelledby="experience">
             <h2 className={styles.heading} id="experience">Experience</h2>
-            <ul className={styles.list}>
+            <ul className={`${styles.list} ${styles.listYear}`}>
               {experience.map(e => (
                 <li key={e.company} className={styles.row}>
                   <span className={styles.name}>{e.company}</span>
@@ -74,7 +74,7 @@ export default function Home() {
 
           <section className={styles.section} aria-labelledby="projects">
             <h2 className={styles.heading} id="projects">Projects</h2>
-            <ul className={styles.list}>
+            <ul className={`${styles.list} ${styles.listLink}`}>
               {projects.map(p => (
                 <li key={p.name}>
                   <a
