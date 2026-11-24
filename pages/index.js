@@ -99,7 +99,6 @@ export default function Home() {
         </section>
 
         <footer className={styles.footer}>
-          <p>Computer Science at Arizona State.</p>
           <ViewCounter />
         </footer>
       </main>
