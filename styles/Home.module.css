@@ -72,31 +72,39 @@
   padding: 0;
 }
 
-/* Width of the last column: fixed so every row lines up */
-.listYear {
-  --end: 4rem;
-}
-
-.listLink {
-  --end: 1rem;
-}
-
+/* Table-of-contents rows: name, muted detail, dotted leader, then year or arrow */
 .row {
-  display: grid;
-  grid-template-columns: 7rem minmax(0, 1fr) var(--end, auto);
+  display: flex;
   align-items: baseline;
-  column-gap: 16px;
+  column-gap: 10px;
   padding: clamp(5px, calc(4.5vh - 26px), 13px) 0;
+}
+
+.name {
+  flex: none;
+  min-width: 6rem;
 }
 
 .role,
 .description {
+  flex: none;
   font-size: 16px;
+  white-space: nowrap;
   opacity: 0.75;
 }
 
+.leader {
+  flex: 1 1 0;
+  align-self: flex-end;
+  min-width: 8px;
+  height: 2px;
+  margin-bottom: 0.4em;
+  background: radial-gradient(circle, currentColor 0.8px, transparent 1px) 0 100% / 6px 2px repeat-x;
+  opacity: 0.4;
+}
+
 .year {
-  justify-self: end;
+  flex: none;
   font-variant-numeric: tabular-nums;
 }
 
@@ -121,7 +129,7 @@
 }
 
 .arrow {
-  justify-self: end;
+  flex: none;
   align-self: center;
 }
 
@@ -151,27 +159,30 @@
   }
 
   .row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 16px;
+    flex-wrap: wrap;
     padding: 10px 0;
   }
 
   .name {
-    grid-column: 1;
-    grid-row: 1;
+    order: 1;
+    min-width: 0;
+  }
+
+  .leader {
+    order: 2;
   }
 
   .year,
   .arrow {
-    grid-column: 2;
-    grid-row: 1;
+    order: 3;
   }
 
   .role,
   .description {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    order: 4;
+    flex-basis: 100%;
     margin-top: 2px;
+    white-space: normal;
   }
 
   .footer {
