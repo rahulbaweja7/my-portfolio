@@ -84,7 +84,7 @@
   padding: 0;
 }
 
-/* Table-of-contents rows: name, muted detail, dotted leader, then year or arrow */
+/* Rows: name, muted detail, then year or arrow pushed to the right edge */
 .row {
   display: flex;
   align-items: baseline;
@@ -105,18 +105,9 @@
   opacity: 0.75;
 }
 
-.leader {
-  flex: 1 1 0;
-  align-self: flex-end;
-  min-width: 8px;
-  height: 2px;
-  margin-bottom: 0.4em;
-  background: radial-gradient(circle, currentColor 0.8px, transparent 1px) 0 100% / 6px 2px repeat-x;
-  opacity: 0.4;
-}
-
 .year {
   flex: none;
+  margin-left: auto;
   font-variant-numeric: tabular-nums;
 }
 
@@ -143,6 +134,7 @@
 .arrow {
   flex: none;
   align-self: center;
+  margin-left: auto;
 }
 
 .footer {
@@ -180,18 +172,14 @@
     min-width: 0;
   }
 
-  .leader {
-    order: 2;
-  }
-
   .year,
   .arrow {
-    order: 3;
+    order: 2;
   }
 
   .role,
   .description {
-    order: 4;
+    order: 3;
     flex-basis: 100%;
     margin-top: 2px;
     white-space: normal;

@@ -66,7 +66,6 @@ export default function Home() {
                 <li key={e.company} className={styles.row}>
                   <span className={styles.name}>{e.company}</span>
                   <span className={styles.role}>{e.role}</span>
-                  <span className={styles.leader} aria-hidden="true" />
                   <span className={styles.year}>{e.year}</span>
                 </li>
               ))}
@@ -86,7 +85,6 @@ export default function Home() {
                   >
                     <span className={styles.name}>{p.name}</span>
                     <span className={styles.description}>{p.description}</span>
-                    <span className={styles.leader} aria-hidden="true" />
                     <Arrow className={styles.arrow} />
                   </a>
                 </li>
