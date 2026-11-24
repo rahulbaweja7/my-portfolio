@@ -1,14 +1,17 @@
 import Head from 'next/head';
+import { Crimson_Text } from 'next/font/google';
 import GithubActivity from '@/components/GithubActivity';
 import ViewCounter from '@/components/ViewCounter';
 import styles from '@/styles/Home.module.css';
 
-const socials = [
-  { label: 'GitHub',   href: 'https://github.com/rahulbaweja7' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rahulbaweja-/' },
-  { label: 'Twitter',  href: 'https://x.com/RahulBaweja07' },
-  { label: 'Email',    href: 'mailto:rbaweja1@asu.edu' },
-];
+const serif = Crimson_Text({ subsets: ['latin'], weight: ['400', '600'], variable: '--font-serif' });
+
+const links = {
+  github:   'https://github.com/rahulbaweja7',
+  linkedin: 'https://www.linkedin.com/in/rahulbaweja-/',
+  x:        'https://x.com/RahulBaweja07',
+  email:    'mailto:rbaweja1@asu.edu',
+};
 
 const experience = [
   { company: 'Microsoft',    role: 'Software Engineer Intern', year: 'Current' },
@@ -40,17 +43,19 @@ export default function Home() {
         <meta name="description" content="Rahul Baweja, software engineer. Experience and projects, one page." />
       </Head>
 
-      <main className={`minimal-home ${styles.page}`}>
+      <main className={`minimal-home ${serif.variable} ${styles.page}`}>
         <header>
           <h1 className={styles.title}>Rahul Baweja</h1>
-          <p className={styles.intro}>22, CS student at Arizona State, SWE intern at Microsoft.</p>
-          <nav className={styles.links} aria-label="Contact">
-            {socials.map(s => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">
-                {s.label} <Arrow />
-              </a>
-            ))}
-          </nav>
+          <div className={styles.prose}>
+            <p>22, CS student at Arizona State and software engineer intern at Microsoft. Previously interned at SuperWorld and IDX Exchange.</p>
+            <p>
+              You can find me on{' '}
+              <a href={links.github} target="_blank" rel="noopener noreferrer">GitHub</a>,{' '}
+              <a href={links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>, and{' '}
+              <a href={links.x} target="_blank" rel="noopener noreferrer">X</a>, or email me{' '}
+              <a href={links.email}>here</a>.
+            </p>
+          </div>
         </header>
 
         <div className={styles.columns}>
