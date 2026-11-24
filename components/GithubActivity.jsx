@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { FaGithub } from 'react-icons/fa';
 import { useTheme } from '@/context/ThemeContext';
@@ -19,9 +19,32 @@ const monoPalette = {
   light: ['#ece6cf', '#cfc7aa', '#968f76', '#5a5546', '#282828'],
 };
 
+// The calendar is 53 weeks wide: width = 53 * (blockSize + margin) - margin
+const WEEKS = 53;
+const MARGIN = 3;
+const MIN_BLOCK = 9;
+const MAX_BLOCK = 20;
+
 export default function GithubActivity({ username = 'rahulbaweja7', minimal = false }) {
   const { theme } = useTheme();
   const scrollRef = useRef(null);
+  const [fitBlock, setFitBlock] = useState(MIN_BLOCK);
+
+  // Minimal variant: scale the squares so the calendar fills its container.
+  // Below the minimum size it stays at MIN_BLOCK and scrolls horizontally instead.
+  useEffect(() => {
+    if (!minimal) return;
+    const root = scrollRef.current;
+    if (!root) return;
+    const fit = () => {
+      const size = (root.clientWidth + MARGIN) / WEEKS - MARGIN - 0.02;
+      setFitBlock(Math.min(MAX_BLOCK, Math.max(MIN_BLOCK, Math.floor(size * 100) / 100)));
+    };
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, [minimal]);
 
   // The calendar is wider than the card and loads async, so keep its scroll
   // container pinned to the right edge (latest month) whenever it re-renders.
@@ -46,8 +69,8 @@ export default function GithubActivity({ username = 'rahulbaweja7', minimal = fa
           username={username}
           colorScheme={theme}
           theme={monoPalette}
-          blockSize={9}
-          blockMargin={3}
+          blockSize={fitBlock}
+          blockMargin={MARGIN}
           fontSize={14}
           style={{ color: 'inherit' }}
         />
