@@ -62,13 +62,14 @@
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 1.7fr auto;
+  grid-template-columns: 1fr 1.7fr 4.5rem;
   align-items: baseline;
   column-gap: 24px;
   padding: 10px 0;
 }
 
 .year {
+  justify-self: end;
   font-variant-numeric: tabular-nums;
 }
 
@@ -83,6 +84,7 @@
 }
 
 .external {
+  display: inline-block;
   width: 11px;
   height: 11px;
   fill: none;
