@@ -13,7 +13,13 @@ const palette = {
   light: ['#f0ede7', '#ffd9b3', '#ffb166', '#fc8c2e', '#f97316'],
 };
 
-export default function GithubActivity({ username = 'rahulbaweja7' }) {
+// Black and white scale for the minimal home page
+const monoPalette = {
+  dark:  ['#1a1a1a', '#444444', '#777777', '#aaaaaa', '#ffffff'],
+  light: ['#ebebeb', '#b5b5b5', '#767676', '#3d3d3d', '#000000'],
+};
+
+export default function GithubActivity({ username = 'rahulbaweja7', minimal = false }) {
   const { theme } = useTheme();
   const scrollRef = useRef(null);
 
@@ -32,6 +38,22 @@ export default function GithubActivity({ username = 'rahulbaweja7' }) {
     scrollToLatest();
     return () => observer.disconnect();
   }, []);
+
+  if (minimal) {
+    return (
+      <div ref={scrollRef} className="gh-cal-scroll">
+        <GitHubCalendar
+          username={username}
+          colorScheme={theme}
+          theme={monoPalette}
+          blockSize={9}
+          blockMargin={3}
+          fontSize={12}
+          style={{ color: 'inherit' }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-xl p-4" style={{ background: 'var(--c-card)', border: '1px solid var(--c-border)' }}>
