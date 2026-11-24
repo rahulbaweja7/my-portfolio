@@ -1,6 +1,7 @@
+/* Vertical spacing below is tuned to grow with window height: tight at ~690px, roomy at 800px and up */
 .page {
   width: min(960px, calc(100% - 48px));
-  margin: 40px auto 24px;
+  margin: clamp(24px, calc(21.8vh - 126px), 72px) auto clamp(12px, calc(7.3vh - 34px), 28px);
   font-family: var(--font-serif), Georgia, "Times New Roman", serif;
   font-size: 18px;
   line-height: 1.5;
@@ -20,7 +21,7 @@
 }
 
 .title {
-  margin: 0 0 12px;
+  margin: 0 0 clamp(10px, calc(5.4vh - 27px), 22px);
   font-size: 40px;
   line-height: 1.15;
   font-weight: 600;
@@ -30,7 +31,7 @@
 .prose {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: clamp(6px, calc(3.6vh - 19px), 14px);
 }
 
 .prose p {
@@ -53,7 +54,7 @@
 }
 
 .section {
-  margin-top: 32px;
+  margin-top: clamp(20px, calc(16.4vh - 91px), 52px);
 }
 
 .heading {
@@ -85,7 +86,7 @@
   grid-template-columns: 7rem minmax(0, 1fr) var(--end, auto);
   align-items: baseline;
   column-gap: 16px;
-  padding: 7px 0;
+  padding: clamp(5px, calc(4.5vh - 26px), 13px) 0;
 }
 
 .role,
@@ -125,15 +126,8 @@
 }
 
 .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 20px;
+  margin-top: clamp(12px, calc(7.3vh - 38px), 32px);
   font-size: 16px;
-}
-
-.footer p {
-  margin: 0;
 }
 
 @media (max-width: 1007px) {
