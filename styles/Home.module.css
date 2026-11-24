@@ -58,12 +58,24 @@
 }
 
 .heading {
+  position: relative;
   margin: 0 0 4px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid currentColor;
+  padding-bottom: 9px;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.01em;
+}
+
+/* Short orange bar instead of a full-width rule */
+.heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: #f97316;
 }
 
 .list {
