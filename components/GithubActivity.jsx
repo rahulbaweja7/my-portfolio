@@ -13,10 +13,10 @@ const palette = {
   light: ['#f0ede7', '#ffd9b3', '#ffb166', '#fc8c2e', '#f97316'],
 };
 
-// Warm paper-and-ink scale for the minimal home page
+// Orange accent scale for the minimal home page, with empty cells tuned to the cream paper
 const monoPalette = {
-  dark:  ['#2a2820', '#4a463a', '#7a7562', '#b3ad96', '#ece7d6'],
-  light: ['#ece6cf', '#cfc7aa', '#968f76', '#5a5546', '#282828'],
+  dark:  ['#2a2820', '#4a2c14', '#8a4313', '#d2620f', '#f97316'],
+  light: ['#ece6cf', '#fcd9b0', '#fbb269', '#f78a2c', '#e8650a'],
 };
 
 // The calendar is 53 weeks wide: width = 53 * (blockSize + margin) - margin
