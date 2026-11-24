@@ -13,10 +13,10 @@ const palette = {
   light: ['#f0ede7', '#ffd9b3', '#ffb166', '#fc8c2e', '#f97316'],
 };
 
-// Black and white scale for the minimal home page
+// Warm paper-and-ink scale for the minimal home page
 const monoPalette = {
-  dark:  ['#1a1a1a', '#444444', '#777777', '#aaaaaa', '#ffffff'],
-  light: ['#ebebeb', '#b5b5b5', '#767676', '#3d3d3d', '#000000'],
+  dark:  ['#2a2820', '#4a463a', '#7a7562', '#b3ad96', '#ece7d6'],
+  light: ['#ece6cf', '#cfc7aa', '#968f76', '#5a5546', '#282828'],
 };
 
 export default function GithubActivity({ username = 'rahulbaweja7', minimal = false }) {
@@ -48,7 +48,7 @@ export default function GithubActivity({ username = 'rahulbaweja7', minimal = fa
           theme={monoPalette}
           blockSize={9}
           blockMargin={3}
-          fontSize={12}
+          fontSize={14}
           style={{ color: 'inherit' }}
         />
       </div>

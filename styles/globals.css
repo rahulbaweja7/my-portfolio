@@ -46,14 +46,14 @@ html {
   text-size-adjust: 100%;
 }
 
-/* Minimal home page: plain black on white (inverted in dark mode), no stripe or dot grid */
+/* Minimal home page: warm paper and soft ink (dark variant too), no stripe or dot grid */
 body:has(.minimal-home) {
-  --c-bg:   #fff;
-  --c-text: #000;
+  --c-bg:   #fefaea;
+  --c-text: #282828;
 }
 html.dark body:has(.minimal-home) {
-  --c-bg:   #000;
-  --c-text: #fff;
+  --c-bg:   #1b1a16;
+  --c-text: #ece7d6;
 }
 body:has(.minimal-home)::before,
 body:has(.minimal-home)::after {
