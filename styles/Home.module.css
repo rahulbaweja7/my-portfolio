@@ -84,31 +84,42 @@
   padding: 0;
 }
 
-/* Rows: name, muted detail, then year or arrow pushed to the right edge */
+/* Rows are a fixed three-column grid so names, details and years line up in every row */
+.listYear {
+  --end: 4.5rem;
+}
+
+.listLink {
+  --end: 1rem;
+}
+
 .row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) var(--end, auto);
   align-items: baseline;
-  column-gap: 10px;
+  column-gap: 12px;
   padding: clamp(5px, calc(4.5vh - 26px), 13px) 0;
 }
 
 .name {
-  flex: none;
-  min-width: 6rem;
+  font-weight: 600;
 }
 
 .role,
 .description {
-  flex: none;
+  min-width: 0;
+  overflow: hidden;
   font-size: 16px;
   white-space: nowrap;
-  opacity: 0.75;
+  text-overflow: ellipsis;
+  opacity: 0.7;
 }
 
 .year {
-  flex: none;
-  margin-left: auto;
+  justify-self: end;
+  font-size: 16px;
   font-variant-numeric: tabular-nums;
+  opacity: 0.7;
 }
 
 .projectLink {
@@ -132,9 +143,14 @@
 }
 
 .arrow {
-  flex: none;
+  justify-self: end;
   align-self: center;
-  margin-left: auto;
+  transition: transform 0.15s ease;
+}
+
+.projectLink:hover .arrow,
+.projectLink:focus-visible .arrow {
+  transform: translate(2px, -2px);
 }
 
 .footer {
@@ -163,24 +179,25 @@
   }
 
   .row {
-    flex-wrap: wrap;
+    grid-template-columns: minmax(0, 1fr) auto;
     padding: 10px 0;
   }
 
   .name {
-    order: 1;
-    min-width: 0;
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .year,
   .arrow {
-    order: 2;
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .role,
   .description {
-    order: 3;
-    flex-basis: 100%;
+    grid-column: 1 / -1;
+    grid-row: 2;
     margin-top: 2px;
     white-space: normal;
   }
