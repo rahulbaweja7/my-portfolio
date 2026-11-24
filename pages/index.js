@@ -1,10 +1,6 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import SpotifyTopTracks from '@/components/SpotifyTopTracks';
-import GithubActivity from '@/components/GithubActivity';
 import ViewCounter from '@/components/ViewCounter';
-import { AnimatedCounter } from '@/components/ui/animated-counter';
+import styles from '@/styles/Home.module.css';
 
 const socials = [
   { label: 'GitHub',   href: 'https://github.com/rahulbaweja7' },
@@ -14,290 +10,85 @@ const socials = [
 ];
 
 const experience = [
-  {
-    company: 'Microsoft', role: 'Software Engineer Intern', period: 'Aug 2026 – Nov 2026',
-    domain: 'microsoft.com',
-    description: 'Working on the IDNA team building identity and network access solutions across Azure-integrated enterprise systems, applying full-stack and cloud engineering skills at scale.',
-    tech: 'Azure, C#, TypeScript',
-  },
-  {
-    company: 'SuperWorld', role: 'Software Engineer Intern', period: 'Sep 2025 – Nov 2025',
-    domain: 'superworldapp.com',
-    description: 'Architected 6 reusable React + TypeScript components adopted across 12+ call sites, consolidating 800 lines of duplicated UI code and cutting new-feature build time by 25%. Optimized the Orders dashboard by integrating 8 REST endpoints via TanStack Query with caching and optimistic mutations, reducing redundant network calls by 60% and load time from 1.9s to 0.8s. Expanded test coverage from 58% to 84% by writing 42 Jest + React Testing Library unit tests, catching 3 regressions pre-release.',
-    tech: 'React, TypeScript, TanStack Query, Jest',
-  },
-  {
-    company: 'IDX Exchange', role: 'Software Engineer Intern', period: 'May 2025 – Aug 2025',
-    domain: 'idxexchange.com',
-    description: 'Led 4 engineers building a real estate search platform with 10+ fullstack features including filters, map integration, and photo galleries. Integrated CoreLogic’s Web API and a secure MySQL schema, reducing data query latency by 40%. Took end-to-end ownership of authentication for 1,000+ users, from schema design to production, with zero downtime across 20+ releases.',
-    tech: 'React, PHP, MySQL, CoreLogic API',
-  },
-  {
-    company: 'Eazy2Biz', role: 'Software Engineer Intern', period: 'May 2023 – Aug 2023',
-    domain: null,
-    description: 'Produced scalable, reusable UI components with TypeScript and React, reducing frontend bugs by 25%. Designed a document sharing system enabling users to export and distribute PDFs via WhatsApp Web API, cutting manual admin time by 35%. Streamlined registration and permission management through a REST API with JWT authentication, improving onboarding speed by 60%.',
-    tech: 'React, TypeScript, JWT, WhatsApp API',
-  },
+  { company: 'Microsoft',    role: 'Software Engineer Intern', year: 'Current' },
+  { company: 'SuperWorld',   role: 'Software Engineer Intern', year: '2025' },
+  { company: 'IDX Exchange', role: 'Software Engineer Intern', year: '2025' },
+  { company: 'Eazy2Biz',     role: 'Software Engineer Intern', year: '2023' },
 ];
 
 const projects = [
-  {
-    title: 'Applycation', subtitle: 'Automated job application tracker', period: 'Jun 2026 – Sep 2026', domain: null,
-    description: 'Eliminated manual job entry for job seekers by integrating the Gmail API to auto-parse and populate applications, growing the platform to 300+ active users with zero paid marketing. Decoupled email notifications from the request cycle with a BullMQ async job queue and hardened the codebase with CI/CD, Zod validation, and CSRF protection, sustaining 80%+ test coverage across all production deployments.',
-    tech: 'React 19, Node.js, Express, MongoDB, BullMQ, GitHub Actions',
-    href: 'https://github.com/rahulbaweja7',
-  },
-  {
-    title: 'SERA', subtitle: 'AI sexual health chatbot', badge: 'WiCS 2025', period: 'Mar 2025 – May 2025', domain: null,
-    description: 'Won 1st place at WiCS Hackathon 2025 by leading the full-stack design of an AI sexual health chatbot combining OpenAI GPT with real-time voice via the Web Speech API and JWT-secured RBAC, beating 30+ competing teams. Grounded GPT responses in verified sexual health literature with a RAG pipeline indexing curated medical sources via MongoDB Atlas Vector Search, eliminating off-topic hallucinations.',
-    tech: 'React, Node.js, MongoDB Atlas Vector Search, RAG, Tailwind CSS',
-    href: 'https://github.com/rahulbaweja7',
-  },
-  {
-    title: 'MacroBuddy', subtitle: 'AI nutrition tracker', domain: null,
-    description: 'Smart macro tracker with goal-based meal planning and AI-generated alternatives. OpenAI suggests 50+ recipes aligned to cut, maintain, or bulk goals.',
-    tech: 'React, Node.js, Express, MongoDB, OpenAI API',
-    href: 'https://github.com/rahulbaweja7/macrobuddy',
-  },
-  {
-    title: 'QuizModoro', subtitle: 'Pomodoro + active recall', domain: null,
-    description: 'Productivity quiz app blending Pomodoro sessions with spaced repetition. Custom quiz sets, timed focus sessions, and performance tracking.',
-    tech: 'React, JavaScript, LocalStorage',
-    href: 'https://github.com/rahulbaweja7/quizmodoro',
-  },
+  { name: 'Applycation', description: 'Automated job application tracker', href: 'https://github.com/rahulbaweja7' },
+  { name: 'SERA',        description: 'AI sexual health chatbot, WiCS 2025 winner', href: 'https://github.com/rahulbaweja7' },
+  { name: 'MacroBuddy',  description: 'AI nutrition tracker', href: 'https://github.com/rahulbaweja7/macrobuddy' },
+  { name: 'QuizModoro',  description: 'Pomodoro + active recall', href: 'https://github.com/rahulbaweja7/quizmodoro' },
 ];
 
-function CompanyLogo({ domain, name }) {
-  const [failed, setFailed] = useState(!domain);
-
-  if (failed) {
-    return (
-      <div
-        className="w-9 h-9 rounded-lg shrink-0 flex items-center justify-center text-xs font-bold"
-        style={{ background: 'var(--c-border)', color: 'var(--c-muted)' }}
-      >
-        {name.charAt(0)}
-      </div>
-    );
-  }
-
+function Arrow({ className = '' }) {
   return (
-    <img
-      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
-      alt={`${name} logo`}
-      width={36}
-      height={36}
-      decoding="async"
-      className="w-9 h-9 rounded-lg shrink-0 object-contain p-1.5"
-      style={{ background: 'var(--c-border)' }}
-      onError={() => setFailed(true)}
-    />
-  );
-}
-
-function Row({ title, subtitle, period, badge, upcoming, description, tech, href, domain }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b" style={{ borderColor: 'var(--c-border)' }}>
-      <button
-        onClick={() => setOpen(o => !o)}
-        data-hover
-        className="w-full flex items-start gap-3 py-3.5 text-left group"
-      >
-        {domain !== undefined && <CompanyLogo domain={domain} name={title} />}
-        <span className="text-sm flex-1 min-w-0">
-          <span className="flex items-baseline flex-wrap gap-x-2">
-            <span
-              className="font-semibold group-hover:text-accent transition-colors duration-150"
-              style={{ color: upcoming ? '#f97316' : 'var(--c-text)' }}
-            >
-              {title}
-            </span>
-            {badge && (
-              <span className="text-[9px] uppercase tracking-wide px-1.5 py-0.5 rounded"
-                style={{ color: '#f97316', border: '1px solid rgba(249,115,22,0.3)', background: 'rgba(249,115,22,0.06)' }}>
-                {badge}
-              </span>
-            )}
-          </span>
-          <span className="block text-xs mt-0.5" style={{ color: 'var(--c-muted)' }}>
-            {subtitle}{period ? ` — ${period}` : ''}
-          </span>
-        </span>
-        <span
-          className="shrink-0 mt-1 text-xs transition-transform duration-200"
-          style={{ color: 'var(--c-subtle)', transform: open ? 'rotate(180deg)' : 'none' }}
-        >
-          ▾
-        </span>
-      </button>
-      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? 320 : 0 }}>
-        <div className={`pb-4 space-y-2 ${domain !== undefined ? 'pl-12' : ''}`}>
-          <p className="text-xs leading-relaxed" style={{ color: 'var(--c-muted)' }}>{description}</p>
-          {tech && (
-            <p className="text-[11px] italic" style={{ color: 'var(--c-subtle)' }}>{tech}</p>
-          )}
-          {href && (
-            <a href={href} target="_blank" rel="noopener noreferrer" data-hover
-              className="inline-block text-[11px] pt-1 underline underline-offset-2"
-              style={{ color: 'var(--c-subtle)' }}>
-              View source
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
+    <svg className={`${styles.external} ${className}`} viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M3 13 13 3M3 3h10v10" />
+    </svg>
   );
 }
 
 export default function Home() {
-  const [counted, setCounted] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setCounted(true), 200);
-    return () => clearTimeout(t);
-  }, []);
-
   return (
     <>
       <Head>
         <title>Rahul Baweja</title>
-        <meta name="description" content="Rahul Baweja — Software Engineer. Experience and projects, one page." />
+        <meta name="description" content="Rahul Baweja, software engineer. Experience and projects, one page." />
       </Head>
 
+      <main className={`minimal-home ${styles.page}`}>
+        <header>
+          <h1 className={styles.title}>Rahul Baweja</h1>
+          <p className={styles.intro}>22, CS student at Arizona State, SWE intern at Microsoft.</p>
+          <nav className={styles.links} aria-label="Contact">
+            {socials.map(s => (
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">
+                {s.label} <Arrow />
+              </a>
+            ))}
+          </nav>
+        </header>
 
-      <main className="min-h-screen lg:h-screen lg:overflow-hidden pt-10 pb-16 lg:pb-8 px-6" style={{ background: 'var(--c-bg)' }}>
-        <div className="max-w-6xl mx-auto h-full grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12">
-          <div className="max-w-3xl lg:flex lg:flex-col lg:min-h-0">
+        <section className={styles.section} aria-labelledby="experience">
+          <h2 className={styles.heading} id="experience">Experience</h2>
+          <ul className={styles.list}>
+            {experience.map(e => (
+              <li key={e.company} className={styles.row}>
+                <span className={styles.name}>{e.company}</span>
+                <span className={styles.role}>{e.role}</span>
+                <span className={styles.year}>{e.year}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-            {/* Header + About */}
-            <div className="flex flex-col-reverse sm:flex-row sm:items-start gap-6 mb-6 shrink-0">
-              <div className="flex-1 min-w-0">
-                <h1 className="font-bold leading-none mb-2" style={{ fontSize: 'clamp(30px, 5vw, 44px)', color: 'var(--c-text)' }}>
-                  Hey, I&apos;m Rahul<span style={{ color: '#f97316' }}>.</span>
-                </h1>
-                <div className="flex flex-wrap gap-x-5 gap-y-0 sm:gap-y-2 mb-3">
-                  {socials.map(s => (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-hover
-                      className="text-sm underline underline-offset-4 decoration-1 transition-colors duration-200 py-1.5 sm:py-0"
-                      style={{ color: 'var(--c-muted)', textDecorationColor: 'var(--c-border-2)' }}
-                    >
-                      {s.label}
-                    </a>
-                  ))}
-                </div>
-                <p className="text-sm mb-4" style={{ color: 'var(--c-muted)' }}>
-                  22, CS student at Arizona State, SWE intern at Microsoft.
-                </p>
-                <h2 className="text-base font-bold mb-2" style={{ color: 'var(--c-text)' }}>About Me</h2>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--c-muted)' }}>
-                  I build fullstack apps around AI, dev tools, and automation. Three internships
-                  in, TA&apos;d Intro to Java for 100+ students, and won 1st at WiCS 2025. Outside
-                  of code: Barça games and ranked matches I probably shouldn&apos;t queue for.
-                </p>
-
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 font-mono text-xs" style={{ color: 'var(--c-subtle)' }}>
-                  <span className="flex items-baseline gap-1">
-                    <AnimatedCounter
-                      value={counted ? experience.length : 0}
-                      suffix="+"
-                      className="text-sm font-semibold"
-                      style={{ color: '#f97316' }}
-                    />
-                    internships
-                  </span>
-                  <span className="flex items-baseline gap-1">
-                    <AnimatedCounter
-                      value={counted ? projects.length : 0}
-                      suffix="+"
-                      className="text-sm font-semibold"
-                      style={{ color: '#f97316' }}
-                    />
-                    projects
-                  </span>
-                  <span className="flex items-baseline gap-1">
-                    <AnimatedCounter
-                      value={counted ? 1 : 0}
-                      className="text-sm font-semibold"
-                      style={{ color: '#f97316' }}
-                    />
-                    hackathon win
-                  </span>
-                </div>
-              </div>
-
-              <div className="relative w-32 sm:w-36 aspect-[3/4] shrink-0 mx-auto sm:mx-0">
-                <div
-                  className="relative w-full h-full overflow-hidden rounded-2xl"
-                  style={{
-                    border: '1px solid var(--c-border)',
-                    boxShadow: '0 0 0 4px rgba(249,115,22,0.08), 0 12px 32px rgba(249,115,22,0.14)',
-                  }}
-                  data-hover
+        <section className={styles.section} aria-labelledby="projects">
+          <h2 className={styles.heading} id="projects">Projects</h2>
+          <ul className={styles.list}>
+            {projects.map(p => (
+              <li key={p.name}>
+                <a
+                  className={`${styles.row} ${styles.projectLink}`}
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Image src="/assets/RahulLA.png" alt="Rahul" fill sizes="(min-width: 640px) 144px, 128px" priority style={{ objectFit: 'cover', objectPosition: '50% 18%' }} />
-                </div>
-              </div>
-            </div>
+                  <span className={styles.name}>{p.name}</span>
+                  <span className={styles.description}>{p.description}</span>
+                  <Arrow className={styles.arrow} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-            {/* Experience + Projects */}
-            <div className="grid md:grid-cols-2 gap-x-10 gap-y-6 lg:flex-1 lg:min-h-0">
-              <section className="lg:flex lg:flex-col lg:min-h-0">
-                <h2 className="text-lg font-bold mb-2 shrink-0" style={{ color: 'var(--c-text)' }}>Experience</h2>
-                <div className="lg:overflow-y-auto nice-scroll lg:pr-2">
-                  {experience.map((e, i) => (
-                    <Row
-                      key={i}
-                      title={e.company}
-                      subtitle={e.role}
-                      period={e.period}
-                      upcoming={e.upcoming}
-                      description={e.description}
-                      tech={e.tech}
-                      domain={e.domain}
-                    />
-                  ))}
-                </div>
-              </section>
-
-              <section className="lg:flex lg:flex-col lg:min-h-0">
-                <h2 className="text-lg font-bold mb-2 shrink-0" style={{ color: 'var(--c-text)' }}>Projects</h2>
-                <div className="lg:overflow-y-auto nice-scroll lg:pr-2">
-                  {projects.map((p, i) => (
-                    <Row
-                      key={i}
-                      title={p.title}
-                      subtitle={p.subtitle}
-                      period={p.period}
-                      badge={p.badge}
-                      description={p.description}
-                      tech={p.tech}
-                      href={p.href}
-                      domain={p.domain}
-                    />
-                  ))}
-                </div>
-              </section>
-            </div>
-
-            <footer className="pt-6 lg:pt-4 shrink-0">
-              <ViewCounter />
-            </footer>
-          </div>
-
-          {/* Sidebar */}
-          <aside className="lg:pt-2 lg:h-full lg:overflow-y-auto nice-scroll lg:pr-1">
-            <div className="space-y-4">
-              <SpotifyTopTracks />
-              <GithubActivity />
-            </div>
-          </aside>
-        </div>
+        <footer className={styles.footer}>
+          <p>Computer Science at Arizona State.</p>
+          <ViewCounter />
+        </footer>
       </main>
     </>
   );
