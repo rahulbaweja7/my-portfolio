@@ -46,6 +46,20 @@ html {
   text-size-adjust: 100%;
 }
 
+/* Minimal home page: plain black on white (inverted in dark mode), no stripe or dot grid */
+body:has(.minimal-home) {
+  --c-bg:   #fff;
+  --c-text: #000;
+}
+html.dark body:has(.minimal-home) {
+  --c-bg:   #000;
+  --c-text: #fff;
+}
+body:has(.minimal-home)::before,
+body:has(.minimal-home)::after {
+  display: none;
+}
+
 /* GitHub contribution calendar — thin custom scrollbar */
 .gh-cal-scroll * {
   scrollbar-width: thin;
