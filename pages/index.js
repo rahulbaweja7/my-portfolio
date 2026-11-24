@@ -21,7 +21,7 @@ const experience = [
 ];
 
 const projects = [
-  { name: 'Applycation', description: 'Automated job application tracker', href: 'https://github.com/rahulbaweja7' },
+  { name: 'Applycation', description: 'Automated job application tracker', href: 'https://applycation.org' },
   { name: 'SERA',        description: 'AI sexual health chatbot, WiCS 2025 winner', href: 'https://github.com/rahulbaweja7' },
   { name: 'MacroBuddy',  description: 'AI nutrition tracker', href: 'https://github.com/rahulbaweja7/macrobuddy' },
   { name: 'QuizModoro',  description: 'Pomodoro + active recall', href: 'https://github.com/rahulbaweja7/quizmodoro' },
