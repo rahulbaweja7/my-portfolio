@@ -47,7 +47,7 @@ export default function Home() {
         <header>
           <h1 className={styles.title}>Rahul Baweja</h1>
           <div className={styles.prose}>
-            <p>22, CS student at Arizona State and software engineer intern at Microsoft. Previously interned at SuperWorld and IDX Exchange.</p>
+            <p>22, CS Grad, Prev SWE Intern @ Microsoft, SuperWorld, and IDX Exchange</p>
             <p>
               You can find me on{' '}
               <a href={links.github} target="_blank" rel="noopener noreferrer">GitHub</a>,{' '}
