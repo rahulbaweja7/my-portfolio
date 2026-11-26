@@ -154,8 +154,31 @@
 }
 
 .footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin-top: clamp(12px, calc(7.3vh - 38px), 32px);
   font-size: 16px;
+}
+
+.ring {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page .ring a {
+  display: inline-flex;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.page .ring a:hover {
+  opacity: 0.6;
+}
+
+.views {
+  margin-left: auto;
 }
 
 @media (max-width: 1007px) {
@@ -167,7 +190,7 @@
 @media (max-width: 600px) {
   .page {
     margin-top: 48px;
-    margin-bottom: 40px;
+    margin-bottom: 80px; /* keeps the footer clear of the floating theme button */
   }
 
   .title {

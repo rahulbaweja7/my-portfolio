@@ -13,6 +13,9 @@ const links = {
   email:    'mailto:rbaweja1@asu.edu',
 };
 
+// ASU webring: https://github.com/rahulbaweja7/webring
+const ring = { origin: 'https://ring.rahulbaweja.workers.dev', slug: 'rahul-baweja' };
+
 const experience = [
   { company: 'Microsoft',    role: 'Software Engineer Intern', year: 'Current' },
   { company: 'SuperWorld',   role: 'Software Engineer Intern', year: '2025' },
@@ -99,7 +102,17 @@ export default function Home() {
         </section>
 
         <footer className={styles.footer}>
-          <ViewCounter />
+          <nav className={styles.ring} aria-label="ASU webring">
+            <a href={`${ring.origin}/prev/${ring.slug}`} aria-label="Previous site in the ring">←</a>
+            <a href={ring.origin} aria-label="ASU webring home">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${ring.origin}/badge/${ring.slug}.svg`} alt="" width={22} height={22} referrerPolicy="no-referrer" />
+            </a>
+            <a href={`${ring.origin}/next/${ring.slug}`} aria-label="Next site in the ring">→</a>
+          </nav>
+          <div className={styles.views}>
+            <ViewCounter />
+          </div>
         </footer>
       </main>
     </>
