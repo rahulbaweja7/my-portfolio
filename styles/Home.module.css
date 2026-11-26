@@ -154,7 +154,8 @@
 }
 
 .footer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 16px;
   margin-top: clamp(12px, calc(7.3vh - 38px), 32px);
@@ -162,6 +163,7 @@
 }
 
 .ring {
+  grid-column: 2;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -178,7 +180,8 @@
 }
 
 .views {
-  margin-left: auto;
+  grid-column: 3;
+  justify-self: end;
 }
 
 @media (max-width: 1007px) {
