@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Crimson_Text } from 'next/font/google';
 import GithubActivity from '@/components/GithubActivity';
 import ViewCounter from '@/components/ViewCounter';
+import WebringEmbed from '@/components/WebringEmbed';
 import styles from '@/styles/Home.module.css';
 
 const serif = Crimson_Text({ subsets: ['latin'], weight: ['400', '600'], variable: '--font-serif' });
@@ -12,9 +13,6 @@ const links = {
   x:        'https://x.com/RahulBaweja07',
   email:    'mailto:rbaweja1@asu.edu',
 };
-
-// ASU webring: https://github.com/rahulbaweja7/webring
-const ring = { origin: 'https://ring.rahulbaweja.workers.dev', slug: 'rahul-baweja' };
 
 const experience = [
   { company: 'Microsoft',    role: 'Software Engineer Intern', year: 'Current' },
@@ -102,14 +100,7 @@ export default function Home() {
         </section>
 
         <footer className={styles.footer}>
-          <nav className={styles.ring} aria-label="ASU webring">
-            <a href={`${ring.origin}/prev/${ring.slug}`} aria-label="Previous site in the ring">←</a>
-            <a href={ring.origin} aria-label="ASU webring home">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${ring.origin}/badge/${ring.slug}.svg`} alt="" width={22} height={22} referrerPolicy="no-referrer" />
-            </a>
-            <a href={`${ring.origin}/next/${ring.slug}`} aria-label="Next site in the ring">→</a>
-          </nav>
+          <WebringEmbed member="rahul-baweja" />
           <div className={styles.views}>
             <ViewCounter />
           </div>

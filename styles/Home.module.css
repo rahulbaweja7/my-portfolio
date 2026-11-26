@@ -164,19 +164,7 @@
 
 .ring {
   grid-column: 2;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.page .ring a {
-  display: inline-flex;
-  text-decoration: none;
-  transition: opacity 0.15s ease;
-}
-
-.page .ring a:hover {
-  opacity: 0.6;
+  min-height: 24px; /* the widget's badge height, held before embed.js draws it */
 }
 
 .views {
